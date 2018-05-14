@@ -48,27 +48,27 @@
 <span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-Css center = Css.CreateNew().AddRule(<span style="color:#093">"text-align"</span>, <span style="color:#093">"center"</span>).AddRule(<span style="color:#093">"margin-bottom"</span>, <span style="color:#093">"30px"</span>);
-Css link = Css.CreateNew().AddRule(<span style="color:#093">"border"</span>, <span style="color:#093">"1px solid #F67982"</span>)
-                          .AddRule(<span style="color:#093">"width"</span>, <span style="color:#093">"11em"</span>)
-                          .AddRule(<span style="color:#093">"padding"</span>, <span style="color:#093">"0.7em 0"</span>)
-                          .AddRule(<span style="color:#093">"text-decoration"</span>, <span style="color:#093">"none"</span>)
-                          .AddRule(<span style="color:#093">"border-radius"</span>, 4)
-                          .AddRule(<span style="color:#093">"display"</span>, <span style="color:#093">"inline-block"</span>)
-                          .AddRule(<span style="color:#093">"margin"</span>, <span style="color:#093">".5em 1em"</span>)
-                          .AddRule(<span style="color:#093">"transition"</span>, <span style="color:#093">"all .3s"</span>);
-Css primary = Css.CreateNew().AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"#CC3A4B"</span>)
-                             .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#fff"</span>)
-                             .OpenSelector(<span style="color:#093">":hover"</span>)
-                                .AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span>)
+  Css center = Css.CreateNew().AddRule(<span style="color:#093">"text-align"</span>, <span style="color:#093">"center"</span>).AddRule(<span style="color:#093">"margin-bottom"</span>, <span style="color:#093">"30px"</span>);
+  Css link = Css.CreateNew().AddRule(<span style="color:#093">"border"</span>, <span style="color:#093">"1px solid #F67982"</span>)
+                            .AddRule(<span style="color:#093">"width"</span>, <span style="color:#093">"11em"</span>)
+                            .AddRule(<span style="color:#093">"padding"</span>, <span style="color:#093">"0.7em 0"</span>)
+                            .AddRule(<span style="color:#093">"text-decoration"</span>, <span style="color:#093">"none"</span>)
+                            .AddRule(<span style="color:#093">"border-radius"</span>, 4)
+                            .AddRule(<span style="color:#093">"display"</span>, <span style="color:#093">"inline-block"</span>)
+                            .AddRule(<span style="color:#093">"margin"</span>, <span style="color:#093">".5em 1em"</span>)
+                            .AddRule(<span style="color:#093">"transition"</span>, <span style="color:#093">"all .3s"</span>);
+  Css primary = Css.CreateNew().AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"#CC3A4B"</span>)
+                              .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#fff"</span>)
+                              .OpenSelector(<span style="color:#093">":hover"</span>)
+                                  .AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span>)
+                                  .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#DA233C"</span>)
+                              .CloseSelector();
+  Css secondary = Css.CreateNew().AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span>)
                                 .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#DA233C"</span>)
-                             .CloseSelector();
-Css secondary = Css.CreateNew().AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span>)
-                               .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#DA233C"</span>)
-                               .OpenSelector(<span style="color:#093">":hover"</span>)
-                                    .AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"#CC3A4B"</span>)
-                                    .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#fff"</span>)
-                               .CloseSelector();
+                                .OpenSelector(<span style="color:#093">":hover"</span>)
+                                      .AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"#CC3A4B"</span>)
+                                      .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#fff"</span>)
+                                .CloseSelector();
 }
 </pre>
 </div>
