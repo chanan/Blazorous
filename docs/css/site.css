@@ -148,9 +148,19 @@ app {
     transition: all 0.3s;
 }
 
+.css-zk8ij7:hover, [data-css-zk8ij7]:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+	color: #DA233C;
+}
+
 .css-6rqtb4, [data-css-6rqtb4] {
     background-color: rgba(255, 255, 255, 0.5);
     color: rgb(218, 35, 60);
+}
+
+.css-6rqtb4:hover, [data-css-6rqtb4]:hover {
+    background-color: #CC3A4B;
+	color: #fff;
 }
 
 .css-1ezp9xe, [data-css-1ezp9xe] {
