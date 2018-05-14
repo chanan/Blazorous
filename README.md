@@ -6,12 +6,12 @@
 
 Using Package Manager:
 ```
-Install-Package Blazorous -Version 0.0.1
+Install-Package Blazorous -Version 0.0.2
 ```
 
 or dotnet CLI:
 ```
-dotnet add package Blazorous --version 0.0.1
+dotnet add package Blazorous --version 0.0.2
 ```
 
 Add the tag helper to your page or `_ViewImports.cshtml`
