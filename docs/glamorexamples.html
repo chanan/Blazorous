@@ -46,7 +46,7 @@
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css1"</span>&gt;</span>this is a nice box.<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-string css1 = <span style="color:#093">"{ <span style="color:#6782d3">\"</span>color<span style="color:#6782d3">\"</span>: <span style="color:#6782d3">\"</span>red<span style="color:#6782d3">\"</span> }"</span>;
+  string css1 = <span style="color:#093">"{ <span style="color:#6782d3">\"</span>color<span style="color:#6782d3">\"</span>: <span style="color:#6782d3">\"</span>red<span style="color:#6782d3">\"</span> }"</span>;
 }
 </pre>
 
@@ -58,7 +58,7 @@ string css1 = <span style="color:#093">"{ <span style="color:#6782d3">\"</span>c
 <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"@class1"</span>&gt;</span>this is a nice box.<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
 
 @functions {
-string class1 = BlazorousInterop.Css(<span style="color:#093">"{ <span style="color:#6782d3">\"</span>color<span style="color:#6782d3">\"</span>: <span style="color:#6782d3">\"</span>red<span style="color:#6782d3">\"</span> }"</span>);
+  string class1 = BlazorousInterop.Css(<span style="color:#093">"{ <span style="color:#6782d3">\"</span>color<span style="color:#6782d3">\"</span>: <span style="color:#6782d3">\"</span>red<span style="color:#6782d3">\"</span> }"</span>);
 }
 </pre>
 
@@ -72,7 +72,7 @@ string class1 = BlazorousInterop.Css(<span style="color:#093">"{ <span style="co
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css1CSharp"</span>&gt;</span>this is a nice box.<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-Css css1CSharp = Css.CreateNew().AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"red"</span>);
+  Css css1CSharp = Css.CreateNew().AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"red"</span>);
 }
 </pre>
 
@@ -84,7 +84,7 @@ Css css1CSharp = Css.CreateNew().AddRule(<span style="color:#093">"color"</span>
 <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"@class1CSharp"</span>&gt;</span>this is a nice box.<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
 
 @functions {
-string class1CSharp = BlazorousInterop.Css(Css.CreateNew().AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"red"</span>).ToCss());
+  string class1CSharp = BlazorousInterop.Css(Css.CreateNew().AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"red"</span>).ToCss());
 }
 </pre>
 
@@ -96,11 +96,11 @@ string class1CSharp = BlazorousInterop.Css(Css.CreateNew().AddRule(<span style="
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css2"</span>&gt;</span>hover over me<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-string css2 = @<span style="color:#093">"{ 
-    "</span><span style="color:#093">":hover"</span><span style="color:#093">": {
-        "</span><span style="color:#093">"color"</span><span style="color:#093">": "</span><span style="color:#093">"blue"</span><span style="color:#093">" 
-    } 
-}"</span>;
+  string css2 = @<span style="color:#093">"{ 
+      "</span><span style="color:#093">":hover"</span><span style="color:#093">": {
+          "</span><span style="color:#093">"color"</span><span style="color:#093">": "</span><span style="color:#093">"blue"</span><span style="color:#093">" 
+      } 
+  }"</span>;
 }
 </pre>
 
@@ -112,7 +112,7 @@ string css2 = @<span style="color:#093">"{
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css2CSharp"</span>&gt;</span>hover over me<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-Css css2CSharp = Css.CreateNew().OpenSelector(<span style="color:#093">":hover"</span>).AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"blue"</span>).CloseSelector();
+  Css css2CSharp = Css.CreateNew().OpenSelector(<span style="color:#093">":hover"</span>).AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"blue"</span>).CloseSelector();
 }
 </pre>
 
@@ -124,10 +124,10 @@ Css css2CSharp = Css.CreateNew().OpenSelector(<span style="color:#093">":hover"<
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@bold"</span>&gt;</span>Red and Bold<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-string css1 = <span style="color:#093">"{ <span style="color:#6782d3">\"</span>color<span style="color:#6782d3">\"</span>: <span style="color:#6782d3">\"</span>red<span style="color:#6782d3">\"</span> }"</span>;
-string bold = @<span style="color:#093">"{
-    "</span><span style="color:#093">"font-weight"</span><span style="color:#093">": "</span><span style="color:#093">"bold"</span><span style="color:#093">"
-}"</span>;
+  string css1 = <span style="color:#093">"{ <span style="color:#6782d3">\"</span>color<span style="color:#6782d3">\"</span>: <span style="color:#6782d3">\"</span>red<span style="color:#6782d3">\"</span> }"</span>;
+  string bold = @<span style="color:#093">"{
+      "</span><span style="color:#093">"font-weight"</span><span style="color:#093">": "</span><span style="color:#093">"bold"</span><span style="color:#093">"
+  }"</span>;
 }
 </pre>
 
@@ -139,8 +139,8 @@ string bold = @<span style="color:#093">"{
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css1CSharp"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@boldCSharp"</span>&gt;</span>Red and Bold<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-Css css1CSharp = Css.CreateNew().AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"red"</span>);
-Css boldCSharp = Css.CreateNew().AddRule(<span style="color:#093">"font-weight"</span>, <span style="color:#093">"bold"</span>);
+  Css css1CSharp = Css.CreateNew().AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"red"</span>);
+  Css boldCSharp = Css.CreateNew().AddRule(<span style="color:#093">"font-weight"</span>, <span style="color:#093">"bold"</span>);
 }
 </pre>
 
@@ -153,17 +153,17 @@ Css boldCSharp = Css.CreateNew().AddRule(<span style="color:#093">"font-weight"<
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@childExamples"</span>&gt;</span>
-<span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"one bold"</span>&gt;</span>is blue-bold!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
-<span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"two"</span>&gt;</span>hover red!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
+  <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"one bold"</span>&gt;</span>is blue-bold!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
+  <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"two"</span>&gt;</span>hover red!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
 <span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-string childExamples = @<span style="color:#093">"{
-  "</span><span style="color:#093">"display"</span><span style="color:#093">": "</span><span style="color:#093">"block"</span><span style="color:#093">",
-  "</span><span style="color:#093">"&amp; .bold"</span><span style="color:#093">": { "</span><span style="color:#093">"font-weight"</span><span style="color:#093">": "</span><span style="color:#093">"bold"</span><span style="color:#093">" },
-  "</span><span style="color:#093">"&amp; .one"</span><span style="color:#093">": { "</span><span style="color:#093">"color"</span><span style="color:#093">": "</span><span style="color:#093">"blue"</span><span style="color:#093">" },
-  "</span><span style="color:#093">":hover .two"</span><span style="color:#093">": { "</span><span style="color:#093">"color"</span><span style="color:#093">": "</span><span style="color:#093">"red"</span><span style="color:#093">" }
-}"</span>;
+  string childExamples = @<span style="color:#093">"{
+    "</span><span style="color:#093">"display"</span><span style="color:#093">": "</span><span style="color:#093">"block"</span><span style="color:#093">",
+    "</span><span style="color:#093">"&amp; .bold"</span><span style="color:#093">": { "</span><span style="color:#093">"font-weight"</span><span style="color:#093">": "</span><span style="color:#093">"bold"</span><span style="color:#093">" },
+    "</span><span style="color:#093">"&amp; .one"</span><span style="color:#093">": { "</span><span style="color:#093">"color"</span><span style="color:#093">": "</span><span style="color:#093">"blue"</span><span style="color:#093">" },
+    "</span><span style="color:#093">":hover .two"</span><span style="color:#093">": { "</span><span style="color:#093">"color"</span><span style="color:#093">": "</span><span style="color:#093">"red"</span><span style="color:#093">" }
+  }"</span>;
 }
 </pre>
 
@@ -176,12 +176,13 @@ string childExamples = @<span style="color:#093">"{
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@childExamplesCSharp"</span>&gt;</span>
-<span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"one bold"</span>&gt;</span>is blue-bold!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
-<span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"two"</span>&gt;</span>hover red!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
+  <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"one bold"</span>&gt;</span>is blue-bold!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
+  <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"two"</span>&gt;</span>hover red!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
 <span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-Css childExamplesCSharp = Css.CreateNew().AddRule(<span style="color:#093">"display"</span>, <span style="color:#093">"block"</span>)
+  Css childExamplesCSharp = Css.CreateNew()
+                            .AddRule(<span style="color:#093">"display"</span>, <span style="color:#093">"block"</span>)
                             .OpenSelector(<span style="color:#093">"&amp; .bold"</span>).AddRule(<span style="color:#093">"font-weight"</span>, <span style="color:#093">"bold"</span>).CloseSelector()
                             .OpenSelector(<span style="color:#093">"&amp; .one"</span>).AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"blue"</span>).CloseSelector()
                             .OpenSelector(<span style="color:#093">":hover .two"</span>).AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"red"</span>).CloseSelector();
