@@ -6,6 +6,13 @@
     <IsPackable>true</IsPackable>
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
     <LangVersion>7.3</LangVersion>
+    <PackageId>Blazorous</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Chanan Braunstein</Authors>
+    <Title>Blazorous</Title>
+    <Description>Maintainable CSS with Blazor</Description>
+    <PackageTags>blazor;css;glamor;styled-components</PackageTags>
+    <RepositoryUrl>https://github.com/chanan/Blazorous</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
