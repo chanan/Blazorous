@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.AspNetCore.Blazor.RenderTree;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Blazorous
 {
-    public class Blazorous : IComponent, IHandleEvent
+    public class Dynamic : IComponent, IHandleEvent
     {
         /// <summary>
         /// Gets or sets the name of the element to render.
@@ -49,7 +48,7 @@ namespace Blazorous
             _attributesToRender.Remove("css");
             _childContent = GetAndRemove<RenderFragment>(_attributesToRender, RenderTreeBuilder.ChildContent);
             _classname = GetAndRemove<string>(_attributesToRender, "class");
-            var classnames = (from c in css select BlazorousInterop.Css(c)).ToList();
+            var classnames = GetCssFromProps(css);
             foreach(var classname in classnames)
             {
                 _classname = _classname != null ? $"{_classname} {classname}" : classname;
@@ -79,6 +78,27 @@ namespace Blazorous
                 }
             }
             _renderHandle.Render(Render);
+        }
+
+        private static List<string> GetCssFromProps(List<object> css)
+        {
+            var list = new List<string>();
+            foreach(var item in css)
+            {
+                switch(item)
+                {
+                    case string s:
+                        list.Add(BlazorousInterop.Css(s));
+                        break;
+                    case Css c:
+                        list.Add(BlazorousInterop.Css(c.ToCss()));
+                        break;
+                    default:
+                        throw new InvalidOperationException("css attribute muse be string or of type Blazorous.Css");
+
+                }
+            }
+            return list;
         }
 
         private static T GetAndRemove<T>(IDictionary<string, object> values, string key)

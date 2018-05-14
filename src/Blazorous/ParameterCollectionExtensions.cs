@@ -5,14 +5,14 @@ namespace Blazorous
 {
     internal static class ParameterCollectionExtensions
     {
-        public static List<string> GetParameterList(this ParameterCollection parameters, string ParameterName)
+        public static List<object> GetParameterList(this ParameterCollection parameters, string ParameterName)
         {
-            var list = new List<string>();
+            var list = new List<object>();
             foreach(var param in parameters)
             {
                 if(param.Name.ToLower() == ParameterName.ToLower())
                 {
-                    list.Add(param.Value.ToString());
+                    list.Add(param.Value);
                 }
             }
             return list;

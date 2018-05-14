@@ -27,6 +27,15 @@
 
   <ItemGroup>
     <None Include="Pages\GlamorExamples.cshtml" />
+    <None Include="Pages\Object.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\Object.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Object.cshtml" />
   </ItemGroup>
 
 </Project>
