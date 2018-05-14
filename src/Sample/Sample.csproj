@@ -17,4 +17,16 @@
     <ProjectReference Include="..\Blazorous\Blazorous.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\GlamorExamples.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\GlamorExamples.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\GlamorExamples.cshtml" />
+  </ItemGroup>
+
 </Project>

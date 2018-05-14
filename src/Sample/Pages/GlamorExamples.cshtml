@@ -1,0 +1,103 @@
+﻿@page "/glamorexamples"
+<h1>Glamor Examples</h1>
+
+<p>Examples taken from: <a href="https://github.com/threepointone/glamor/blob/master/docs/howto.md">https://github.com/threepointone/glamor/blob/master/docs/howto.md</a></p>
+
+<h2>apply a style to an element</h2>
+
+<p>Using the Blazorous component:</p>
+
+<Blazorous TagName="div" css="@css1">this is a nice box.</Blazorous>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Blazorous</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css1"</span>></span>this is a nice box.<span style="color:#03c">&lt;/<span style="font-weight:700">Blazorous</span>></span>
+
+@@functions {
+    string css1 = <span style="color:#093">"{ <span style="color:#6782d3">\"</span>color<span style="color:#6782d3">\"</span>: <span style="color:#6782d3">\"</span>red<span style="color:#6782d3">\"</span> }"</span>;
+}
+</pre>
+
+<p>Or using the Blazorous Css() function directly:</p>
+
+<div class="@class1">this is a nice box.</div>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"@@class1"</span>></span>this is a nice box.<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>></span>
+
+@@functions {
+    string class1 = Blazorous.BlazorousInterop.Css(<span style="color:#093">"{ <span style="color:#6782d3">\"</span>color<span style="color:#6782d3">\"</span>: <span style="color:#6782d3">\"</span>red<span style="color:#6782d3">\"</span> }"</span>);
+}
+</pre>
+
+<h2>pseudoclasses</h2>
+
+<Blazorous TagName="div" css="@css2">hover over me</Blazorous>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#03c">&lt;<span style="font-weight:700">Blazorous</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css2"</span>></span>hover over me<span style="color:#03c">&lt;/<span style="font-weight:700">Blazorous</span>></span>
+
+@@functions {
+    string css2 = @@<span style="color:#093">"{ 
+        "</span><span style="color:#093">":hover"</span><span style="color:#093">": {
+            "</span><span style="color:#093">"color"</span><span style="color:#093">": "</span><span style="color:#093">"blue"</span><span style="color:#093">" 
+        } 
+    }"</span>;
+}
+</pre>
+
+<h2>multiple styles to an element</h2>
+
+<Blazorous TagName="div" css="@css1" css="@bold">Red and Bold</Blazorous>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Blazorous</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@bold"</span>></span>Red and Bold<span style="color:#03c">&lt;/<span style="font-weight:700">Blazorous</span>></span>
+
+@@functions {
+    string css1 = <span style="color:#093">"{ <span style="color:#6782d3">\"</span>color<span style="color:#6782d3">\"</span>: <span style="color:#6782d3">\"</span>red<span style="color:#6782d3">\"</span> }"</span>;
+    string class1 = Blazorous.BlazorousInterop.Css(<span style="color:#093">"{ <span style="color:#6782d3">\"</span>color<span style="color:#6782d3">\"</span>: <span style="color:#6782d3">\"</span>red<span style="color:#6782d3">\"</span> }"</span>);
+    string bold = @@<span style="color:#093">"{
+        "</span><span style="color:#093">"font-weight"</span><span style="color:#093">": "</span><span style="color:#093">"bold"</span><span style="color:#093">"
+    }"</span>;
+}
+</pre>
+
+<h2>child selectors</h2>
+
+<Blazorous TagName="div" css="@childExamples">
+    <div class="one bold">is blue-bold!</div>
+    <div class="two">hover red!</div>
+</Blazorous>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Blazorous</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@childExamples"</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"one bold"</span>></span>is blue-bold!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"two"</span>></span>hover red!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>></span>
+<span style="color:#03c">&lt;/<span style="font-weight:700">Blazorous</span>></span>
+
+@@functions {
+    string childExamples = @@<span style="color:#093">"{
+      "</span><span style="color:#093">"display"</span><span style="color:#093">": "</span><span style="color:#093">"block"</span><span style="color:#093">",
+      "</span><span style="color:#093">"&amp; .bold"</span><span style="color:#093">": { "</span><span style="color:#093">"fontWeight"</span><span style="color:#093">": "</span><span style="color:#093">"bold"</span><span style="color:#093">" },
+      "</span><span style="color:#093">"&amp; .one"</span><span style="color:#093">": { "</span><span style="color:#093">"color"</span><span style="color:#093">": "</span><span style="color:#093">"blue"</span><span style="color:#093">" },
+      "</span><span style="color:#093">":hover .two"</span><span style="color:#093">": { "</span><span style="color:#093">"color"</span><span style="color:#093">": "</span><span style="color:#093">"red"</span><span style="color:#093">" }
+    }"</span>;
+}
+</pre>
+
+@functions {
+    string css1 = "{ \"color\": \"red\" }";
+    string class1 = Blazorous.BlazorousInterop.Css("{ \"color\": \"red\" }");
+    string css2 = @"{
+        "":hover"": {
+            ""color"": ""blue""
+        }
+    }";
+    string bold = @"{
+        ""font-weight"": ""bold""
+    }";
+    string childExamples = @"{
+      ""display"": ""block"",
+      ""& .bold"": { ""fontWeight"": ""bold"" },
+      ""& .one"": { ""color"": ""blue"" },
+      "":hover .two"": { ""color"": ""red"" }
+    }";
+}

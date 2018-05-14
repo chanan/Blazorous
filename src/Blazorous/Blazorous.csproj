@@ -20,8 +20,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.3.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="content\" />
-  </ItemGroup>
-
 </Project>
