@@ -3,63 +3,78 @@
 <Dynamic TagName="div" css="@center">
     <h1>Blazorous</h1>
     <h2>Maintainable CSS with Blazor</h2>
-    <Dynamic TagName="a" css="@link" css="@primary" href="https://github.com/chanan/Blazorous">Github</Dynamic>
-    <Dynamic TagName="a" css="@link" css="@secondary" href="/glamorexamples">Glamor Examples</Dynamic>
+    <Dynamic TagName="a" css="@link" primary="true" href="https://github.com/chanan/Blazorous">Github</Dynamic>
+    <Dynamic TagName="a" css="@link" href="/glamorexamples">Glamor Examples</Dynamic>
 </Dynamic>
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@center"</span>></span>
     <span style="color:#03c">&lt;<span style="font-weight:700">h1</span>></span>Blazorous<span style="color:#03c">&lt;/<span style="font-weight:700">h1</span>></span>
     <span style="color:#03c">&lt;<span style="font-weight:700">h2</span>></span>Maintainable CSS with Blazor<span style="color:#03c">&lt;/<span style="font-weight:700">h2</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"a"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@link"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@primary"</span> <span style="color:#36c;font-style:italic">href</span>=<span style="color:#093">"https://github.com/chanan/Blazorous"</span>></span>Github<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"a"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@link"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@secondary"</span> <span style="color:#36c;font-style:italic">href</span>=<span style="color:#093">"/glamorexamples"</span>></span>Glamor Examples<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"a"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@link"</span> <span style="color:#36c;font-style:italic">primary</span>=<span style="color:#093">"true"</span> <span style="color:#36c;font-style:italic">href</span>=<span style="color:#093">"https://github.com/chanan/Blazorous"</span>></span>Github<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"a"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@link"</span> <span style="color:#36c;font-style:italic">href</span>=<span style="color:#093">"/glamorexamples"</span>></span>Glamor Examples<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 <span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
-    Css center = Css.CreateNew().AddRule(<span style="color:#093">"text-align"</span>, <span style="color:#093">"center"</span>).AddRule(<span style="color:#093">"margin-bottom"</span>, <span style="color:#093">"30px"</span>);
+    //Styles can defined as strings:
+    string center = @@<span style="color:#093">"{
+        "</span><span style="color:#093">"text-align"</span><span style="color:#093">": "</span><span style="color:#093">"center"</span><span style="color:#093">",
+        "</span><span style="color:#093">"margin-bottom"</span><span style="color:#093">": "</span><span style="color:#093">"30px"</span><span style="color:#093">"
+    }"</span>;
+    //Or in C#. When using C# you can make your styles dynamic!
     Css link = Css.CreateNew().AddRule(<span style="color:#093">"border"</span>, <span style="color:#093">"1px solid #F67982"</span>)
-                              .AddRule(<span style="color:#093">"width"</span>, <span style="color:#093">"11em"</span>)
-                              .AddRule(<span style="color:#093">"padding"</span>, <span style="color:#093">"0.7em 0"</span>)
-                              .AddRule(<span style="color:#093">"text-decoration"</span>, <span style="color:#093">"none"</span>)
-                              .AddRule(<span style="color:#093">"border-radius"</span>, 4)
-                              .AddRule(<span style="color:#093">"display"</span>, <span style="color:#093">"inline-block"</span>)
-                              .AddRule(<span style="color:#093">"margin"</span>, <span style="color:#093">".5em 1em"</span>)
-                              .AddRule(<span style="color:#093">"transition"</span>, <span style="color:#093">"all .3s"</span>);
-    Css primary = Css.CreateNew().AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"#CC3A4B"</span>)
-                                 .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#fff"</span>)
-                                 .OpenSelector(<span style="color:#093">":hover"</span>)
-                                    .AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span>)
-                                    .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#DA233C"</span>)
-                                 .CloseSelector();
-    Css secondary = Css.CreateNew().AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span>)
-                                   .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#DA233C"</span>)
-                                   .OpenSelector(<span style="color:#093">":hover"</span>)
-                                        .AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"#CC3A4B"</span>)
-                                        .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#fff"</span>)
-                                   .CloseSelector();
+                          .AddRule(<span style="color:#093">"width"</span>, <span style="color:#093">"11em"</span>)
+                          .AddRule(<span style="color:#093">"padding"</span>, <span style="color:#093">"0.7em 0"</span>)
+                          .AddRule(<span style="color:#093">"text-decoration"</span>, <span style="color:#093">"none"</span>)
+                          .AddRule(<span style="color:#093">"border-radius"</span>, 4)
+                          .AddRule(<span style="color:#093">"display"</span>, <span style="color:#093">"inline-block"</span>)
+                          .AddRule(<span style="color:#093">"margin"</span>, <span style="color:#093">".5em 1em"</span>)
+                          .AddRule(<span style="color:#093">"transition"</span>, <span style="color:#093">"all .3s"</span>)
+                          .AddDynamicRule((css, attributes) =>
+                          {
+                              var isPrimary = attributes.GetBooleanAttribute(<span style="color:#093">"primary"</span>);
+                              css.AddRule(<span style="color:#093">"background-color"</span>, isPrimary ? <span style="color:#093">"#CC3A4B"</span> : <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span>);
+                              css.AddRule(<span style="color:#093">"color"</span>, isPrimary ? <span style="color:#093">"#fff"</span> : <span style="color:#093">"#DA233C"</span>);
+                          })
+                          .OpenSelector(":hover")
+                            .AddDynamicRule((css, attributes) =>
+                            {
+                                var isPrimary = attributes.GetBooleanAttribute(<span style="color:#093">"primary"</span>);
+                                css.AddRule(<span style="color:#093">"background-color"</span>, isPrimary ? <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span> : <span style="color:#093">"#CC3A4B"</span>);
+                                css.AddRule(<span style="color:#093">"color"</span>, isPrimary ? <span style="color:#093">"#DA233C"</span> : <span style="color:#093">"#fff"</span>);
+                            })
+                          .CloseSelector();
 }
+
 </pre>
 
 @functions {
-    Css center = Css.CreateNew().AddRule("text-align", "center").AddRule("margin-bottom", "30px");
+    //Styles can defined as strings:
+    string center = @"{
+        ""text-align"": ""center"",
+        ""margin-bottom"": ""30px""
+    }";
+    //Or in C#. When using C# you can make your styles dynamic!
     Css link = Css.CreateNew().AddRule("border", "1px solid #F67982")
-                              .AddRule("width", "11em")
-                              .AddRule("padding", "0.7em 0")
-                              .AddRule("text-decoration", "none")
-                              .AddRule("border-radius", 4)
-                              .AddRule("display", "inline-block")
-                              .AddRule("margin", ".5em 1em")
-                              .AddRule("transition", "all .3s");
-    Css primary = Css.CreateNew().AddRule("background-color", "#CC3A4B")
-                                 .AddRule("color", "#fff")
-                                 .OpenSelector(":hover")
-                                    .AddRule("background-color", "rgba(255, 255, 255, 0.5)")
-                                    .AddRule("color", "#DA233C")
-                                 .CloseSelector();
-    Css secondary = Css.CreateNew().AddRule("background-color", "rgba(255, 255, 255, 0.5)")
-                                   .AddRule("color", "#DA233C")
-                                   .OpenSelector(":hover")
-                                        .AddRule("background-color", "#CC3A4B")
-                                        .AddRule("color", "#fff")
-                                   .CloseSelector();
+                          .AddRule("width", "11em")
+                          .AddRule("padding", "0.7em 0")
+                          .AddRule("text-decoration", "none")
+                          .AddRule("border-radius", 4)
+                          .AddRule("display", "inline-block")
+                          .AddRule("margin", ".5em 1em")
+                          .AddRule("transition", "all .3s")
+                          .AddDynamicRule((css, attributes) =>
+                          {
+                              var isPrimary = attributes.GetBooleanAttribute("primary");
+                              css.AddRule("background-color", isPrimary ? "#CC3A4B" : "rgba(255, 255, 255, 0.5)");
+                              css.AddRule("color", isPrimary ? "#fff" : "#DA233C");
+                          })
+                          .OpenSelector(":hover")
+                            .AddDynamicRule((css, attributes) =>
+                            {
+                                var isPrimary = attributes.GetBooleanAttribute("primary");
+                                css.AddRule("background-color", isPrimary ? "rgba(255, 255, 255, 0.5)" : "#CC3A4B");
+                                css.AddRule("color", isPrimary ? "#DA233C" : "#fff");
+                            })
+                          .CloseSelector();
 }

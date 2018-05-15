@@ -1,0 +1,219 @@
+﻿@page "/dynamic"
+
+<h1>Dynamic Rules</h1>
+
+<p>
+    Dynamic rules allow you to define components that change dynamicly based on attributes on the component. This allows you to easily create reusable styled components in your application.
+    Dynamic rules only work using the C# syntax. For example, below is a &lt;div&gt; that takes its color attribute from the tag.
+</p>
+
+<Dynamic TagName="div" css="@coloredDiv" color="red">This &lt;div&gt; has an attribute: color="red"</Dynamic>
+
+<Dynamic TagName="div" css="@coloredDiv" color="blue">This &lt;div&gt; has an attribute: color="blue"</Dynamic>
+
+<Dynamic TagName="div" css="@coloredDiv">This &lt;div&gt; does not have a color attribute so it will default to black</Dynamic>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@coloredDiv"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"red"</span>></span>This <span style="color:#6782d3">&amp;lt;</span>div<span style="color:#6782d3">&amp;gt;</span> has an attribute: color="red"<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@coloredDiv"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"blue"</span>></span>This <span style="color:#6782d3">&amp;lt;</span>div<span style="color:#6782d3">&amp;gt;</span> has an attribute: color="blue"<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@coloredDiv"</span>></span>This <span style="color:#6782d3">&amp;lt;</span>div<span style="color:#6782d3">&amp;gt;</span> does not have a color attribute so it will default to black<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@@functions {
+    Css coloredDiv = Css.CreateNew()
+                    .AddDynamicRule((css, attributes) =>
+                    {
+                        css.AddRule(<span style="color:#093">"color"</span>, attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"black"</span>));
+                    });
+}
+</pre>
+
+<h2>Reusable Component Example</h2>
+
+<p>This example has been taken from <a href="https://glamorous.rocks/examples/#button">Glamorous Community Examples: Button</a></p>
+
+<p>In this example we will create a reusable button component that can be used in your application. The end result looks like this:</p>
+
+<div>
+    <StyledButtonWithParamAndAttributes color="success" onclick="@onclick">Success</StyledButtonWithParamAndAttributes>
+    <StyledButtonWithParamAndAttributes color="danger" onclick="@onclick">Danger</StyledButtonWithParamAndAttributes>
+    <StyledButtonWithParamAndAttributes color="primary" onclick="@onclick">Primary</StyledButtonWithParamAndAttributes>
+    <StyledButtonWithParamAndAttributes color="info" onclick="@onclick">Info</StyledButtonWithParamAndAttributes>
+    <StyledButtonWithParamAndAttributes onclick="@onclick">Gray (default)</StyledButtonWithParamAndAttributes>
+    <StyledButtonWithParamAndAttributes color="accent" onclick="@onclick">Accent</StyledButtonWithParamAndAttributes>
+</div>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">div</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"success"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Success<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"danger"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Danger<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"primary"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Primary<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"info"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Info<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Gray (default)<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"accent"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Accent<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
+<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>></span>
+</pre>
+
+<p>First Create a Component, I called mine <code>StyledButtonWithParamAndAttributes.cshtml</code> and placed it in the <a href="https://github.com/chanan/Blazorous/tree/master/src/Sample/Shared"><code>Shared</code></a> folder. 
+    There are actually 3 examples that show similiar but slight different ways of passing attributes. In <code>StyledButtonWithParamAndAttributes.cshtml</code> 
+    I both created a Parameter named <code>color</code> and inherited from <code>BlazorousComponentBase</code>. However, you do not have to do both. To see other examples take a 
+    look at <code>StyledButton.cshtml</code> and <code>StyledButtonWithParam.cshtml</code> in the <a href="https://github.com/chanan/Blazorous/tree/master/src/Sample/Shared"><code>Shared</code></a> folder of the sample site.     
+</p>
+
+<p>Place the imports in <code>_ViewImports.cshtml</code> or at the top of <code>StyledButtonWithParamAndAttributes.cshtml</code>:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+@@addTagHelper *,Blazorous
+@@using Blazorous
+</pre>
+
+<p>As mentioned in this example, I will inherit from <code>BlazorousComponentBase</code>, so add the inherit tag at the start of the file:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+@@inherits BlazorousComponentBase
+</pre>
+
+<p>Next we will use the Dynamic tag that comes with Blazorous to generate the button:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>@@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+</pre>
+
+<p>Since we want child content and an onclick method, lets add those parameters to the functions section of the page:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+@@functions {
+    [Parameter] private RenderFragment ChildContent { get; set; }
+    [Parameter] private Action onclick { get; set; }
+}
+</pre>
+
+<p>To allow aribtrary attributes be set on our button (for example <code>style</code>), and since we inherited from <code>BlazorousComponentBase</code>, we will add the 
+    <code>Attributes="@@UnknownParameters"</code> to our <code>&lt;Dynamic&gt;</code> tag:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span> <span style="color:#36c;font-style:italic">Attributes</span>=<span style="color:#093">"@@UnknownParameters"</span>></span>@@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+</pre>
+
+<p>
+    At this point we have a button that can accept arbitrary attributes but doesn't look very good. Let's define a color parameter and what hex colors we want our button to be
+    (Note: an enum might be better here, but for the sake of simplicity strings and a <code>Dictionary</code> are used in this example). I added the following in the functions section of the page:
+</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+[Parameter] private string color { get; set; } = "gray";
+private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>></span> colors = new Dictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>></span>()
+{
+    { <span style="color:#093">"success"</span>, <span style="color:#093">"#29A88E"</span> },
+    { <span style="color:#093">"danger"</span>, <span style="color:#093">"#C65F4A"</span> },
+    { <span style="color:#093">"primary"</span>, <span style="color:#093">"#6DCFD3"</span> },
+    { <span style="color:#093">"info"</span>, <span style="color:#093">"#FFD035"</span> },
+    { <span style="color:#093">"gray"</span>, <span style="color:#093">"#5A6E73"</span> },
+    { <span style="color:#093">"accent"</span>, <span style="color:#093">"#8E83A3"</span> }
+};
+</pre>
+
+<p>Now we can define the a private field of type <code>Css</code> that we will bind to the <code>&lt;Dynamic&gt;</code> component that will hold our CSS rules:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+private Css css = Css.CreateNew()
+    .AddRule("font-size", 16)
+    .AddRule("margin", 10)
+    .AddRule("border", "none")
+    .AddRule("cursor", "pointer")
+    .AddRule("display", "inline-block")
+    .AddRule("padding", "10px 20px")
+    .AddRule("text-align", "center")
+    .AddRule("transition", "0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)")
+    .AddRule("border-radius", 4)
+    .AddRule("color", "#fff")
+    .AddRule("box-shadow", "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)")
+    .OpenSelector(":hover")
+        .AddRule("opacity", 0.7)
+        .AddRule("transform", "translateY(-1px)")
+        .AddRule("box-shadow", "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)")
+    .CloseSelector()
+    .OpenSelector(":focus")
+        .AddRule("outline", 0)
+    .CloseSelector()
+    .OpenSelector(":active")
+        .AddRule("transform", "translateY(1px)")
+    .CloseSelector()
+    .AddDynamicRule((css, attributes) =>
+    {
+        var color = colors[attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"gray"</span>)];
+        css.AddRule(<span style="color:#093">"background-color"</span>, color);
+    });
+}
+</pre>
+
+<p>At the end of the code above, the <code>AddDynamicRule</code> is the part that dynamically creates the css style based on the color parameter. Lastly we need to bind the color and css
+    attributes to the <code>&lt;Dynamic&gt;</code>. I changed the <code>&lt;Dynamic&gt;</code> to it's final format:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"@@color"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span> <span style="color:#36c;font-style:italic">Attributes</span>=<span style="color:#093">"@@UnknownParameters"</span>></span>@@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+</pre>
+
+<p>The full source of <code>StyledButtonWithParamAndAttributes.cshtml</code> is below:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+@@inherits BlazorousComponentBase
+
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"@@color"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span> <span style="color:#36c;font-style:italic">Attributes</span>=<span style="color:#093">"@@UnknownParameters"</span>></span>@@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@@functions {
+    [Parameter] private RenderFragment ChildContent { get; set; }
+    [Parameter] private Action onclick { get; set; }
+    [Parameter] private string color { get; set; } = "gray";
+    private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>></span> colors = new Dictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>></span>()
+    {
+        { <span style="color:#093">"success"</span>, <span style="color:#093">"#29A88E"</span> },
+        { <span style="color:#093">"danger"</span>, <span style="color:#093">"#C65F4A"</span> },
+        { <span style="color:#093">"primary"</span>, <span style="color:#093">"#6DCFD3"</span> },
+        { <span style="color:#093">"info"</span>, <span style="color:#093">"#FFD035"</span> },
+        { <span style="color:#093">"gray"</span>, <span style="color:#093">"#5A6E73"</span> },
+        { <span style="color:#093">"accent"</span>, <span style="color:#093">"#8E83A3"</span> }
+    };
+    private Css css = Css.CreateNew()
+        .AddRule("font-size", 16)
+        .AddRule("margin", 10)
+        .AddRule("border", "none")
+        .AddRule("cursor", "pointer")
+        .AddRule("display", "inline-block")
+        .AddRule("padding", "10px 20px")
+        .AddRule("text-align", "center")
+        .AddRule("transition", "0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)")
+        .AddRule("border-radius", 4)
+        .AddRule("color", "#fff")
+        .AddRule("box-shadow", "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)")
+        .OpenSelector(":hover")
+            .AddRule("opacity", 0.7)
+            .AddRule("transform", "translateY(-1px)")
+            .AddRule("box-shadow", "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)")
+        .CloseSelector()
+        .OpenSelector(":focus")
+            .AddRule("outline", 0)
+        .CloseSelector()
+        .OpenSelector(":active")
+            .AddRule("transform", "translateY(1px)")
+        .CloseSelector()
+        .AddDynamicRule((css, attributes) =>
+        {
+            var color = colors[attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"gray"</span>)];
+            css.AddRule(<span style="color:#093">"background-color"</span>, color);
+        });
+}
+</pre>
+
+@functions {
+    Css coloredDiv = Css.CreateNew()
+                    .AddDynamicRule((css, attributes) =>
+                    {
+                        css.AddRule("color", attributes.GetStringAttribute("color", "black"));
+                    });
+    void onclick()
+    {
+        Console.WriteLine("Hello world");
+    }
+}
