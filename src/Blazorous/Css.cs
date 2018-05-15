@@ -108,9 +108,10 @@ namespace Blazorous
                 }
                 if(typeof(Classname) != kvp.Value.GetType())
                 {
+                    //TODO: Refactor the rules around commas
                     if (i == Rules.Count - 1 && inSelector) sb.Append("}");
-                    if (i != Rules.Count - 1 && inSelector && !firstInSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType()) sb.Append(", ");
-                    if (i != Rules.Count - 1 && !inSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType()) sb.Append(",");
+                    if (i != Rules.Count - 1 && inSelector && !firstInSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType() && typeof(Classname) != Rules[i + 1].Value.GetType()) sb.Append(", ");
+                    if (i != Rules.Count - 1 && !inSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType() && typeof(Classname) != Rules[i + 1].Value.GetType()) sb.Append(",");
                     firstInSelector = false;
                 }
             }

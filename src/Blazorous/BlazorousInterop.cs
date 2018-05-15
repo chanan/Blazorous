@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Blazor.Browser.Interop;
+﻿using System;
+using Microsoft.AspNetCore.Blazor.Browser.Interop;
 
 namespace Blazorous
 {
@@ -6,7 +7,12 @@ namespace Blazorous
     {
         public static string Css(string css)
         {
-            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Css", css);
+            return Css(css, "false");
+        }
+
+        internal static string Css(string css, string debug)
+        {
+            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Css", css, debug);
         }
     }
 }

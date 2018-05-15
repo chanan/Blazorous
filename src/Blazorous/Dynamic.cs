@@ -42,12 +42,13 @@ namespace Blazorous
         /// <inheritdoc />
         public void SetParameters(ParameterCollection parameters)
         {
-            //parameters.Log();
             var css = parameters.GetParameterList("css");
             _attributesToRender = (IDictionary<string, object>)parameters.ToDictionary();
             _attributesToRender.Remove("css");
             _childContent = GetAndRemove<RenderFragment>(_attributesToRender, RenderTreeBuilder.ChildContent);
             _classname = GetAndRemove<string>(_attributesToRender, "class");
+            var debug = GetAndRemove<string>(_attributesToRender, "debug");
+           
 
             TagName = GetAndRemove<string>(_attributesToRender, nameof(TagName))
                 ?? throw new InvalidOperationException($"No value was supplied for required parameter '{nameof(TagName)}'.");
@@ -79,7 +80,7 @@ namespace Blazorous
                 _classname = _classname != null ? $"{_classname} {classname}" : classname;
             }
 
-            var glamorClasses = GetCssFromProps(css, _attributesToRender);
+            var glamorClasses = GetCssFromProps(css, _attributesToRender, debug);
             foreach (var classname in glamorClasses)
             {
                 _classname = _classname != null ? $"{_classname} {classname}" : classname;
@@ -109,7 +110,7 @@ namespace Blazorous
             return list;
         }
 
-        private static List<string> GetCssFromProps(List<object> css, IDictionary<string, object> attributesToRender)
+        private static List<string> GetCssFromProps(List<object> css, IDictionary<string, object> attributesToRender, string debug)
         {
             var list = new List<string>();
             foreach(var item in css)
@@ -117,10 +118,10 @@ namespace Blazorous
                 switch(item)
                 {
                     case string s:
-                        list.Add(BlazorousInterop.Css(s));
+                        list.Add(BlazorousInterop.Css(s, debug));
                         break;
                     case Css c:
-                        list.Add(BlazorousInterop.Css(c.ToCss(attributesToRender)));
+                        list.Add(BlazorousInterop.Css(c.ToCss(attributesToRender), debug));
                         break;
                     default:
                         throw new InvalidOperationException("css attribute muse be string or of type Blazorous.Css");
