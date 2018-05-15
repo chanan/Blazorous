@@ -1,0 +1,100 @@
+﻿@page "/advanced"
+<h1>Advanced Guids</h1>
+
+<p>Examples taken from: <a href="https://glamorous.rocks/advanced/">https://glamorous.rocks/advanced/</a></p>
+
+<h2>Ref</h2>
+
+<p>The <code>&lt;Dynamic&gt;</code> does not currently expose it's ref correctly. Support for obtaining the ref for the html element will be added in the future.</p>
+
+<h2>Working with existing CSS</h2>
+
+<p>Blazorous works with exsiting CSS. For example: </p>
+
+<Dynamic TagName="div" css="@css" type="success"><strong>Success!</strong> Tada! 🎉</Dynamic>
+
+<Dynamic TagName="div" css="@css" type="info"><strong>Heads up!</strong> Some info here ℹ️</Dynamic>
+
+<Dynamic TagName="div" css="@css" type="warning"><strong>Warning!</strong> Something's up ⚠️</Dynamic>
+
+<Dynamic TagName="div" css="@css" type="danger"><strong>Oh snap!</strong> This is not good 🚨</Dynamic>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"success"</span>></span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>></span>Success!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>></span> Tada! 🎉<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"info"</span>></span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>></span>Heads up!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>></span> Some info here ℹ️<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"warning"</span>></span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>></span>Warning!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>></span> Something's up ⚠️<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"danger"</span>></span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>></span>Oh snap!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>></span> This is not good 🚨<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@@functions {
+    Css css = Css.CreateNew()
+        .AddClass(<span style="color:#093">"alert"</span>)
+        .AddDynamicRule((css, attributes) =>
+        {
+            var type = attributes.GetStringAttribute(<span style="color:#093">"type"</span>, <span style="color:#093">"primary"</span>);
+            css.AddClass($<span style="color:#093">"alert-{type}"</span>);
+        });
+}
+</pre>
+
+<p>Or if you prefer using an enum:</p>
+
+<Dynamic TagName="div" css="@css" type="@type"><strong>Enums!</strong> You can use enums instead of strings!</Dynamic>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"@@type"</span>></span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>></span>Enums!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>></span> You can use enums instead of strings!<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@@functions {
+    Css cssEnum = Css.CreateNew()
+        .AddClass(<span style="color:#093">"alert"</span>)
+        .AddDynamicRule((css, attributes) =>
+        {
+            <span style="color:#00f">if</span> (attributes.TryGetValue&lt;AlertType>(<span style="color:#093">"type"</span>, out AlertType type))
+            {
+                css.AddClass($<span style="color:#093">"alert-{type.ToString()}"</span>);
+            }
+        });
+
+    AlertType type = AlertType.success;
+
+    enum AlertType
+    {
+        success,
+        info,
+        warning,
+        danger
+    }
+}
+</pre>
+
+@functions {
+    Css css = Css.CreateNew()
+        .AddClass("alert")
+        .AddDynamicRule((css, attributes) =>
+        {
+            var type = attributes.GetStringAttribute("type", "primary");
+            css.AddClass($"alert-{type}");
+        });
+
+    Css cssEnum = Css.CreateNew()
+        .AddClass("alert")
+        .AddDynamicRule((css, attributes) =>
+        {
+            if (attributes.TryGetValue<AlertType>("type", out AlertType type))
+            {
+                css.AddClass($"alert-{type.ToString()}");
+            }
+        });
+
+    AlertType type = AlertType.success;
+
+    enum AlertType
+    {
+        success,
+        info,
+        warning,
+        danger
+    }
+}

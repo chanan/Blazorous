@@ -73,14 +73,40 @@ namespace Blazorous
                 }
             }
 
-            var classnames = GetCssFromProps(css, _attributesToRender);
-            foreach (var classname in classnames)
+            var addedClasses = GetClassesFromProps(css, _attributesToRender);
+            foreach (var classname in addedClasses)
+            {
+                _classname = _classname != null ? $"{_classname} {classname}" : classname;
+            }
+
+            var glamorClasses = GetCssFromProps(css, _attributesToRender);
+            foreach (var classname in glamorClasses)
             {
                 _classname = _classname != null ? $"{_classname} {classname}" : classname;
             }
 
 
             _renderHandle.Render(Render);
+        }
+
+        private List<string> GetClassesFromProps(List<object> css, IDictionary<string, object> attributesToRender)
+        {
+            var list = new List<string>();
+            foreach (var item in css)
+            {
+                switch (item)
+                {
+                    case string _:
+                        break;
+                    case Css c:
+                        list.Add(c.ToClasses(attributesToRender));
+                        break;
+                    default:
+                        throw new InvalidOperationException("css attribute muse be string or of type Blazorous.Css");
+
+                }
+            }
+            return list;
         }
 
         private static List<string> GetCssFromProps(List<object> css, IDictionary<string, object> attributesToRender)

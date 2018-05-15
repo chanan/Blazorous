@@ -6,8 +6,8 @@ namespace Blazorous
 {
     public class Css
     {
-        public List<KeyValuePair<string, object>> Rules { get; set; } = new List<KeyValuePair<string, object>>();
-
+        private IList<KeyValuePair<string, object>> Rules { get; set; } = new List<KeyValuePair<string, object>>();
+        private IList<object> Classes { get; set; } = new List<object>();
         public static Css CreateNew()
         {
             return new Css();
@@ -55,6 +55,11 @@ namespace Blazorous
             return this;
         }
 
+        public Css AddClass(string name)
+        {
+            Rules.Add(new KeyValuePair<string, object>(name, new Classname { Name = name }));
+            return this;
+        }
 
         public string ToCss()
         {
@@ -95,19 +100,53 @@ namespace Blazorous
                         var cssRule = tempCss.ToCss(attributes);
                         sb.Append(cssRule.Substring(1, cssRule.Length - 2));
                         break;
+                    case Classname _:
+                        break;
                     default:
                         sb.Append($"\"{kvp.Key}\": \"{kvp.Value.ToString()}\"");
                         break;
                 }
-                if (i == Rules.Count - 1 && inSelector) sb.Append("}");
-                if (i != Rules.Count - 1 && inSelector && !firstInSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType()) sb.Append(", ");
-                if (i != Rules.Count - 1 && !inSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType()) sb.Append(",");
-                firstInSelector = false;
+                if(typeof(Classname) != kvp.Value.GetType())
+                {
+                    if (i == Rules.Count - 1 && inSelector) sb.Append("}");
+                    if (i != Rules.Count - 1 && inSelector && !firstInSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType()) sb.Append(", ");
+                    if (i != Rules.Count - 1 && !inSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType()) sb.Append(",");
+                    firstInSelector = false;
+                }
             }
             sb.Append("}");
             return sb.ToString();
         }
 
+        public string ToClasses()
+        {
+            return ToClasses(null);
+        }
+
+        public string ToClasses(IDictionary<string, object> attributes)
+        {
+            var sb = new StringBuilder();
+            foreach(var kvp in Rules)
+            {
+                switch(kvp.Value)
+                {
+                    case DynamicRule dr:
+                        if (attributes == null) break;
+                        var tempCss = new Css();
+                        dr.Rule.Invoke(tempCss, attributes);
+                        var classes = tempCss.ToClasses(attributes);
+                        sb.Append(classes);
+                        break;
+                    case Classname c:
+                        sb.Append(c.Name);
+                        break;
+                    default:
+                        break;
+                }
+                sb.Append(" ");
+            }
+            return sb.ToString();
+        }
         private class OpenSelectorMarker { }
 
         private class CloseSelectorMarker { }
@@ -115,6 +154,11 @@ namespace Blazorous
         private class DynamicRule
         {
             public Action<Css, IDictionary<string, object>> Rule { get; set; }
+        }
+
+        private class Classname
+        {
+            public string Name { get; set; }
         }
     }
 }
