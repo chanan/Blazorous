@@ -124,14 +124,12 @@
 
 <Dynamic TagName="h1" css="@h1">Merging Styles</Dynamic>
 
-<p><strong>Note:</strong> Merging styles does not work yet</p>
-
 <p><code>Blazorous</code> uses <a href="https://github.com/threepointone/glamor"><code>glamor</code></a> under the hood to generate and insert the CSS you write. 
     One of the cool features of <code>glamor</code> is how composable it is. So with <code>&lt;Dynamic&gt;</code> tag, you can provide any number of arguments and the styles will be merged. 
     Let's try some of that out now:</p>
 
 
-<Dynamic TagName="pre" css="@secondPre" language="html">
+<Dynamic TagName="pre" css="@secondPre" css="@secondPre2" language="html">
     <code>
         &lt;html>
             &lt;head>
@@ -144,8 +142,7 @@
     </code>
 </Dynamic>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
-<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"pre"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@secondPre"</span> <span style="color:#36c;font-style:italic">language</span>=<span style="color:#093">"html"</span>></span>
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"pre"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@secondPre"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@secondPre2"</span> <span style="color:#36c;font-style:italic">language</span>=<span style="color:#093">"html"</span>></span>
 ...
 <span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
@@ -159,9 +156,11 @@
             .AddRule(<span style="color:#093">"opacity"</span>, 0.6)
             .AddRule(<span style="color:#093">"left"</span>, <span style="color:#093">"7px"</span>)
             .AddRule(<span style="color:#093">"font-size"</span>, <span style="color:#093">"0.8rem"</span>)
-        .CloseSelector()
+        .CloseSelector();
+
+    Css secondPre2 = Css.CreateNew()
         .AddDynamicRule((css, attributes) =>
-        {
+            {
             var lang = attributes.GetStringAttribute(<span style="color:#093">"language"</span>);
             var isHtml = <span style="color:#093">"html"</span> == lang;
             css.OpenSelector(<span style="color:#093">":before"</span>)
@@ -218,9 +217,11 @@
             .AddRule("opacity", 0.6)
             .AddRule("left", "7px")
             .AddRule("font-size", "0.8rem")
-        .CloseSelector()
+        .CloseSelector();
+
+    Css secondPre2 = Css.CreateNew()
         .AddDynamicRule((css, attributes) =>
-        {
+            {
             var lang = attributes.GetStringAttribute("language");
             var isHtml = "html" == lang;
             css.OpenSelector(":before")

@@ -415,21 +415,32 @@ app {
     padding: 20px;
 }
 
-.css-i4hrgp, [data-css-i4hrgp] {
-    position: relative;
-    background-color: rgb(12, 30, 53);
-    color: white;
-    padding: 20px;
-}
-
-.css-i4hrgp::before, [data-css-i4hrgp]::before {
-    content: "html";
-}
-
 @media only screen and (max-width: 500px) {
     .css-1lqw71r, [data-css-1lqw71r] {
         font-size: 1.8em;
         background-color: rgb(204, 58, 75);
         color: white;
     }
+}
+
+.css-c9jpca, [data-css-c9jpca] {
+    background-color: rgb(12, 30, 53);
+    color: white;
+}
+
+.css-fmtsqy, [data-css-fmtsqy] {
+    position: relative;
+    padding: 20px;
+}
+
+.css-c9jpca::before, [data-css-c9jpca]::before {
+    content: "html";
+}
+
+.css-fmtsqy::before, [data-css-fmtsqy]::before {
+    position: absolute;
+    top: 0px;
+    opacity: 0.6;
+    left: 7px;
+    font-size: 0.8rem;
 }
