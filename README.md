@@ -6,12 +6,12 @@
 
 Using Package Manager:
 ```
-Install-Package Blazorous -Version 0.0.2
+Install-Package Blazorous -Version 0.0.3
 ```
 
 or dotnet CLI:
 ```
-dotnet add package Blazorous --version 0.0.2
+dotnet add package Blazorous --version 0.0.3
 ```
 
 Add the tag helper to your page or `_ViewImports.cshtml`
@@ -64,5 +64,29 @@ Or using the Blazorous Css() function directly with any component:
   string classCSharp = Blazorous.BlazorousInterop.Css(Css.CreateNew().AddRule("color", "red").ToCss());
 }
 ```
+
+## Dynamic Rules
+
+Dynamic rules allow you to define styles that change dynamically based on attributes on your Component. For example, if you define a Css attribute:
+
+```
+Css coloredDiv = Css.CreateNew()
+  .AddDynamicRule((css, attributes) =>
+  {
+      css.AddRule(<span style="color:#093">"color"</span>, attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"black"</span>));
+  });
+```
+
+You can then use it wil different colors:
+
+```
+<Dynamic TagName="div" css="@coloredDiv" color="red">This &lt;div&gt; has an attribute: color="red"</Dynamic>
+
+<Dynamic TagName="div" css="@coloredDiv" color="blue">This &lt;div&gt; has an attribute: color="blue"</Dynamic>
+```
+
+A more complete example is in the [Dynamic Rules](https://chanan.github.io/Blazorous/dynamic.html) section of the docs.
+
+## Docs
 
 You can see more examples in the [docs](https://chanan.github.io/Blazorous/).

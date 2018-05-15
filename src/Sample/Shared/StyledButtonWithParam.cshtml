@@ -1,0 +1,49 @@
+﻿<Dynamic TagName="button" type="button" css="@css" onclick="@onclick" color="@color">@ChildContent</Dynamic>
+
+@functions {
+    [Parameter] private RenderFragment ChildContent { get; set; }
+    [Parameter] private Action onclick { get; set; }
+    [Parameter] private string color { get; set; } = "gray";
+    private static IDictionary<string, string> colors = new Dictionary<string, string>()
+    {
+        { "success", "#29A88E" },
+        { "danger", "#C65F4A" },
+        { "primary", "#6DCFD3" },
+        { "info", "#FFD035" },
+        { "gray", "#5A6E73" },
+        { "accent", "#8E83A3" }
+    };
+    private Css css;
+
+    protected override void OnInit()
+    {
+        css = Css.CreateNew()
+            .AddRule("font-size", 16)
+            .AddRule("margin", 10)
+            .AddRule("border", "none")
+            .AddRule("cursor", "pointer")
+            .AddRule("display", "inline-block")
+            .AddRule("padding", "10px 20px")
+            .AddRule("text-align", "center")
+            .AddRule("transition", "0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)")
+            .AddRule("border-radius", 4)
+            .AddRule("color", "#fff")
+            .AddRule("box-shadow", "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)")
+            .OpenSelector(":hover")
+                .AddRule("opacity", 0.7)
+                .AddRule("transform", "translateY(-1px)")
+                .AddRule("box-shadow", "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)")
+            .CloseSelector()
+            .OpenSelector(":focus")
+                .AddRule("outline", 0)
+            .CloseSelector()
+            .OpenSelector(":active")
+                .AddRule("transform", "translateY(1px)")
+            .CloseSelector()
+            .AddDynamicRule((css, attributes) =>
+            {
+                var color = colors[attributes.GetStringAttribute("color", "gray")];
+                css.AddRule("background-color", color);
+            });
+    }
+}

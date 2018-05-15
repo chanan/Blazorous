@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Blazorous
@@ -24,6 +25,18 @@ namespace Blazorous
             return this;
         }
 
+        public Css AddRule(string name, float value)
+        {
+            Rules.Add(new KeyValuePair<string, object>(name, value));
+            return this;
+        }
+
+        public Css AddRule(string name, double value)
+        {
+            Rules.Add(new KeyValuePair<string, object>(name, value));
+            return this;
+        }
+
         public Css OpenSelector(string name)
         {
             Rules.Add(new KeyValuePair<string, object>(name, new OpenSelectorMarker()));
@@ -36,17 +49,28 @@ namespace Blazorous
             return this;
         }
 
+        public Css AddDynamicRule(Action<Css, IDictionary<string, object>> dynamicRule)
+        {
+            Rules.Add(new KeyValuePair<string, object>(string.Empty, new DynamicRule { Rule = dynamicRule }));
+            return this;
+        }
+
 
         public string ToCss()
+        {
+            return ToCss(null);
+        }
+
+        public string ToCss(IDictionary<string, object> attributes)
         {
             var sb = new StringBuilder();
             bool inSelector = false;
             bool firstInSelector = true;
             sb.Append("{");
-            for(int i = 0; i < Rules.Count; i++)
+            for (int i = 0; i < Rules.Count; i++)
             {
                 var kvp = Rules[i];
-                switch(kvp.Value)
+                switch (kvp.Value)
                 {
                     case string s:
                         sb.Append($"\"{kvp.Key}\": \"{s}\"");
@@ -63,13 +87,21 @@ namespace Blazorous
                         sb.Append("}");
                         inSelector = false;
                         break;
+                    case DynamicRule dr:
+                        inSelector = false;
+                        if (attributes == null) break;
+                        var tempCss = new Css();
+                        dr.Rule.Invoke(tempCss, attributes);
+                        var cssRule = tempCss.ToCss(attributes);
+                        sb.Append(cssRule.Substring(1, cssRule.Length - 2));
+                        break;
                     default:
                         sb.Append($"\"{kvp.Key}\": \"{kvp.Value.ToString()}\"");
                         break;
                 }
-                if(i == Rules.Count - 1 && inSelector) sb.Append("}");
-                if(i != Rules.Count - 1 && inSelector && !firstInSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType()) sb.Append(", ");
-                if(i != Rules.Count - 1 && !inSelector) sb.Append(", ");
+                if (i == Rules.Count - 1 && inSelector) sb.Append("}");
+                if (i != Rules.Count - 1 && inSelector && !firstInSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType()) sb.Append(", ");
+                if (i != Rules.Count - 1 && !inSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType()) sb.Append(",");
                 firstInSelector = false;
             }
             sb.Append("}");
@@ -79,5 +111,10 @@ namespace Blazorous
         private class OpenSelectorMarker { }
 
         private class CloseSelectorMarker { }
+
+        private class DynamicRule
+        {
+            public Action<Css, IDictionary<string, object>> Rule { get; set; }
+        }
     }
 }
