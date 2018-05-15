@@ -11,6 +11,7 @@
     <Authors>Chanan Braunstein</Authors>
     <Title>Blazorous</Title>
     <Description>Maintainable CSS with Blazor</Description>
+    <PackageProjectUrl>https://chanan.github.io/Blazorous/</PackageProjectUrl>
     <PackageTags>blazor;css;glamor;styled-components</PackageTags>
     <RepositoryUrl>https://github.com/chanan/Blazorous</RepositoryUrl>
   </PropertyGroup>

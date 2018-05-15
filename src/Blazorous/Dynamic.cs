@@ -42,7 +42,7 @@ namespace Blazorous
         /// <inheritdoc />
         public void SetParameters(ParameterCollection parameters)
         {
-            parameters.Log();
+            //parameters.Log();
             var css = parameters.GetParameterList("css");
             _attributesToRender = (IDictionary<string, object>)parameters.ToDictionary();
             _attributesToRender.Remove("css");

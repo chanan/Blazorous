@@ -27,18 +27,10 @@
 
   <ItemGroup>
     <None Include="Pages\DynamicRules.cshtml" />
+    <None Include="Pages\GettingStarted.cshtml" />
     <None Include="Pages\GlamorExamples.cshtml" />
-    <None Include="Pages\Object.cshtml" />
     <None Include="Shared\StyledButton.cshtml" />
     <None Include="Shared\StyledButtonWithParamAndAttributes.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <BlazorGenerate Remove="Pages\Object.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Pages\Object.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,6 +59,14 @@
 
   <ItemGroup>
     <Content Remove="Shared\StyledButtonWithParamAndAttributes.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\GettingStarted.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\GettingStarted.cshtml" />
   </ItemGroup>
 
 </Project>

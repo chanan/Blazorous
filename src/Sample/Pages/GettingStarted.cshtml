@@ -1,0 +1,173 @@
+﻿@page "/gettingstarted"
+
+<p>Examples taken from: <a href="https://glamorous.rocks/getting-started/">https://glamorous.rocks/getting-started/</a></p>
+
+<Dynamic TagName="h1" css="@h1">Basic Styles</Dynamic>
+
+<p>The above styled h1 tag was acheived by:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span>Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"h1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@h1"</span>></span>Basic Styles<span style="color:#03c">&lt;/<span>Dynamic</span>></span>
+
+@@functions {
+    Css h1 = Css.CreateNew()
+        .AddRule(<span style="color:#093">"font-size"</span>, <span style="color:#093">"2.4em"</span>)
+        .AddRule(<span style="color:#093">"margin-top"</span>, 10)
+        .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#CC3A4B"</span>);
+}
+</pre>
+
+<Dynamic TagName="h1" css="@h1">Media Queries</Dynamic>
+
+<p>Let's make the headings shrink when the view port is narrow (like on mobile devices).</p>
+<p>Update the Heading to this:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+@@functions {
+<span>const</span> string phone = <span style="color:#093">"@@media only screen and (max-width: 500px)"</span>;
+<span>Css</span> h1 = <span>Css</span>.<span>CreateNew</span>()
+        .<span>AddRule</span>(<span style="color:#093">"font-size"</span>, <span style="color:#093">"2.4em"</span>)
+        .<span>AddRule</span>(<span style="color:#093">"margin-top"</span>, <span style="color:#06f">10</span>)
+        .<span>AddRule</span>(<span style="color:#093">"color"</span>, <span style="color:#093">"#CC3A4B"</span>)
+        .<span>OpenSelector</span>(phone)
+            .<span>AddRule</span>(<span style="color:#093">"font-size"</span>, <span style="color:#093">"1.8em"</span>)
+            .<span>AddRule</span>(<span style="color:#093">"background-color"</span>, <span style="color:#093">"#CC3A4B"</span>)
+            .<span>AddRule</span>(<span style="color:#093">"color"</span>, <span style="color:#093">"white"</span>)
+        .<span>CloseSelector</span>();
+}
+</pre>
+
+<p>Now resize the screen to see how things look</p>
+
+<Dynamic TagName="h1" css="@h1">Pseudo Classes</Dynamic>
+
+<p>
+    Here we have a <Dynamic TagName="a" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" css="@link">link</Dynamic>. Let's style its pseudo classes like
+    <code>active</code>, <code>visited</code>, and <code>hover</code>.
+</p>
+
+<p>Update the <code>link</code> to this:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+@@functions {
+    Css <span style="color:#33f;font-weight:700">link</span> = Css.CreateNew()
+        .OpenSelector(<span style="color:#093">":visited"</span>)
+            .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"darkblue"</span>)
+        .CloseSelector()
+        .OpenSelector(<span style="color:#093">":hover,:active,:focus"</span>)
+            .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"darkred"</span>)
+        .CloseSelector();
+}
+</pre>
+
+<Dynamic TagName="h1" css="@h1">Pseudo Elements</Dynamic>
+
+<p>This example is not working yet in Blazorous</p>
+
+<Dynamic TagName="h1" css="@h1">Dynamic Styles</Dynamic>
+
+<p>You can provide a action lambda to <code>AddDynamic</code> when building Css. This lambda will be called with your component Attributes.</p>
+
+<p>The <code>pre</code> below has a language attribute. Here is a <code>pre</code> that is styled for <code>html</code>.</p>
+
+<Dynamic TagName="pre" css="@pre" language="html">
+&lt;html>
+    &lt;head>
+        &lt;title>Hello world!&lt;/title>
+    &lt;/head>
+    &lt;body>
+        Hello world!
+    &lt;/body>
+&lt;/html>
+</Dynamic>
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"pre"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@pre"</span> <span style="color:#36c;font-style:italic">language</span>=<span style="color:#093">"html"</span>></span>
+...
+<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@@functions {
+    Css pre = Css.CreateNew()
+        .AddDynamicRule((css, attributes) =>
+        {
+<span style="color:#00f">if</span> (<span style="color:#093">"html"</span> == attributes.GetStringAttribute(<span style="color:#093">"language"</span>))
+            {
+                css.AddRule(<span style="color:#093">"padding"</span>, 20)
+                    .AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"#0c1e35"</span>)
+                    .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"white"</span>);
+            }
+        });
+}
+</pre>
+
+<Dynamic TagName="h1" css="@h1">Merging Styles</Dynamic>
+
+<p><code>Blazorous</code> uses <a href="https://github.com/threepointone/glamor"><code>glamor</code></a> under the hood to generate and insert the CSS you write. 
+    One of the cool features of <code>glamor</code> is how composable it is. So with <code>&lt;Dynamic&gt;</code> tag, you can provide any number of arguments and the styles will be merged. 
+    Let's try some of that out now:</p>
+
+
+<Dynamic TagName="pre" css="@secondPre" language="html">
+&lt;html>
+    &lt;head>
+        &lt;title>Hello world!&lt;/title>
+    &lt;/head>
+    &lt;body>
+        Hello world in "secondPre" style!
+    &lt;/body>
+&lt;/html>
+</Dynamic>
+
+<p>This example does not fully work yet</p>
+
+@functions {
+    const string phone = "@media only screen and (max-width: 500px)";
+    Css h1 = Css.CreateNew()
+        .AddRule("font-size", "2.4em")
+        .AddRule("margin-top", 10)
+        .AddRule("color", "#CC3A4B")
+        .OpenSelector(phone)
+            .AddRule("font-size", "1.8em")
+            .AddRule("background-color", "#CC3A4B")
+            .AddRule("color", "white")
+        .CloseSelector();
+    Css link = Css.CreateNew()
+        .OpenSelector(":visited")
+            .AddRule("color", "darkblue")
+        .CloseSelector()
+        .OpenSelector(":hover,:active,:focus")
+            .AddRule("color", "darkred")
+        .CloseSelector();
+    Css pre = Css.CreateNew()
+        .AddDynamicRule((css, attributes) =>
+        {
+            if ("html" == attributes.GetStringAttribute("language"))
+            {
+                css.AddRule("padding", 20)
+                    .AddRule("background-color", "#0c1e35")
+                    .AddRule("color", "white");
+            }
+        });
+    Css secondPre = Css.CreateNew()
+        .AddRule("position", "relative")
+        .AddRule("padding", 20)
+        .OpenSelector(":before")
+            .AddRule("position", "absolute")
+            .AddRule("top", 0)
+            .AddRule("opacity", 0.6)
+            .AddRule("left", "7px")
+            .AddRule("font-size", "0.8rem")
+        .CloseSelector()
+        .AddDynamicRule((css, attributes) =>
+        {
+            var lang = attributes.GetStringAttribute("language");
+            var isHtml = "html" == lang;
+            //css.OpenSelector(":before")
+            //    .AddRule("content", $"\"{lang}\"")
+            //.CloseSelector();
+            if (isHtml)
+            {
+                css.AddRule("background-color", "#0c1e35")
+                    .AddRule("color", "white");
+            }
+        });
+}
