@@ -22,10 +22,10 @@
 
 @@functions {
     Css coloredDiv = Css.CreateNew()
-                    .AddDynamicRule((css, attributes) =>
-                    {
-                        css.AddRule(<span style="color:#093">"color"</span>, attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"black"</span>));
-                    });
+        .AddDynamicRule((css, attributes) =>
+        {
+            css.AddRule(<span style="color:#093">"color"</span>, attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"black"</span>));
+        });
 }
 </pre>
 

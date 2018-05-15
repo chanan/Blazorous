@@ -57,10 +57,10 @@ Dynamic rules only work using the C# syntax. For example, below is a &lt;div&gt;
 
 @functions {
 Css coloredDiv = Css.CreateNew()
-                .AddDynamicRule((css, attributes) =&gt;
-                {
-                    css.AddRule(<span style="color:#093">"color"</span>, attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"black"</span>));
-                });
+  .AddDynamicRule((css, attributes) =&gt;
+  {
+      css.AddRule(<span style="color:#093">"color"</span>, attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"black"</span>));
+  });
 }
 </pre>
 
@@ -81,12 +81,12 @@ Css coloredDiv = Css.CreateNew()
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">div</span>&gt;</span>
-<span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"success"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Success<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
-<span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"danger"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Danger<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
-<span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"primary"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Primary<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
-<span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"info"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Info<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
-<span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Gray (default)<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
-<span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"accent"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Accent<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
+  <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"success"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Success<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
+  <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"danger"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Danger<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
+  <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"primary"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Primary<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
+  <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"info"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Info<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
+  <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Gray (default)<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
+  <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"accent"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Accent<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
 <span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
 </pre>
 
@@ -119,8 +119,8 @@ look at <code>StyledButton.cshtml</code> and <code>StyledButtonWithParam.cshtml<
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 @functions {
-[Parameter] private RenderFragment ChildContent { get; set; }
-[Parameter] private Action onclick { get; set; }
+  [Parameter] private RenderFragment ChildContent { get; set; }
+  [Parameter] private Action onclick { get; set; }
 }
 </pre>
 
@@ -140,12 +140,12 @@ At this point we have a button that can accept arbitrary attributes but doesn't 
 [Parameter] private string color { get; set; } = "gray";
 private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>&gt;</span> colors = new Dictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>&gt;</span>()
 {
-{ <span style="color:#093">"success"</span>, <span style="color:#093">"#29A88E"</span> },
-{ <span style="color:#093">"danger"</span>, <span style="color:#093">"#C65F4A"</span> },
-{ <span style="color:#093">"primary"</span>, <span style="color:#093">"#6DCFD3"</span> },
-{ <span style="color:#093">"info"</span>, <span style="color:#093">"#FFD035"</span> },
-{ <span style="color:#093">"gray"</span>, <span style="color:#093">"#5A6E73"</span> },
-{ <span style="color:#093">"accent"</span>, <span style="color:#093">"#8E83A3"</span> }
+  { <span style="color:#093">"success"</span>, <span style="color:#093">"#29A88E"</span> },
+  { <span style="color:#093">"danger"</span>, <span style="color:#093">"#C65F4A"</span> },
+  { <span style="color:#093">"primary"</span>, <span style="color:#093">"#6DCFD3"</span> },
+  { <span style="color:#093">"info"</span>, <span style="color:#093">"#FFD035"</span> },
+  { <span style="color:#093">"gray"</span>, <span style="color:#093">"#5A6E73"</span> },
+  { <span style="color:#093">"accent"</span>, <span style="color:#093">"#8E83A3"</span> }
 };
 </pre>
 
@@ -153,34 +153,33 @@ private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 private Css css = Css.CreateNew()
-.AddRule("font-size", 16)
-.AddRule("margin", 10)
-.AddRule("border", "none")
-.AddRule("cursor", "pointer")
-.AddRule("display", "inline-block")
-.AddRule("padding", "10px 20px")
-.AddRule("text-align", "center")
-.AddRule("transition", "0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)")
-.AddRule("border-radius", 4)
-.AddRule("color", "#fff")
-.AddRule("box-shadow", "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)")
-.OpenSelector(":hover")
-    .AddRule("opacity", 0.7)
-    .AddRule("transform", "translateY(-1px)")
-    .AddRule("box-shadow", "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)")
-.CloseSelector()
-.OpenSelector(":focus")
-    .AddRule("outline", 0)
-.CloseSelector()
-.OpenSelector(":active")
-    .AddRule("transform", "translateY(1px)")
-.CloseSelector()
-.AddDynamicRule((css, attributes) =&gt;
-{
-    var color = colors[attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"gray"</span>)];
-    css.AddRule(<span style="color:#093">"background-color"</span>, color);
-});
-}
+  .AddRule("font-size", 16)
+  .AddRule("margin", 10)
+  .AddRule("border", "none")
+  .AddRule("cursor", "pointer")
+  .AddRule("display", "inline-block")
+  .AddRule("padding", "10px 20px")
+  .AddRule("text-align", "center")
+  .AddRule("transition", "0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)")
+  .AddRule("border-radius", 4)
+  .AddRule("color", "#fff")
+  .AddRule("box-shadow", "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)")
+  .OpenSelector(":hover")
+      .AddRule("opacity", 0.7)
+      .AddRule("transform", "translateY(-1px)")
+      .AddRule("box-shadow", "0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)")
+  .CloseSelector()
+  .OpenSelector(":focus")
+      .AddRule("outline", 0)
+  .CloseSelector()
+  .OpenSelector(":active")
+      .AddRule("transform", "translateY(1px)")
+  .CloseSelector()
+  .AddDynamicRule((css, attributes) =&gt;
+  {
+      var color = colors[attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"gray"</span>)];
+      css.AddRule(<span style="color:#093">"background-color"</span>, color);
+  });
 </pre>
 
 <p>At the end of the code above, the <code>AddDynamicRule</code> is the part that dynamically creates the css style based on the color parameter. Lastly we need to bind the color and css
