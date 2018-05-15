@@ -390,3 +390,38 @@ app {
     box-shadow: rgba(50, 50, 93, 0.1) 0px 7px 14px, rgba(0, 0, 0, 0.08) 0px 3px 6px;
     transform: translateY(-1px);
 }
+
+.css-1lqw71r, [data-css-1lqw71r] {
+    font-size: 2.4em;
+    margin-top: 10px;
+    color: rgb(204, 58, 75);
+}
+
+.css-4527uw:hover, [data-css-4527uw]:hover, .css-4527uw:active, [data-css-4527uw]:active, .css-4527uw:focus, [data-css-4527uw]:focus {
+    color: darkred;
+}
+
+.css-4527uw:visited, [data-css-4527uw]:visited {
+    color: darkblue;
+}
+
+.css-1l8141f::before, [data-css-1l8141f]::before {
+    content: "💎";
+}
+
+.css-ypo1ci, [data-css-ypo1ci] {
+    background-color: rgb(12, 30, 53);
+    color: white;
+    padding: 20px;
+}
+
+.css-i4hrgp, [data-css-i4hrgp] {
+    position: relative;
+    background-color: rgb(12, 30, 53);
+    color: white;
+    padding: 20px;
+}
+
+.css-i4hrgp::before, [data-css-i4hrgp]::before {
+    content: "html";
+}

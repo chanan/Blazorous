@@ -62,7 +62,28 @@
 
 <Dynamic TagName="h1" css="@h1">Pseudo Elements</Dynamic>
 
-<p>This example is not working yet in Blazorous</p>
+<ul>
+    <Dynamic TagName="li" css="@listitem">this</Dynamic>
+    <Dynamic TagName="li" css="@listitem">is</Dynamic>
+    <Dynamic TagName="li" css="@listitem">a</Dynamic>
+    <Dynamic TagName="li" css="@listitem">list</Dynamic>
+</ul>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">ul</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>this<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>is<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>a<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>list<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+<span style="color:#03c">&lt;/<span style="font-weight:700">ul</span>></span>
+
+@@functions {
+   Css listitem = Css.CreateNew()
+        .OpenSelector(<span style="color:#093">":before"</span>)
+            .AddRule(<span style="color:#093">"content"</span>, <span style="color:#093">"<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>💎<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>"</span>)
+        .CloseSelector();
+}
+</pre>
 
 <Dynamic TagName="h1" css="@h1">Dynamic Styles</Dynamic>
 
@@ -71,14 +92,16 @@
 <p>The <code>pre</code> below has a language attribute. Here is a <code>pre</code> that is styled for <code>html</code>.</p>
 
 <Dynamic TagName="pre" css="@pre" language="html">
-&lt;html>
-    &lt;head>
-        &lt;title>Hello world!&lt;/title>
-    &lt;/head>
-    &lt;body>
-        Hello world!
-    &lt;/body>
-&lt;/html>
+    <code>
+        &lt;html>
+            &lt;head>
+                &lt;title>Hello world!&lt;/title>
+            &lt;/head>
+            &lt;body>
+                Hello world!
+            &lt;/body>
+        &lt;/html>
+    </code>
 </Dynamic>
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"pre"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@pre"</span> <span style="color:#36c;font-style:italic">language</span>=<span style="color:#093">"html"</span>></span>
@@ -107,17 +130,50 @@
 
 
 <Dynamic TagName="pre" css="@secondPre" language="html">
-&lt;html>
-    &lt;head>
-        &lt;title>Hello world!&lt;/title>
-    &lt;/head>
-    &lt;body>
-        Hello world in "secondPre" style!
-    &lt;/body>
-&lt;/html>
+    <code>
+        &lt;html>
+            &lt;head>
+                &lt;title>Hello world!&lt;/title>
+            &lt;/head>
+            &lt;body>
+                Hello world in "secondPre" style!
+            &lt;/body>
+        &lt;/html>
+    </code>
 </Dynamic>
 
-<p>This example does not fully work yet</p>
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"pre"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@secondPre"</span> <span style="color:#36c;font-style:italic">language</span>=<span style="color:#093">"html"</span>></span>
+...
+<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@@functions {
+    Css secondPre = Css.CreateNew()
+        .AddRule(<span style="color:#093">"position"</span>, <span style="color:#093">"relative"</span>)
+        .AddRule(<span style="color:#093">"padding"</span>, 20)
+        .OpenSelector(<span style="color:#093">":before"</span>)
+            .AddRule(<span style="color:#093">"position"</span>, <span style="color:#093">"absolute"</span>)
+            .AddRule(<span style="color:#093">"top"</span>, 0)
+            .AddRule(<span style="color:#093">"opacity"</span>, 0.6)
+            .AddRule(<span style="color:#093">"left"</span>, <span style="color:#093">"7px"</span>)
+            .AddRule(<span style="color:#093">"font-size"</span>, <span style="color:#093">"0.8rem"</span>)
+        .CloseSelector()
+        .AddDynamicRule((css, attributes) =>
+        {
+            var lang = attributes.GetStringAttribute(<span style="color:#093">"language"</span>);
+            var isHtml = <span style="color:#093">"html"</span> == lang;
+            css.OpenSelector(<span style="color:#093">":before"</span>)
+                .AddRule(<span style="color:#093">"content"</span>, $<span style="color:#093">"<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>{lang}<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>"</span>)
+            .CloseSelector();
+            <span style="color:#00f">if</span> (isHtml)
+            {
+                css.AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"#0c1e35"</span>)
+                    .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"white"</span>);
+            }
+        });
+}
+</pre>
+
 
 @functions {
     const string phone = "@media only screen and (max-width: 500px)";
@@ -136,6 +192,10 @@
         .CloseSelector()
         .OpenSelector(":hover,:active,:focus")
             .AddRule("color", "darkred")
+        .CloseSelector();
+    Css listitem = Css.CreateNew()
+        .OpenSelector(":before")
+            .AddRule("content", "\\\"💎\\\"")
         .CloseSelector();
     Css pre = Css.CreateNew()
         .AddDynamicRule((css, attributes) =>
@@ -161,9 +221,9 @@
         {
             var lang = attributes.GetStringAttribute("language");
             var isHtml = "html" == lang;
-            //css.OpenSelector(":before")
-            //    .AddRule("content", $"\"{lang}\"")
-            //.CloseSelector();
+            css.OpenSelector(":before")
+                .AddRule("content", $"\\\"{lang}\\\"")
+            .CloseSelector();
             if (isHtml)
             {
                 css.AddRule("background-color", "#0c1e35")
