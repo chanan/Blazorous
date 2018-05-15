@@ -1,0 +1,13 @@
+﻿@page "/test"
+
+<Dynamic TagName="div" css="@css" type="success">Test</Dynamic>
+
+@functions {
+    Css css = Css.CreateNew()
+        .AddClass("alert")
+        .AddDynamicRule((css, attributes) =>
+        {
+            var type = attributes.GetStringAttribute("type", "primary");
+            css.AddClass($"alert-{type}");
+        });
+}
