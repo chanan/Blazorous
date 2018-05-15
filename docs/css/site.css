@@ -425,3 +425,11 @@ app {
 .css-i4hrgp::before, [data-css-i4hrgp]::before {
     content: "html";
 }
+
+@media only screen and (max-width: 500px) {
+    .css-1lqw71r, [data-css-1lqw71r] {
+        font-size: 1.8em;
+        background-color: rgb(204, 58, 75);
+        color: white;
+    }
+}
