@@ -87,6 +87,14 @@ You can then use it wil different colors:
 
 A more complete example is in the [Dynamic Rules](https://chanan.github.io/Blazorous/dynamic.html) section of the docs.
 
+## Style Attributes
+
+For many simple cases, you can define your CSS properties directly on the `Dynamic` tag:
+
+```
+<Dynamic TagName="div" background-color="red" color="white" font-size="50">This is awesome!</Dynamic>
+```
+
 ## Docs
 
 You can see more examples in the [docs](https://chanan.github.io/Blazorous/).
