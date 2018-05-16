@@ -61,6 +61,11 @@ namespace Blazorous
             return this;
         }
 
+        public int Count {
+            get => Rules.Count;
+            private set => throw new InvalidOperationException(); 
+        }
+
         public string ToCss()
         {
             return ToCss(null);

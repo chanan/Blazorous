@@ -1,0 +1,34 @@
+﻿@page "/styleattributes"
+
+<h1>Style Attributes</h1>
+
+<p>
+    You can also define styles by adding valid CSS properties as attributes directly on the <code>Dynamic</code> tag! This is an easy and powerful way to define styles on your Components.
+    For example:
+</p>
+
+<Dynamic TagName="div" background-color="red" color="white" font-size="50">This is awesome!</Dynamic>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">background-color</span>=<span style="color:#093">"red"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"white"</span> <span style="color:#36c;font-style:italic">font-size</span>=<span style="color:#093">"50"</span>></span>This is awesome!<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+</pre>
+
+<p>While you can't create "Dynamic Rules" using "Style Attributes", you can bind properties to variables just like any other Blazor property:</p>
+
+<Dynamic TagName="p" font-weight="@fontWeight" font-size="@fontSize">Bold and 12px</Dynamic>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"p"</span> <span style="color:#36c;font-style:italic">font-weight</span>=<span style="color:#093">"@@fontWeight"</span> <span style="color:#36c;font-style:italic">font-size</span>=<span style="color:#093">"@@fontSize"</span>></span>Bold and 12px<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@@functions {
+    string fontWeight = <span style="color:#093">"bold"</span>;
+    int fontSize = 12;
+}
+</pre>
+
+<p>Lastly, there is no way to define CSS Selectors.</p>
+
+@functions {
+    string fontWeight = "bold";
+    int fontSize = 12;
+}

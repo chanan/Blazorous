@@ -444,3 +444,14 @@ app {
     left: 7px;
     font-size: 0.8rem;
 }
+
+.css-1y2lr0s, [data-css-1y2lr0s] {
+    background-color: red;
+    color: white;
+    font-size: 50px;
+}
+
+.css-1q32skq, [data-css-1q32skq] {
+    font-size: 12px;
+    font-weight: bold;
+}
