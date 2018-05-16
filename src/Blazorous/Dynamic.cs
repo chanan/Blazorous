@@ -32,6 +32,7 @@ namespace Blazorous
         private IDictionary<string, object> _attributesToRender;
         private RenderFragment _childContent;
         private string _classname;
+        
 
         /// <inheritdoc />
         public void Init(RenderHandle renderHandle)
@@ -48,7 +49,6 @@ namespace Blazorous
             _childContent = GetAndRemove<RenderFragment>(_attributesToRender, RenderTreeBuilder.ChildContent);
             _classname = GetAndRemove<string>(_attributesToRender, "class");
             var debug = GetAndRemove<string>(_attributesToRender, "debug");
-           
 
             TagName = GetAndRemove<string>(_attributesToRender, nameof(TagName))
                 ?? throw new InvalidOperationException($"No value was supplied for required parameter '{nameof(TagName)}'.");
@@ -86,8 +86,29 @@ namespace Blazorous
                 _classname = _classname != null ? $"{_classname} {classname}" : classname;
             }
 
+            Css dynamicCss = CreateDynamicCssFromAttributes(_attributesToRender);
+
+            if (dynamicCss.Count > 0)
+            {
+                var dynamicClass = BlazorousInterop.Css(dynamicCss.ToCss(_attributesToRender), debug);
+                _classname = _classname != null ? $"{_classname} {dynamicClass}" : dynamicClass;
+            }
 
             _renderHandle.Render(Render);
+        }
+
+        private Css CreateDynamicCssFromAttributes(IDictionary<string, object> attributesToRender)
+        {
+            var css = Css.CreateNew();
+            foreach(var cssProp in CssProps)
+            {
+                if (attributesToRender.TryGetValue(cssProp, out var value))
+                {
+                    css.AddRule(cssProp, value.ToString());
+                    attributesToRender.Remove(cssProp);
+                }
+            }
+            return css;
         }
 
         private List<string> GetClassesFromProps(List<object> css, IDictionary<string, object> attributesToRender)
@@ -121,7 +142,7 @@ namespace Blazorous
                         list.Add(BlazorousInterop.Css(s, debug));
                         break;
                     case Css c:
-                        list.Add(BlazorousInterop.Css(c.ToCss(attributesToRender), debug));
+                        if(c.Count > 0) list.Add(BlazorousInterop.Css(c.ToCss(attributesToRender), debug));
                         break;
                     default:
                         throw new InvalidOperationException("css attribute muse be string or of type Blazorous.Css");
@@ -162,5 +183,137 @@ namespace Blazorous
             //Implementing IHandleEvent as a workaround for https://github.com/aspnet/Blazor/issues/656
             handler.Invoke(args);
         }
+
+        private static IList<string> CssProps = new List<string> {
+            "azimuth",
+            "background",
+            "background-attachment",
+            "background-color",
+            "background-image",
+            "background-position",
+            "background-repeat",
+            "border",
+            "border-bottom",
+            "border-bottom-color",
+            "border-bottom-style",
+            "border-bottom-width",
+            "border-collapse",
+            "border-color",
+            "border-left",
+            "border-left-color",
+            "border-left-style",
+            "border-left-width",
+            "border-right",
+            "border-right-color",
+            "border-right-style",
+            "border-right-width",
+            "border-spacing",
+            "border-style",
+            "border-top",
+            "border-top-color",
+            "border-top-style",
+            "border-top-width",
+            "border-width",
+            "bottom",
+            "box-sizing",
+            "caption-side",
+            "caret-color",
+            "chains",
+            "clear",
+            "clip",
+            "color",
+            "content",
+            "counter-increment",
+            "counter-reset",
+            "cue",
+            "cue-after",
+            "cue-before",
+            "cursor",
+            "direction",
+            "display",
+            "elevation",
+            "empty-cells",
+            "float",
+            "flow",
+            "font",
+            "font-family",
+            "font-size",
+            "font-style",
+            "font-variant",
+            "font-weight",
+            "grid",
+            "grid-template",
+            "grid-template-areas",
+            "grid-template-columns",
+            "grid-template-rows",
+            "height",
+            "left",
+            "letter-spacing",
+            "line-height",
+            "list-style",
+            "list-style-image",
+            "list-style-position",
+            "list-style-type",
+            "margin",
+            "margin-bottom",
+            "margin-left",
+            "margin-right",
+            "margin-top",
+            "max-height",
+            "max-width",
+            "min-height",
+            "min-width",
+            "opacity",
+            "orphans",
+            "outline",
+            "outline-color",
+            "outline-offset",
+            "outline-style",
+            "outline-width",
+            "overflow",
+            "padding",
+            "padding-bottom",
+            "padding-left",
+            "padding-right",
+            "padding-top",
+            "page-break-after",
+            "page-break-before",
+            "page-break-inside",
+            "pause",
+            "pause-after",
+            "pause-before",
+            "pitch",
+            "pitch-range",
+            "play-during",
+            "position",
+            "presentation-level",
+            "quotes",
+            "resize",
+            "richness",
+            "right",
+            "speak",
+            "speak-header",
+            "speak-numeral",
+            "speak-punctuation",
+            "speech-rate",
+            "stress",
+            "table-layout",
+            "text-align",
+            "text-decoration",
+            "text-indent",
+            "text-overflow",
+            "text-transform",
+            "top",
+            "unicode-bidi",
+            "vertical-align",
+            "visibility",
+            "voice-family",
+            "volume",
+            "white-space",
+            "widows",
+            "width",
+            "word-spacing",
+            "z-index"
+        }; 
     }
 }
