@@ -4,6 +4,9 @@ _Maintainable CSS with Blazor_
 
 ## Install
 
+
+[![NuGet Pre Release](https://img.shields.io/nuget/vpre/Microsoft.AspNet.Mvc.svg)](https://www.nuget.org/packages/Blazorous/)
+
 Using Package Manager:
 
 ```
