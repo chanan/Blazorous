@@ -90,7 +90,7 @@ namespace Blazorous
 
             if (dynamicCss.Count > 0)
             {
-                var dynamicClass = BlazorousInterop.Css(dynamicCss.ToCss(_attributesToRender), debug);
+                var dynamicClass = BlazorousInterop.Css(dynamicCss.ToCss(_attributesToRender, debug), debug);
                 _classname = _classname != null ? $"{_classname} {dynamicClass}" : dynamicClass;
             }
 
@@ -142,7 +142,7 @@ namespace Blazorous
                         list.Add(BlazorousInterop.Css(s, debug));
                         break;
                     case Css c:
-                        if(c.Count > 0) list.Add(BlazorousInterop.Css(c.ToCss(attributesToRender), debug));
+                        if(c.Count > 0) list.Add(BlazorousInterop.Css(c.ToCss(attributesToRender, debug), debug).Trim());
                         break;
                     default:
                         throw new InvalidOperationException("css attribute muse be string or of type Blazorous.Css");

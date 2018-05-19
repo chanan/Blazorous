@@ -61,6 +61,12 @@ namespace Blazorous
             return this;
         }
 
+        public Css AddAnimation(string duration, Action<Animation> animation)
+        {
+            Rules.Add(new KeyValuePair<string, object>(String.Empty, new AnimationStyle { Duration = duration, Animation = animation }));
+            return this;
+        }
+
         public int Count {
             get => Rules.Count;
             private set => throw new InvalidOperationException(); 
@@ -68,10 +74,10 @@ namespace Blazorous
 
         public string ToCss()
         {
-            return ToCss(null);
+            return ToCss(null, "false");
         }
 
-        public string ToCss(IDictionary<string, object> attributes)
+        public string ToCss(IDictionary<string, object> attributes, string debug)
         {
             var sb = new StringBuilder();
             bool inSelector = false;
@@ -102,10 +108,17 @@ namespace Blazorous
                         if (attributes == null) break;
                         var tempCss = new Css();
                         dr.Rule.Invoke(tempCss, attributes);
-                        var cssRule = tempCss.ToCss(attributes);
+                        var cssRule = tempCss.ToCss(attributes, debug);
                         sb.Append(cssRule.Substring(1, cssRule.Length - 2));
                         break;
                     case Classname _:
+                        break;
+                    case AnimationStyle a:
+                        inSelector = false;
+                        var animationTemp = Animation.CreateNew();
+                        a.Animation.Invoke(animationTemp);
+                        var cssAnimation = animationTemp.ToKeyframes(attributes, debug);
+                        sb.Append($"\"animation\": \"{cssAnimation} {a.Duration}\"");
                         break;
                     default:
                         sb.Append($"\"{kvp.Key}\": \"{kvp.Value.ToString()}\"");
@@ -165,6 +178,12 @@ namespace Blazorous
         private class Classname
         {
             public string Name { get; set; }
+        }
+
+        private class AnimationStyle
+        {
+            public string Duration { get; set; }
+            public Action<Animation> Animation { get; set; }
         }
     }
 }

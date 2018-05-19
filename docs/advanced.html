@@ -1,70 +1,96 @@
 <!DOCTYPE html>
-<html><head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Blazorous</title>
-  <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <link href="css/site.css" rel="stylesheet">
-<style type="text/css" data-glamor=""></style></head>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Blazorous</title>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+    <style type="text/css" data-glamor=""></style>
+</head>
+
 <body>
-  <app>
-<!--!--><!--!--><!--!--><div class="sidebar">
-  <!--!--><div class="top-row pl-4 navbar navbar-dark">
-  <a class="navbar-brand" href="https://chanan.github.io/Blazorous/">Blazorous</a>
-  <button class="navbar-toggler">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-</div>
+    <app>
+        <!--!-->
+        <!--!-->
+        <!--!-->
+        <div class="sidebar">
+            <!--!-->
+            <div class="top-row pl-4 navbar navbar-dark">
+                <a class="navbar-brand" href="https://chanan.github.io/Blazorous/">Blazorous</a>
+                <button class="navbar-toggler">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
 
-<div>
-  <ul class="nav flex-column">
-      <li class="nav-item px-3">
-          <!--!--><a class="nav-link" href="https://chanan.github.io/Blazorous/">
-              <span class="oi oi-home" aria-hidden="true"></span> Home
-          </a>
-          <a class="nav-link" href="gettingstarted.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Getting Started
-          </a>
-          <!--!--><a class="nav-link active" href="glamorexamples.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Glamor Examples
-          </a>
-          <a class="nav-link" href="dynamic.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Dynamic Rules
-        </a>
-        <a class="nav-link" href="styleattributes.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
-        </a>
-        <a class="nav-link active" href="advanced.html">
-          <span class="oi oi-list-rich" aria-hidden="true"></span> Advanced Guides
-      </a>
-      </li>
-  </ul>
-</div>
-</div>
+            <div>
+                <ul class="nav flex-column">
+                    <li class="nav-item px-3">
+                        <!--!-->
+                        <a class="nav-link" href="https://chanan.github.io/Blazorous/">
+                            <span class="oi oi-home" aria-hidden="true"></span> Home
+                        </a>
+                        <a class="nav-link" href="gettingstarted.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Getting Started
+                        </a>
+                        <!--!-->
+                        <a class="nav-link active" href="glamorexamples.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Glamor Examples
+                        </a>
+                        <a class="nav-link" href="dynamic.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Dynamic Rules
+                        </a>
+                        <a class="nav-link" href="styleattributes.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
+                        </a>
+                        <a class="nav-link" href="animations.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Animations
+                        </a>
+                        <a class="nav-link active" href="advanced.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Advanced Guides
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-<div class="main">
-    <div class="container content px-4">
-        <!--!--><h1>Advanced Guids</h1>
+        <div class="main">
+            <div class="container content px-4">
+                <!--!-->
+                <h1>Advanced Guids</h1>
 
-<p>Examples taken from: <a href="https://glamorous.rocks/getting-started/">https://glamorous.rocks/getting-started/</a></p>
+                <p>Examples taken from:
+                    <a href="https://glamorous.rocks/getting-started/">https://glamorous.rocks/getting-started/</a>
+                </p>
 
-<h2>Ref</h2>
+                <h2>Ref</h2>
 
-<p>The <code>&lt;Dynamic&gt;</code> does not currently expose it's ref correctly. Support for obtaining the ref for the html element will be added in the future.</p>
+                <p>The
+                    <code>&lt;Dynamic&gt;</code> does not currently expose it's ref correctly. Support for obtaining the ref for the html element will
+                    be added in the future.</p>
 
-<h2>Working with existing CSS</h2>
+                <h2>Working with existing CSS</h2>
 
-<p>Blazorous works with exsiting CSS. For example: </p>
+                <p>Blazorous works with exsiting CSS. For example: </p>
 
-<!--!--><div type="success" class="alert alert-success   css-nil" _bl_47=""><strong>Success!</strong> Tada! 🎉</div>
+                <!--!-->
+                <div type="success" class="alert alert-success   css-nil" _bl_47="">
+                    <strong>Success!</strong> Tada! 🎉</div>
 
-<!--!--><div type="info" class="alert alert-info   css-nil" _bl_48=""><strong>Heads up!</strong> Some info here ℹ️</div>
+                <!--!-->
+                <div type="info" class="alert alert-info   css-nil" _bl_48="">
+                    <strong>Heads up!</strong> Some info here ℹ️</div>
 
-<!--!--><div type="warning" class="alert alert-warning   css-nil" _bl_49=""><strong>Warning!</strong> Something's up ⚠️</div>
+                <!--!-->
+                <div type="warning" class="alert alert-warning   css-nil" _bl_49="">
+                    <strong>Warning!</strong> Something's up ⚠️</div>
 
-<!--!--><div type="danger" class="alert alert-danger   css-nil" _bl_50=""><strong>Oh snap!</strong> This is not good 🚨</div>
+                <!--!-->
+                <div type="danger" class="alert alert-danger   css-nil" _bl_50="">
+                    <strong>Oh snap!</strong> This is not good 🚨</div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"success"</span>&gt;</span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>&gt;</span>Success!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>&gt;</span> Tada! 🎉<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"info"</span>&gt;</span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>&gt;</span>Heads up!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>&gt;</span> Some info here ℹ️<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
@@ -84,11 +110,13 @@
 }
 </pre>
 
-<p>Or if you prefer using an enum:</p>
+                <p>Or if you prefer using an enum:</p>
 
-<!--!--><div type="success" class="alert alert-success   css-nil" _bl_51=""><strong>Enums!</strong> You can use enums instead of strings!</div>
+                <!--!-->
+                <div type="success" class="alert alert-success   css-nil" _bl_51="">
+                    <strong>Enums!</strong> You can use enums instead of strings!</div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"@type"</span>&gt;</span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>&gt;</span>Enums!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>&gt;</span> You can use enums instead of strings!<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
@@ -113,6 +141,9 @@
     }
 }
 </pre>
-    </div>
-</div></app>
-</body></html>
+            </div>
+        </div>
+    </app>
+</body>
+
+</html>

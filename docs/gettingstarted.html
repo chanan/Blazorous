@@ -1,57 +1,74 @@
 <!DOCTYPE html>
-<html><head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Blazorous</title>
-  <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <link href="css/site.css" rel="stylesheet">
-<style type="text/css" data-glamor=""></style></head>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Blazorous</title>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+    <style type="text/css" data-glamor=""></style>
+</head>
+
 <body>
-  <app>
-<!--!--><!--!--><!--!--><div class="sidebar">
-  <!--!--><div class="top-row pl-4 navbar navbar-dark">
-  <a class="navbar-brand" href="https://chanan.github.io/Blazorous/">Blazorous</a>
-  <button class="navbar-toggler">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-</div>
+    <app>
+        <!--!-->
+        <!--!-->
+        <!--!-->
+        <div class="sidebar">
+            <!--!-->
+            <div class="top-row pl-4 navbar navbar-dark">
+                <a class="navbar-brand" href="https://chanan.github.io/Blazorous/">Blazorous</a>
+                <button class="navbar-toggler">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
 
-<div>
-  <ul class="nav flex-column">
-      <li class="nav-item px-3">
-          <!--!--><a class="nav-link" href="https://chanan.github.io/Blazorous/">
-              <span class="oi oi-home" aria-hidden="true"></span> Home
-          </a>
-          <a class="nav-link active" href="gettingstarted.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Getting Started
-          </a>
-          <!--!--><a class="nav-link" href="glamorexamples.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Glamor Examples
-          </a>
-          <a class="nav-link" href="dynamic.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Dynamic Rules
-        </a>
-        <a class="nav-link" href="styleattributes.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
-        </a>
-        <a class="nav-link" href="advanced.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Advanced Guides
-        </a>
-      </li>
-  </ul>
-</div>
-</div>
+            <div>
+                <ul class="nav flex-column">
+                    <li class="nav-item px-3">
+                        <!--!-->
+                        <a class="nav-link" href="https://chanan.github.io/Blazorous/">
+                            <span class="oi oi-home" aria-hidden="true"></span> Home
+                        </a>
+                        <a class="nav-link active" href="gettingstarted.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Getting Started
+                        </a>
+                        <!--!-->
+                        <a class="nav-link" href="glamorexamples.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Glamor Examples
+                        </a>
+                        <a class="nav-link" href="dynamic.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Dynamic Rules
+                        </a>
+                        <a class="nav-link" href="styleattributes.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
+                        </a>
+                        <a class="nav-link" href="animations.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Animations
+                        </a>
+                        <a class="nav-link" href="advanced.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Advanced Guides
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-<div class="main">
-  <div class="container content px-4">
-        <h1 class="css-1lqw71r" _bl_33="">Getting Started</h1>
-    <!--!--><p>Examples taken from: <a href="https://glamorous.rocks/getting-started/">https://glamorous.rocks/getting-started/</a></p>
+        <div class="main">
+            <div class="container content px-4">
+                <h1 class="css-1lqw71r" _bl_33="">Getting Started</h1>
+                <!--!-->
+                <p>Examples taken from:
+                    <a href="https://glamorous.rocks/getting-started/">https://glamorous.rocks/getting-started/</a>
+                </p>
 
-<!--!--><h1 class="css-1lqw71r" _bl_1="">Basic Styles</h1>
+                <!--!-->
+                <h1 class="css-1lqw71r" _bl_1="">Basic Styles</h1>
 
-<p>The above styled h1 tag was acheived by:</p>
+                <p>The above styled h1 tag was acheived by:</p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span>Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"h1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@h1"</span>&gt;</span>Basic Styles<span style="color:#03c">&lt;/<span>Dynamic</span>&gt;</span>
 
 @functions {
@@ -62,12 +79,13 @@ Css h1 = Css.CreateNew()
 }
 </pre>
 
-<!--!--><h1 class="css-1lqw71r" _bl_2="">Media Queries</h1>
+                <!--!-->
+                <h1 class="css-1lqw71r" _bl_2="">Media Queries</h1>
 
-<p>Let's make the headings shrink when the view port is narrow (like on mobile devices).</p>
-<p>Update the Heading to this:</p>
+                <p>Let's make the headings shrink when the view port is narrow (like on mobile devices).</p>
+                <p>Update the Heading to this:</p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 @functions {
 <span>const</span> string phone = <span style="color:#093">"@media only screen and (max-width: 500px)"</span>;
 <span>Css</span> h1 = <span>Css</span>.<span>CreateNew</span>()
@@ -82,18 +100,24 @@ Css h1 = Css.CreateNew()
 }
 </pre>
 
-<p>Now resize the screen to see how things look</p>
+                <p>Now resize the screen to see how things look</p>
 
-<!--!--><h1 class="css-1lqw71r" _bl_3="">Pseudo Classes</h1>
+                <!--!-->
+                <h1 class="css-1lqw71r" _bl_3="">Pseudo Classes</h1>
 
-<p>
-Here we have a <!--!--><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="css-4527uw" _bl_4="">link</a>. Let's style its pseudo classes like
-<code>active</code>, <code>visited</code>, and <code>hover</code>.
-</p>
+                <p>
+                    Here we have a
+                    <!--!-->
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="css-4527uw" _bl_4="">link</a>. Let's style its pseudo classes like
+                    <code>active</code>,
+                    <code>visited</code>, and
+                    <code>hover</code>.
+                </p>
 
-<p>Update the <code>link</code> to this:</p>
+                <p>Update the
+                    <code>link</code> to this:</p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 @functions {
 Css <span style="color:#33f;font-weight:700">link</span> = Css.CreateNew()
     .OpenSelector(<span style="color:#093">":visited"</span>)
@@ -105,16 +129,21 @@ Css <span style="color:#33f;font-weight:700">link</span> = Css.CreateNew()
 }
 </pre>
 
-<!--!--><h1 class="css-1lqw71r" _bl_5="">Pseudo Elements</h1>
+                <!--!-->
+                <h1 class="css-1lqw71r" _bl_5="">Pseudo Elements</h1>
 
-<ul>
-<!--!--><li class="css-1l8141f" _bl_6="">this</li>
-<!--!--><li class="css-1l8141f" _bl_7="">is</li>
-<!--!--><li class="css-1l8141f" _bl_8="">a</li>
-<!--!--><li class="css-1l8141f" _bl_9="">list</li>
-</ul>
+                <ul>
+                    <!--!-->
+                    <li class="css-1l8141f" _bl_6="">this</li>
+                    <!--!-->
+                    <li class="css-1l8141f" _bl_7="">is</li>
+                    <!--!-->
+                    <li class="css-1l8141f" _bl_8="">a</li>
+                    <!--!-->
+                    <li class="css-1l8141f" _bl_9="">list</li>
+                </ul>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">ul</span>&gt;</span>
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"Blazorous.Css"</span>&gt;</span>this<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"Blazorous.Css"</span>&gt;</span>is<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
@@ -130,13 +159,19 @@ Css listitem = Css.CreateNew()
 }
 </pre>
 
-<!--!--><h1 class="css-1lqw71r" _bl_10="">Dynamic Styles</h1>
+                <!--!-->
+                <h1 class="css-1lqw71r" _bl_10="">Dynamic Styles</h1>
 
-<p>You can provide a action lambda to <code>AddDynamic</code> when building Css. This lambda will be called with your component Attributes.</p>
+                <p>You can provide a action lambda to
+                    <code>AddDynamic</code> when building Css. This lambda will be called with your component Attributes.</p>
 
-<p>The <code>pre</code> below has a language attribute. Here is a <code>pre</code> that is styled for <code>html</code>.</p>
+                <p>The
+                    <code>pre</code> below has a language attribute. Here is a
+                    <code>pre</code> that is styled for
+                    <code>html</code>.</p>
 
-<!--!--><pre language="html" class="css-ypo1ci" _bl_11="">
+                <!--!-->
+                <pre language="html" class="css-ypo1ci" _bl_11="">
 <code>
     &lt;html&gt;
         &lt;head&gt;
@@ -148,7 +183,7 @@ Css listitem = Css.CreateNew()
     &lt;/html&gt;
 </code>
 </pre>
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"pre"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"Blazorous.Css"</span> <span style="color:#36c;font-style:italic">language</span>=<span style="color:#093">"html"</span>&gt;</span>
 ...
 <span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
@@ -167,14 +202,21 @@ Css pre = Css.CreateNew()
 }
 </pre>
 
-<!--!--><h1 class="css-1lqw71r" _bl_12="">Merging Styles</h1>
+                <!--!-->
+                <h1 class="css-1lqw71r" _bl_12="">Merging Styles</h1>
 
-<p><code>Blazorous</code> uses <a href="https://github.com/threepointone/glamor"><code>glamor</code></a> under the hood to generate and insert the CSS you write. 
-One of the cool features of <code>glamor</code> is how composable it is. So with <code>&lt;Dynamic&gt;</code> tag, you can provide any number of arguments and the styles will be merged. 
-Let's try some of that out now:</p>
+                <p>
+                    <code>Blazorous</code> uses
+                    <a href="https://github.com/threepointone/glamor">
+                        <code>glamor</code>
+                    </a> under the hood to generate and insert the CSS you write. One of the cool features of
+                    <code>glamor</code> is how composable it is. So with
+                    <code>&lt;Dynamic&gt;</code> tag, you can provide any number of arguments and the styles will be merged. Let's try some of that out
+                    now:</p>
 
 
-<!--!--><pre language="html" class="css-fmtsqy css-c9jpca" _bl_13="">
+                <!--!-->
+                <pre language="html" class="css-fmtsqy css-c9jpca" _bl_13="">
 <code>
     &lt;html&gt;
         &lt;head&gt;
@@ -187,7 +229,7 @@ Let's try some of that out now:</p>
 </code>
 </pre>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"pre"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@secondPre"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@secondPre2"</span> <span style="color:#36c;font-style:italic">language</span>=<span style="color:#093">"html"</span>&gt;</span>
+                <pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"pre"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@secondPre"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@secondPre2"</span> <span style="color:#36c;font-style:italic">language</span>=<span style="color:#093">"html"</span>&gt;</span>
 ...
 <span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
@@ -219,6 +261,9 @@ Css secondPre2 = Css.CreateNew()
     });
 }
 </pre>
-</div>
-</div></app>
-</body></html>
+            </div>
+        </div>
+    </app>
+</body>
+
+</html>

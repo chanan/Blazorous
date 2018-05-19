@@ -1,5 +1,26 @@
 ﻿@page "/test"
 
-<Dynamic TagName="div" background-color="red" color="white" margin="20" border-color="black" border-width="50" debug="true">Test</Dynamic>
+<Dynamic TagName="div" css="@css"></Dynamic>
 
-<Dynamic TagName="h1" margin-top="100" debug="true">Test</Dynamic>
+<button type="button" onclick="@onclick">Bounce!</button>
+
+@functions {
+    Css css = Css.CreateNew()
+        .AddRule("width", 50)
+        .AddRule("height", 50)
+        .AddRule("background-color", "red");
+
+    void onclick()
+    {
+        css = Css.CreateNew()
+            .AddAnimation("0.2s infinite ease-in-out alternate", animation =>
+            {
+                animation
+                .AddKeyframe("0%", css => css.AddRule("transform", "scale(0.1)").AddRule("opacity", 0))
+                .AddKeyframe("60%", css => css.AddRule("transform", "scale(1.2)").AddRule("opacity", 1))
+                .AddKeyframe("100%", css => css.AddRule("transform", "scale(1)"));
+            }).AddRule("width", 50)
+            .AddRule("height", 50)
+            .AddRule("background-color", "red");
+    }
+}

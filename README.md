@@ -1,17 +1,19 @@
 # Blazorous
 
-*Maintainable CSS with Blazor*
+_Maintainable CSS with Blazor_
 
 ## Install
 
 Using Package Manager:
+
 ```
-Install-Package Blazorous -Version 0.0.5
+Install-Package Blazorous -Version 0.0.6
 ```
 
 or dotnet CLI:
+
 ```
-dotnet add package Blazorous --version 0.0.5
+dotnet add package Blazorous --version 0.0.6
 ```
 
 Add the tag helper to your page or `_ViewImports.cshtml`
@@ -19,7 +21,6 @@ Add the tag helper to your page or `_ViewImports.cshtml`
 ```
 @addTagHelper *,Blazorous
 ```
-
 
 ## Define your CSS inline
 
@@ -93,6 +94,28 @@ For many simple cases, you can define your CSS properties directly on the `Dynam
 
 ```
 <Dynamic TagName="div" background-color="red" color="white" font-size="50">This is awesome!</Dynamic>
+```
+
+## Animations
+
+Css keyframe animation can be added via the Css object:
+
+```
+<Dynamic TagName="div" css="@css"></Dynamic>
+
+@functions {
+  Css css = Css.CreateNew()
+    .AddAnimation("0.2s infinite ease-in-out alternate", animation =>
+    {
+        animation
+        .AddKeyframe("0%", css => css.AddRule("transform", "scale(0.1)").AddRule("opacity", 0))
+        .AddKeyframe("60%", css => css.AddRule("transform", "scale(1.2)").AddRule("opacity", 1))
+        .AddKeyframe("100%", css => css.AddRule("transform", "scale(1)"));
+    }).AddRule("width", 50)
+    .AddRule("height", 50)
+    .AddRule("background-color", "red");
+}
+
 ```
 
 ## Docs

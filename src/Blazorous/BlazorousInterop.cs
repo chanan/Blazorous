@@ -14,5 +14,10 @@ namespace Blazorous
         {
             return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Css", css, debug);
         }
+
+        public static string Keyframes(string keyframes, string debug)
+        {
+            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.keyframes", keyframes, debug);
+        }
     }
 }

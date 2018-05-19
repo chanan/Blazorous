@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <None Include="Pages\Advanced.cshtml" />
+    <None Include="Pages\AnimationPage.cshtml" />
     <None Include="Pages\DynamicRules.cshtml" />
     <None Include="Pages\GettingStarted.cshtml" />
     <None Include="Pages\GlamorExamples.cshtml" />
@@ -94,6 +95,14 @@
 
   <ItemGroup>
     <Content Remove="Pages\StyleAttributes.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\AnimationPage.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\AnimationPage.cshtml" />
   </ItemGroup>
 
 </Project>

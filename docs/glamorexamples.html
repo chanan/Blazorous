@@ -1,60 +1,77 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Blazorous</title>
   <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
   <link href="css/site.css" rel="stylesheet">
-<style type="text/css" data-glamor=""></style></head>
+  <style type="text/css" data-glamor=""></style>
+</head>
+
 <body>
   <app>
-<!--!--><!--!--><!--!--><div class="sidebar">
-  <!--!--><div class="top-row pl-4 navbar navbar-dark">
-  <a class="navbar-brand" href="https://chanan.github.io/Blazorous/">Blazorous</a>
-  <button class="navbar-toggler">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-</div>
+    <!--!-->
+    <!--!-->
+    <!--!-->
+    <div class="sidebar">
+      <!--!-->
+      <div class="top-row pl-4 navbar navbar-dark">
+        <a class="navbar-brand" href="https://chanan.github.io/Blazorous/">Blazorous</a>
+        <button class="navbar-toggler">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
 
-<div>
-  <ul class="nav flex-column">
-      <li class="nav-item px-3">
-          <!--!--><a class="nav-link" href="https://chanan.github.io/Blazorous/">
+      <div>
+        <ul class="nav flex-column">
+          <li class="nav-item px-3">
+            <!--!-->
+            <a class="nav-link" href="https://chanan.github.io/Blazorous/">
               <span class="oi oi-home" aria-hidden="true"></span> Home
-          </a>
-          <a class="nav-link" href="gettingstarted.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Getting Started
-          </a>
-          <!--!--><a class="nav-link active" href="glamorexamples.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Glamor Examples
-          </a>
-          <a class="nav-link" href="dynamic.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Dynamic Rules
-        </a>
-        <a class="nav-link" href="styleattributes.html">
-          <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
-      </a>
-        <a class="nav-link" href="advanced.html">
-          <span class="oi oi-list-rich" aria-hidden="true"></span> Advanced Guides
-      </a>
-      </li>
-  </ul>
-</div>
-</div>
+            </a>
+            <a class="nav-link" href="gettingstarted.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Getting Started
+            </a>
+            <!--!-->
+            <a class="nav-link active" href="glamorexamples.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Glamor Examples
+            </a>
+            <a class="nav-link" href="dynamic.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Dynamic Rules
+            </a>
+            <a class="nav-link" href="styleattributes.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
+            </a>
+            <a class="nav-link" href="animations.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Animations
+            </a>
+            <a class="nav-link" href="advanced.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Advanced Guides
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-<div class="main">
-  <div class="container content px-4">
-    <!--!--><h1>Glamor Examples</h1>
+    <div class="main">
+      <div class="container content px-4">
+        <!--!-->
+        <h1>Glamor Examples</h1>
 
-<p>Examples taken from: <a href="https://github.com/threepointone/glamor/blob/master/docs/howto.md">https://github.com/threepointone/glamor/blob/master/docs/howto.md</a></p>
+        <p>Examples taken from:
+          <a href="https://github.com/threepointone/glamor/blob/master/docs/howto.md">https://github.com/threepointone/glamor/blob/master/docs/howto.md</a>
+        </p>
 
-<h2>apply a style to an element</h2>
+        <h2>apply a style to an element</h2>
 
-<p>Using the Dynamic component:</p>
+        <p>Using the Dynamic component:</p>
 
-<!--!--><div class="css-1ezp9xe" _bl_4="">this is a nice box.</div>
+        <!--!-->
+        <div class="css-1ezp9xe" _bl_4="">this is a nice box.</div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+        <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css1"</span>&gt;</span>this is a nice box.<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
@@ -62,11 +79,11 @@
 }
 </pre>
 
-<p>Or using the Blazorous Css() function directly:</p>
+        <p>Or using the Blazorous Css() function directly:</p>
 
-<div class="css-1ezp9xe">this is a nice box.</div>
+        <div class="css-1ezp9xe">this is a nice box.</div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+        <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"@class1"</span>&gt;</span>this is a nice box.<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
 
 @functions {
@@ -74,13 +91,14 @@
 }
 </pre>
 
-<h3>apply a style to an element using C# syntax</h3>
+        <h3>apply a style to an element using C# syntax</h3>
 
-<p>You can also define Css rules in C# syntax with the dynamic tag:</p>
+        <p>You can also define Css rules in C# syntax with the dynamic tag:</p>
 
-<!--!--><div class="css-1ezp9xe" _bl_5="">this is a nice box.</div>
+        <!--!-->
+        <div class="css-1ezp9xe" _bl_5="">this is a nice box.</div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+        <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css1CSharp"</span>&gt;</span>this is a nice box.<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
@@ -88,11 +106,11 @@
 }
 </pre>
 
-<p>or in C# syntax without the dynamic tag:</p>
+        <p>or in C# syntax without the dynamic tag:</p>
 
-<div class="css-1ezp9xe">this is a nice box.</div>
+        <div class="css-1ezp9xe">this is a nice box.</div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+        <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"@class1CSharp"</span>&gt;</span>this is a nice box.<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
 
 @functions {
@@ -100,11 +118,12 @@
 }
 </pre>
 
-<h2>pseudoclasses</h2>
+        <h2>pseudoclasses</h2>
 
-<!--!--><div class="css-o6qtyr" _bl_6="">hover over me</div>
+        <!--!-->
+        <div class="css-o6qtyr" _bl_6="">hover over me</div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+        <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css2"</span>&gt;</span>hover over me<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
@@ -116,11 +135,12 @@
 }
 </pre>
 
-<h3>pseudoclasses using C# syntax</h3>
+        <h3>pseudoclasses using C# syntax</h3>
 
-<!--!--><div class="css-o6qtyr" _bl_7="">hover over me</div>
+        <!--!-->
+        <div class="css-o6qtyr" _bl_7="">hover over me</div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+        <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css2CSharp"</span>&gt;</span>hover over me<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
@@ -128,11 +148,12 @@
 }
 </pre>
 
-<h2>multiple styles to an element</h2>
+        <h2>multiple styles to an element</h2>
 
-<!--!--><div class="css-1ezp9xe css-oi2q3z" _bl_8="">Red and Bold</div>
+        <!--!-->
+        <div class="css-1ezp9xe css-oi2q3z" _bl_8="">Red and Bold</div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+        <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@bold"</span>&gt;</span>Red and Bold<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
@@ -143,11 +164,12 @@
 }
 </pre>
 
-<h3>multiple styles to an element using C# syntax</h3>
+        <h3>multiple styles to an element using C# syntax</h3>
 
-<!--!--><div class="css-1ezp9xe css-oi2q3z" _bl_9="">Red and Bold</div>
+        <!--!-->
+        <div class="css-1ezp9xe css-oi2q3z" _bl_9="">Red and Bold</div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+        <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css1CSharp"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@boldCSharp"</span>&gt;</span>Red and Bold<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
@@ -156,14 +178,15 @@
 }
 </pre>
 
-<h2>child selectors</h2>
+        <h2>child selectors</h2>
 
-<!--!--><div class="css-19927rl" _bl_10="">
-<div class="one bold">is blue-bold!</div>
-<div class="two">hover red!</div>
-</div>
+        <!--!-->
+        <div class="css-19927rl" _bl_10="">
+          <div class="one bold">is blue-bold!</div>
+          <div class="two">hover red!</div>
+        </div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+        <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@childExamples"</span>&gt;</span>
   <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"one bold"</span>&gt;</span>is blue-bold!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
   <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"two"</span>&gt;</span>hover red!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
@@ -179,14 +202,15 @@
 }
 </pre>
 
-<h3>child selectors using C# syntax</h3>
+        <h3>child selectors using C# syntax</h3>
 
-<!--!--><div class="css-19927rl" _bl_11="">
-<div class="one bold">is blue-bold!</div>
-<div class="two">hover red!</div>
-</div>
+        <!--!-->
+        <div class="css-19927rl" _bl_11="">
+          <div class="one bold">is blue-bold!</div>
+          <div class="two">hover red!</div>
+        </div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+        <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@childExamplesCSharp"</span>&gt;</span>
   <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"one bold"</span>&gt;</span>is blue-bold!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
   <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"two"</span>&gt;</span>hover red!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
@@ -200,6 +224,9 @@
                             .OpenSelector(<span style="color:#093">":hover .two"</span>).AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"red"</span>).CloseSelector();
 }
 </pre>
-</div>
-</div></app>
-</body></html>
+      </div>
+    </div>
+  </app>
+</body>
+
+</html>

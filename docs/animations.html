@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Blazorous</title>
+  <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="css/site.css" rel="stylesheet">
+  <style type="text/css" data-glamor=""></style>
+</head>
+
+<body>
+  <app>
+    <!--!-->
+    <!--!-->
+    <!--!-->
+    <div class="sidebar">
+      <!--!-->
+      <div class="top-row pl-4 navbar navbar-dark">
+        <a class="navbar-brand" href="https://chanan.github.io/Blazorous/">Blazorous</a>
+        <button class="navbar-toggler">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div>
+        <ul class="nav flex-column">
+          <li class="nav-item px-3">
+            <!--!-->
+            <a class="nav-link" href="https://chanan.github.io/Blazorous/">
+              <span class="oi oi-home" aria-hidden="true"></span> Home
+            </a>
+            <a class="nav-link" href="gettingstarted.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Getting Started
+            </a>
+            <!--!-->
+            <a class="nav-link active" href="glamorexamples.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Glamor Examples
+            </a>
+            <a class="nav-link" href="dynamic.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Dynamic Rules
+            </a>
+            <a class="nav-link active" href="styleattributes.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
+            </a>
+            <a class="nav-link active" href="animations.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Animations
+            </a>
+            <a class="nav-link" href="advanced.html">
+              <span class="oi oi-list-rich" aria-hidden="true"></span> Advanced Guides
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="container content px-4">
+        <!--!-->
+        <h1>Animations</h1>
+
+        <p>
+          To do animation with Blazorous, you can use regular CSS transitions for simple things, and for more advanced stuff, you can
+          use
+          <code>keyframes</code> via
+          <code>glamor</code>'s
+          <code>css.keyframes</code> API.
+        </p>
+
+        <p>
+          This example shows how you can use both
+          <em>Style Attributes</em> and the
+          <code>Css</code> object.
+        </p>
+
+        <!--!-->
+        <div class="   css-10shn1x css-fjile0" _bl_1="">CSS</div>
+
+        <pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span> <span style="color:#36c;font-style:italic">width</span>=<span style="color:#093">"70"</span> <span style="color:#36c;font-style:italic">height</span>=<span style="color:#093">"47"</span> <span style="color:#36c;font-style:italic">background-color</span>=<span style="color:#093">"rgb(146, 185, 1)"</span>
+         <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"white"</span> <span style="color:#36c;font-style:italic">position</span>=<span style="color:#093">"relative"</span> <span style="color:#36c;font-style:italic">font-weight</span>=<span style="color:#093">"bold"</span> <span style="color:#36c;font-style:italic">font-size</span>=<span style="color:#093">"20"</span> <span style="color:#36c;font-style:italic">padding</span>=<span style="color:#093">"10"</span>&gt;</span>CSS<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
+
+@functions {
+    Css css = Css.CreateNew()
+        .AddRule(<span style="color:#093">"-webkit-border-radius"</span>, 5)
+        .AddAnimation(<span style="color:#093">"5s 5"</span>, animation =&gt; {
+            animation
+                .AddKeyframe(<span style="color:#093">"from"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 0))
+                .AddKeyframe(<span style="color:#093">"25%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(20deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 0))
+                .AddKeyframe(<span style="color:#093">"50%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 500))
+                .AddKeyframe(<span style="color:#093">"55%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 500))
+                .AddKeyframe(<span style="color:#093">"70%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 500).AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"rgb(30, 199, 230)"</span>))
+                .AddKeyframe(<span style="color:#093">"to"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(-360deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 0));
+         });
+}
+</pre>
+      </div>
+    </div>
+  </app>
+</body>
+
+</html>

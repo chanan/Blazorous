@@ -1,63 +1,81 @@
 <!DOCTYPE html>
-<html><head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Blazorous</title>
-  <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <link href="css/site.css" rel="stylesheet">
-<style type="text/css" data-glamor=""></style></head>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Blazorous</title>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+    <style type="text/css" data-glamor=""></style>
+</head>
+
 <body>
-  <app>
-<!--!--><!--!--><!--!--><div class="sidebar">
-  <!--!--><div class="top-row pl-4 navbar navbar-dark">
-  <a class="navbar-brand" href="https://chanan.github.io/Blazorous/">Blazorous</a>
-  <button class="navbar-toggler">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-</div>
+    <app>
+        <!--!-->
+        <!--!-->
+        <!--!-->
+        <div class="sidebar">
+            <!--!-->
+            <div class="top-row pl-4 navbar navbar-dark">
+                <a class="navbar-brand" href="https://chanan.github.io/Blazorous/">Blazorous</a>
+                <button class="navbar-toggler">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
 
-<div>
-  <ul class="nav flex-column">
-      <li class="nav-item px-3">
-          <!--!--><a class="nav-link" href="https://chanan.github.io/Blazorous/">
-              <span class="oi oi-home" aria-hidden="true"></span> Home
-          </a>
-          <a class="nav-link" href="gettingstarted.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Getting Started
-          </a>
-          <!--!--><a class="nav-link" href="glamorexamples.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Glamor Examples
-          </a>
-          <a class="nav-link active" href="dynamic.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Dynamic Rules
-        </a>
-        <a class="nav-link" href="styleattributes.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
-        </a>
-        <a class="nav-link" href="advanced.html">
-            <span class="oi oi-list-rich" aria-hidden="true"></span> Advanced Guides
-        </a>
-      </li>
-  </ul>
-</div>
-</div>
+            <div>
+                <ul class="nav flex-column">
+                    <li class="nav-item px-3">
+                        <!--!-->
+                        <a class="nav-link" href="https://chanan.github.io/Blazorous/">
+                            <span class="oi oi-home" aria-hidden="true"></span> Home
+                        </a>
+                        <a class="nav-link" href="gettingstarted.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Getting Started
+                        </a>
+                        <!--!-->
+                        <a class="nav-link" href="glamorexamples.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Glamor Examples
+                        </a>
+                        <a class="nav-link active" href="dynamic.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Dynamic Rules
+                        </a>
+                        <a class="nav-link" href="styleattributes.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
+                        </a>
+                        <a class="nav-link" href="animations.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Animations
+                        </a>
+                        <a class="nav-link" href="advanced.html">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Advanced Guides
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-<div class="main">
-  <div class="container content px-4">
-    <!--!--><h1>Dynamic Rules</h1>
+        <div class="main">
+            <div class="container content px-4">
+                <!--!-->
+                <h1>Dynamic Rules</h1>
 
-<p>
-Dynamic rules allow you to define components that change dynamicly based on attributes on the component. This allows you to easily create reusable styled components in your application.
-Dynamic rules only work using the C# syntax. For example, below is a &lt;div&gt; that takes its color attribute from the tag.
-</p>
+                <p>
+                    Dynamic rules allow you to define components that change dynamicly based on attributes on the component. This allows you
+                    to easily create reusable styled components in your application. Dynamic rules only work using the C#
+                    syntax. For example, below is a &lt;div&gt; that takes its color attribute from the tag.
+                </p>
 
-<!--!--><div color="red" class="css-1ezp9xe" _bl_13="">This &lt;div&gt; has an attribute: color="red"</div>
+                <!--!-->
+                <div color="red" class="css-1ezp9xe" _bl_13="">This &lt;div&gt; has an attribute: color="red"</div>
 
-<!--!--><div color="blue" class="css-icjsl7" _bl_14="">This &lt;div&gt; has an attribute: color="blue"</div>
+                <!--!-->
+                <div color="blue" class="css-icjsl7" _bl_14="">This &lt;div&gt; has an attribute: color="blue"</div>
 
-<!--!--><div class="css-p3h563" _bl_15="">This &lt;div&gt; does not have a color attribute so it will default to black</div>
+                <!--!-->
+                <div class="css-p3h563" _bl_15="">This &lt;div&gt; does not have a color attribute so it will default to black</div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@coloredDiv"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"red"</span>&gt;</span>This <span style="color:#6782d3">&amp;lt;</span>div<span style="color:#6782d3">&amp;gt;</span> has an attribute: color="red"<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@coloredDiv"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"blue"</span>&gt;</span>This <span style="color:#6782d3">&amp;lt;</span>div<span style="color:#6782d3">&amp;gt;</span> has an attribute: color="blue"<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
@@ -73,22 +91,37 @@ Css coloredDiv = Css.CreateNew()
 }
 </pre>
 
-<h2>Reusable Component Example</h2>
+                <h2>Reusable Component Example</h2>
 
-<p>This example has been taken from <a href="https://glamorous.rocks/examples/#button">Glamorous Community Examples: Button</a></p>
+                <p>This example has been taken from
+                    <a href="https://glamorous.rocks/examples/#button">Glamorous Community Examples: Button</a>
+                </p>
 
-<p>In this example we will create a reusable button component that can be used in your application. The end result looks like this:</p>
+                <p>In this example we will create a reusable button component that can be used in your application. The end
+                    result looks like this:</p>
 
-<div>
-<!--!--><!--!--><button type="button" color="success" class="css-14cu9ws" _bl_16="">Success</button>
-<!--!--><!--!--><button type="button" color="danger" class="css-4n34ic" _bl_17="">Danger</button>
-<!--!--><!--!--><button type="button" color="primary" class="css-9oyks9" _bl_18="">Primary</button>
-<!--!--><!--!--><button type="button" color="info" class="css-zg0ol3" _bl_19="">Info</button>
-<!--!--><!--!--><button type="button" color="gray" class="css-vg6nk5" _bl_20="">Gray (default)</button>
-<!--!--><!--!--><button type="button" color="accent" class="css-376hb8" _bl_21="">Accent</button>
-</div>
+                <div>
+                    <!--!-->
+                    <!--!-->
+                    <button type="button" color="success" class="css-14cu9ws" _bl_16="">Success</button>
+                    <!--!-->
+                    <!--!-->
+                    <button type="button" color="danger" class="css-4n34ic" _bl_17="">Danger</button>
+                    <!--!-->
+                    <!--!-->
+                    <button type="button" color="primary" class="css-9oyks9" _bl_18="">Primary</button>
+                    <!--!-->
+                    <!--!-->
+                    <button type="button" color="info" class="css-zg0ol3" _bl_19="">Info</button>
+                    <!--!-->
+                    <!--!-->
+                    <button type="button" color="gray" class="css-vg6nk5" _bl_20="">Gray (default)</button>
+                    <!--!-->
+                    <!--!-->
+                    <button type="button" color="accent" class="css-376hb8" _bl_21="">Accent</button>
+                </div>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">div</span>&gt;</span>
   <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"success"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Success<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
   <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"danger"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>Danger<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>&gt;</span>
@@ -99,53 +132,72 @@ Css coloredDiv = Css.CreateNew()
 <span style="color:#03c">&lt;/<span style="font-weight:700">div</span>&gt;</span>
 </pre>
 
-<p>First Create a Component, I called mine <code>StyledButtonWithParamAndAttributes.cshtml</code> and placed it in the <a href="https://github.com/chanan/Blazorous/tree/master/src/Sample/Shared"><code>Shared</code></a> folder. 
-There are actually 3 examples that show similiar but slight different ways of passing attributes. In <code>StyledButtonWithParamAndAttributes.cshtml</code> 
-I both created a Parameter named <code>color</code> and inherited from <code>BlazorousComponentBase</code>. However, you do not have to do both. To see other examples take a 
-look at <code>StyledButton.cshtml</code> and <code>StyledButtonWithParam.cshtml</code> in the <a href="https://github.com/chanan/Blazorous/tree/master/src/Sample/Shared"><code>Shared</code></a> folder of the sample site.     
-</p>
+                <p>First Create a Component, I called mine
+                    <code>StyledButtonWithParamAndAttributes.cshtml</code> and placed it in the
+                    <a href="https://github.com/chanan/Blazorous/tree/master/src/Sample/Shared">
+                        <code>Shared</code>
+                    </a> folder. There are actually 3 examples that show similiar but slight different ways of passing attributes.
+                    In
+                    <code>StyledButtonWithParamAndAttributes.cshtml</code> I both created a Parameter named
+                    <code>color</code> and inherited from
+                    <code>BlazorousComponentBase</code>. However, you do not have to do both. To see other examples take a look at
+                    <code>StyledButton.cshtml</code> and
+                    <code>StyledButtonWithParam.cshtml</code> in the
+                    <a href="https://github.com/chanan/Blazorous/tree/master/src/Sample/Shared">
+                        <code>Shared</code>
+                    </a> folder of the sample site.
+                </p>
 
-<p>Place the imports in <code>_ViewImports.cshtml</code> or at the top of <code>StyledButtonWithParamAndAttributes.cshtml</code>:</p>
+                <p>Place the imports in
+                    <code>_ViewImports.cshtml</code> or at the top of
+                    <code>StyledButtonWithParamAndAttributes.cshtml</code>:</p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 @addTagHelper *,Blazorous
 @using Blazorous
 </pre>
 
-<p>As mentioned in this example, I will inherit from <code>BlazorousComponentBase</code>, so add the inherit tag at the start of the file:</p>
+                <p>As mentioned in this example, I will inherit from
+                    <code>BlazorousComponentBase</code>, so add the inherit tag at the start of the file:</p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 @inherits BlazorousComponentBase
 </pre>
 
-<p>Next we will use the Dynamic tag that comes with Blazorous to generate the button:</p>
+                <p>Next we will use the Dynamic tag that comes with Blazorous to generate the button:</p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span>&gt;</span>@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 </pre>
 
-<p>Since we want child content and an onclick method, lets add those parameters to the functions section of the page:</p>
+                <p>Since we want child content and an onclick method, lets add those parameters to the functions section of
+                    the page:</p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 @functions {
   [Parameter] private RenderFragment ChildContent { get; set; }
   [Parameter] private Action onclick { get; set; }
 }
 </pre>
 
-<p>To allow aribtrary attributes be set on our button (for example <code>style</code>), and since we inherited from <code>BlazorousComponentBase</code>, we will add the 
-<code>Attributes="@UnknownParameters"</code> to our <code>&lt;Dynamic&gt;</code> tag:</p>
+                <p>To allow aribtrary attributes be set on our button (for example
+                    <code>style</code>), and since we inherited from
+                    <code>BlazorousComponentBase</code>, we will add the
+                    <code>Attributes="@UnknownParameters"</code> to our
+                    <code>&lt;Dynamic&gt;</code> tag:</p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span> <span style="color:#36c;font-style:italic">Attributes</span>=<span style="color:#093">"@UnknownParameters"</span>&gt;</span>@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 </pre>
 
-<p>
-At this point we have a button that can accept arbitrary attributes but doesn't look very good. Let's define a color parameter and what hex colors we want our button to be
-(Note: an enum might be better here, but for the sake of simplicity strings and a <code>Dictionary</code> are used in this example). I added the following in the functions section of the page:
-</p>
+                <p>
+                    At this point we have a button that can accept arbitrary attributes but doesn't look very good. Let's define a color parameter
+                    and what hex colors we want our button to be (Note: an enum might be better here, but for the sake of
+                    simplicity strings and a
+                    <code>Dictionary</code> are used in this example). I added the following in the functions section of the page:
+                </p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 [Parameter] private string color { get; set; } = "gray";
 private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>&gt;</span> colors = new Dictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>&gt;</span>()
 {
@@ -158,9 +210,11 @@ private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:
 };
 </pre>
 
-<p>Now we can define the a private field of type <code>Css</code> that we will bind to the <code>&lt;Dynamic&gt;</code> component that will hold our CSS rules:</p>
+                <p>Now we can define the a private field of type
+                    <code>Css</code> that we will bind to the
+                    <code>&lt;Dynamic&gt;</code> component that will hold our CSS rules:</p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 private Css css = Css.CreateNew()
   .AddRule("font-size", 16)
   .AddRule("margin", 10)
@@ -191,16 +245,20 @@ private Css css = Css.CreateNew()
   });
 </pre>
 
-<p>At the end of the code above, the <code>AddDynamicRule</code> is the part that dynamically creates the css style based on the color parameter. Lastly we need to bind the color and css
-attributes to the <code>&lt;Dynamic&gt;</code>. I changed the <code>&lt;Dynamic&gt;</code> to it's final format:</p>
+                <p>At the end of the code above, the
+                    <code>AddDynamicRule</code> is the part that dynamically creates the css style based on the color parameter. Lastly we need to bind
+                    the color and css attributes to the
+                    <code>&lt;Dynamic&gt;</code>. I changed the
+                    <code>&lt;Dynamic&gt;</code> to it's final format:</p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"@color"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span> <span style="color:#36c;font-style:italic">Attributes</span>=<span style="color:#093">"@UnknownParameters"</span>&gt;</span>@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 </pre>
 
-<p>The full source of <code>StyledButtonWithParamAndAttributes.cshtml</code> is below:</p>
+                <p>The full source of
+                    <code>StyledButtonWithParamAndAttributes.cshtml</code> is below:</p>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
+                <pre style="background:rgba(238,238,238,0.92);color:#000">
 @inherits BlazorousComponentBase
 
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"@color"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span> <span style="color:#36c;font-style:italic">Attributes</span>=<span style="color:#093">"@UnknownParameters"</span>&gt;</span>@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
@@ -248,6 +306,9 @@ private Css css = Css.CreateNew()
     });
 }
 </pre>
-</div>
-</div></app>
-</body></html>
+            </div>
+        </div>
+    </app>
+</body>
+
+</html>
