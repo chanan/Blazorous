@@ -5,19 +5,8 @@ _Maintainable CSS with Blazor_
 ## Install
 
 
-[![NuGet Pre Release](https://img.shields.io/nuget/vpre/Microsoft.AspNet.Mvc.svg)](https://www.nuget.org/packages/Blazorous/)
+[![NuGet Pre Release](https://img.shields.io/nuget/vpre/Blazorous.svg)](https://www.nuget.org/packages/Blazorous/)
 
-Using Package Manager:
-
-```
-Install-Package Blazorous -Version 0.0.6
-```
-
-or dotnet CLI:
-
-```
-dotnet add package Blazorous --version 0.0.6
-```
 
 Add the tag helper to your page or `_ViewImports.cshtml`
 
