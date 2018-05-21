@@ -12,7 +12,7 @@
 <span style="color:#03c">&lt;<span>Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"h1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@h1"</span>></span>Basic Styles<span style="color:#03c">&lt;/<span>Dynamic</span>></span>
 
 @@functions {
-    Css h1 = Css.CreateNew()
+    ICss h1 = Css.CreateNew()
         .AddRule(<span style="color:#093">"font-size"</span>, <span style="color:#093">"2.4em"</span>)
         .AddRule(<span style="color:#093">"margin-top"</span>, 10)
         .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#CC3A4B"</span>);
@@ -27,7 +27,7 @@
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 @@functions {
 <span>const</span> string phone = <span style="color:#093">"@@media only screen and (max-width: 500px)"</span>;
-    Css h1 = Css.CreateNew()
+    ICss h1 = Css.CreateNew()
         .AddRule("font-size", "2.4em")
         .AddRule("margin-top", 10)
         .AddRule("color", "#CC3A4B")
@@ -52,7 +52,7 @@
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 @@functions {
-    Css link = Css.CreateNew()
+    ICss link = Css.CreateNew()
         .AddSelector(":visited", css => css.AddRule("color", "darkblue"))
         .AddSelector(":hover,:active,:focus", css => css.AddRule("color", "darkred"));
 }
@@ -76,7 +76,7 @@
 <span style="color:#03c">&lt;/<span style="font-weight:700">ul</span>></span>
 
 @@functions {
-   Css listitem = Css.CreateNew()
+   ICss listitem = Css.CreateNew()
         .AddSelector(":before", css => css.AddRule("content", "<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>💎<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>"));
 }
 </pre>
@@ -105,7 +105,7 @@
 <span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
-    Css pre = Css.CreateNew()
+    ICss pre = Css.CreateNew()
         .AddDynamicRule((css, attributes) =>
         {
 <span style="color:#00f">if</span> (<span style="color:#093">"html"</span> == attributes.GetStringAttribute(<span style="color:#093">"language"</span>))
@@ -143,7 +143,7 @@
 <span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
-    Css secondPre = Css.CreateNew()
+    ICss secondPre = Css.CreateNew()
         .AddRule("position", "relative")
         .AddRule("padding", 20)
         .AddSelector(":before", css =>
@@ -155,7 +155,7 @@
                 .AddRule("font-size", "0.8rem");
         });
 
-    Css secondPre2 = Css.CreateNew()
+    ICss secondPre2 = Css.CreateNew()
         .AddDynamicRule((css, attributes) =>
         {
             var lang = attributes.GetStringAttribute("language");
@@ -173,7 +173,7 @@
 
 @functions {
     const string phone = "@media only screen and (max-width: 500px)";
-    Css h1 = Css.CreateNew()
+    ICss h1 = Css.CreateNew()
         .AddRule("font-size", "2.4em")
         .AddRule("margin-top", 10)
         .AddRule("color", "#CC3A4B")
@@ -183,12 +183,12 @@
                 .AddRule("background-color", "#CC3A4B")
                 .AddRule("color", "white");
         });
-    Css link = Css.CreateNew()
+    ICss link = Css.CreateNew()
         .AddSelector(":visited", css => css.AddRule("color", "darkblue"))
         .AddSelector(":hover,:active,:focus", css => css.AddRule("color", "darkred"));
-    Css listitem = Css.CreateNew()
+    ICss listitem = Css.CreateNew()
         .AddSelector(":before", css => css.AddRule("content", "\\\"💎\\\""));
-    Css pre = Css.CreateNew()
+    ICss pre = Css.CreateNew()
         .AddDynamicRule((css, attributes) =>
         {
             if ("html" == attributes.GetStringAttribute("language"))
@@ -198,7 +198,7 @@
                     .AddRule("color", "white");
             }
         });
-    Css secondPre = Css.CreateNew()
+    ICss secondPre = Css.CreateNew()
         .AddRule("position", "relative")
         .AddRule("padding", 20)
         .AddSelector(":before", css =>
@@ -210,7 +210,7 @@
                 .AddRule("font-size", "0.8rem");
         });
 
-    Css secondPre2 = Css.CreateNew()
+    ICss secondPre2 = Css.CreateNew()
         .AddDynamicRule((css, attributes) =>
         {
             var lang = attributes.GetStringAttribute("language");

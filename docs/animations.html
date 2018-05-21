@@ -85,17 +85,17 @@
          <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"white"</span> <span style="color:#36c;font-style:italic">position</span>=<span style="color:#093">"relative"</span> <span style="color:#36c;font-style:italic">font-weight</span>=<span style="color:#093">"bold"</span> <span style="color:#36c;font-style:italic">font-size</span>=<span style="color:#093">"20"</span> <span style="color:#36c;font-style:italic">padding</span>=<span style="color:#093">"10"</span>&gt;</span>CSS<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-    Css css = Css.CreateNew()
-        .AddRule(<span style="color:#093">"-webkit-border-radius"</span>, 5)
-        .AddAnimation(<span style="color:#093">"5s 5"</span>, animation =&gt; {
-            animation
-                .AddKeyframe(<span style="color:#093">"from"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 0))
-                .AddKeyframe(<span style="color:#093">"25%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(20deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 0))
-                .AddKeyframe(<span style="color:#093">"50%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 500))
-                .AddKeyframe(<span style="color:#093">"55%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 500))
-                .AddKeyframe(<span style="color:#093">"70%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 500).AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"rgb(30, 199, 230)"</span>))
-                .AddKeyframe(<span style="color:#093">"to"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(-360deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 0));
-         });
+  ICss css = Css.CreateNew()
+    .AddRule(<span style="color:#093">"-webkit-border-radius"</span>, 5)
+    .AddAnimation(<span style="color:#093">"5s 5"</span>, animation =&gt; {
+      animation
+        .AddKeyframe(<span style="color:#093">"from"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 0))
+        .AddKeyframe(<span style="color:#093">"25%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(20deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 0))
+        .AddKeyframe(<span style="color:#093">"50%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 500))
+        .AddKeyframe(<span style="color:#093">"55%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 500))
+        .AddKeyframe(<span style="color:#093">"70%"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(0deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 500).AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"rgb(30, 199, 230)"</span>))
+        .AddKeyframe(<span style="color:#093">"to"</span>, css =&gt; css.AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"rotate(-360deg)"</span>).AddRule(<span style="color:#093">"left"</span>, 0));
+      });
 }
 </pre>
       </div>

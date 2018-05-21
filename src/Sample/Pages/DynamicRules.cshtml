@@ -21,7 +21,7 @@
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@coloredDiv"</span>></span>This <span style="color:#6782d3">&amp;lt;</span>div<span style="color:#6782d3">&amp;gt;</span> does not have a color attribute so it will default to black<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
-    Css coloredDiv = Css.CreateNew()
+    ICss coloredDiv = Css.CreateNew()
         .AddDynamicRule((css, attributes) =>
         {
             css.AddRule(<span style="color:#093">"color"</span>, attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"black"</span>));
@@ -117,7 +117,7 @@ private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:
 <p>Now we can define the a private field of type <code>Css</code> that we will bind to the <code>&lt;Dynamic&gt;</code> component that will hold our CSS rules:</p>
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
-    private Css css = Css.CreateNew()
+    ICss css = Css.CreateNew()
         .AddRule("font-size", 16)
         .AddRule("margin", 10)
         .AddRule("border", "none")
@@ -200,7 +200,7 @@ private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:
 </pre>
 
 @functions {
-    Css coloredDiv = Css.CreateNew()
+    ICss coloredDiv = Css.CreateNew()
                     .AddDynamicRule((css, attributes) =>
                     {
                         css.AddRule("color", attributes.GetStringAttribute("color", "black"));

@@ -12,17 +12,17 @@ namespace Blazorous
 
         internal static string Css(string css, string debug)
         {
-            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Css", css, debug);
+            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Css", css, Convert.ToBoolean(debug));
         }
 
         public static string Keyframes(string keyframes, string debug)
         {
-            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.keyframes", keyframes, debug);
+            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.keyframes", keyframes, Convert.ToBoolean(debug));
         }
 
         public static string Fontface(string fontface, string debug)
         {
-            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Fontface", fontface, debug);
+            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Fontface", fontface, Convert.ToBoolean(debug));
         }
     }
 }

@@ -34,18 +34,18 @@ namespace Blazorous
             return false;
         }
 
-        public int Count
+        internal int Count
         {
             get => Animations.Count;
             private set => throw new InvalidOperationException();
         }
 
-        public string ToKeyframes()
+        internal string ToKeyframes()
         {
             return ToKeyframes(null, "false");
         }
 
-        public string ToKeyframes(IDictionary<string, object> attributes, string debug)
+        internal string ToKeyframes(IDictionary<string, object> attributes, string debug)
         {
             var sb = new StringBuilder();
             sb.Append("{");

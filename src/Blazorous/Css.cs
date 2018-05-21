@@ -1,89 +1,82 @@
-﻿using System;
+﻿using Blazorous.Internal;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Blazorous
 {
-    public class Css
+    public class Css : ICss, IRules
     {
-        private IList<KeyValuePair<string, object>> Rules { get; set; } = new List<KeyValuePair<string, object>>();
-        private IList<object> Classes { get; set; } = new List<object>();
-        public static Css CreateNew()
+        private IList<KeyValuePair<string, object>> _rules = new List<KeyValuePair<string, object>>();
+
+        internal Css() { }
+        public static ICss CreateNew()
         {
             return new Css();
         }
 
-        public Css AddRule(string name, string value)
+        public ICss AddRule(string name, string value)
         {
-            Rules.Add(new KeyValuePair<string, object>(name, value));
-            return this;
+            return InternalAddRule(name, value);
         }
 
-        public Css AddRule(string name, int value)
+        public ICss AddRule(string name, int value)
         {
-            Rules.Add(new KeyValuePair<string, object>(name, value));
-            return this;
+            return InternalAddRule(name, value);
         }
 
-        public Css AddRule(string name, float value)
+        public ICss AddRule(string name, float value)
         {
-            Rules.Add(new KeyValuePair<string, object>(name, value));
-            return this;
+            return InternalAddRule(name, value);
         }
 
-        public Css AddRule(string name, double value)
+        public ICss AddRule(string name, double value)
         {
-            Rules.Add(new KeyValuePair<string, object>(name, value));
-            return this;
+            return InternalAddRule(name, value);
         }
 
-        public Css AddDynamicRule(Action<Css, IDictionary<string, object>> dynamicRule)
+        public ICss AddDynamicRule(Action<IRules, IDictionary<string, object>> dynamicRule)
         {
-            Rules.Add(new KeyValuePair<string, object>(string.Empty, new DynamicRule { Rule = dynamicRule }));
-            return this;
+            return InternalAddDynamicRule(dynamicRule);
         }
 
-        public Css AddClass(string name)
+        public ICss AddClass(string name)
         {
-            Rules.Add(new KeyValuePair<string, object>(name, new Classname { Name = name }));
-            return this;
+            return InternalAddClass(name);
         }
 
-        public Css AddAnimation(string duration, Action<Animation> animation)
+        public ICss AddAnimation(string duration, Action<Animation> animation)
         {
-            Rules.Add(new KeyValuePair<string, object>(String.Empty, new AnimationStyle { Duration = duration, Animation = animation }));
-            return this;
+            return InternalAddAnimation(duration, animation);
         }
 
-        public Css AddFontface(Action<Css> fontFace)
+        public ICss AddFontface(Action<IRules> fontFace)
         {
-            Rules.Add(new KeyValuePair<string, object>(String.Empty, new FontFace { Fontface = fontFace }));
-            return this;
+            return InternalAddFontface(fontFace);
         }
 
-        public Css AddSelector(string selector, Action<Css> selectorRule)
+        public ICss AddSelector(string selector, Action<IRules> selectorRule)
         {
-            Rules.Add(new KeyValuePair<string, object>(selector, new SelectorRule { Selector = selector, Rule = selectorRule }));
-            return this;
+            return InternalAddSelector(selector, selectorRule);
         }
 
-        public int Count {
-            get => Rules.Count;
-            private set => throw new InvalidOperationException(); 
-        }
-
-        public string ToCss()
+        string ICss.ToCss()
         {
             return ToCss(null, "false");
+        }
+
+        internal int Count {
+            get => _rules.Count;
+            private set => throw new InvalidOperationException(); 
         }
 
         public string ToCss(IDictionary<string, object> attributes, string debug)
         {
             var sb = new StringBuilder();
             sb.Append("{");
-            for (int i = 0; i < Rules.Count; i++)
+            for (int i = 0; i < _rules.Count; i++)
             {
-                var kvp = Rules[i];
+                var kvp = _rules[i];
                 switch (kvp.Value)
                 {
                     case string s:
@@ -122,7 +115,7 @@ namespace Blazorous
                         sb.Append($"\"{kvp.Key}\": \"{kvp.Value.ToString()}\"");
                         break;
                 }
-                if(i != Rules.Count - 1 && typeof(Classname) != kvp.Value.GetType() && typeof(Classname) != Rules[i + 1].Value.GetType()) sb.Append(",");
+                if(i != _rules.Count - 1 && typeof(Classname) != kvp.Value.GetType() && typeof(Classname) != _rules[i + 1].Value.GetType()) sb.Append(",");
             }
             sb.Append("}");
             return sb.ToString();
@@ -136,7 +129,7 @@ namespace Blazorous
         public string ToClasses(IDictionary<string, object> attributes)
         {
             var sb = new StringBuilder();
-            foreach(var kvp in Rules)
+            foreach(var kvp in _rules)
             {
                 switch(kvp.Value)
                 {
@@ -169,31 +162,93 @@ namespace Blazorous
             return BlazorousInterop.Fontface(css, debug);
         }
 
-        private class DynamicRule
+        IRules IRules.AddRule(string name, string value)
         {
-            public Action<Css, IDictionary<string, object>> Rule { get; set; }
+            return InternalAddRule(name, value);
         }
 
-        private class Classname
+        IRules IRules.AddRule(string name, int value)
         {
-            public string Name { get; set; }
+            return InternalAddRule(name, value);
         }
 
-        private class AnimationStyle
+        IRules IRules.AddRule(string name, float value)
         {
-            public string Duration { get; set; }
-            public Action<Animation> Animation { get; set; }
+            return InternalAddRule(name, value);
         }
 
-        private class FontFace
+        IRules IRules.AddRule(string name, double value)
         {
-            public Action<Css> Fontface { get; set; }
+            return InternalAddRule(name, value);
         }
 
-        private class SelectorRule
+        IRules IRules.AddDynamicRule(Action<IRules, IDictionary<string, object>> dynamicRule)
         {
-            public string Selector { get; set; }
-            public Action<Css> Rule { get; set; }
+            return InternalAddDynamicRule(dynamicRule);
+        }
+
+        IRules IRules.AddClass(string name)
+        {
+            return InternalAddClass(name);
+        }
+
+        IRules IRules.AddSelector(string selector, Action<IRules> selectorRule)
+        {
+            return InternalAddSelector(selector, selectorRule);
+        }
+
+        private Css InternalAddRule(string name, string value)
+        {
+            _rules.Add(new KeyValuePair<string, object>(name, value));
+            return this;
+        }
+
+        private Css InternalAddRule(string name, int value)
+        {
+            _rules.Add(new KeyValuePair<string, object>(name, value));
+            return this;
+        }
+
+        private Css InternalAddRule(string name, float value)
+        {
+            _rules.Add(new KeyValuePair<string, object>(name, value));
+            return this;
+        }
+
+        private Css InternalAddRule(string name, double value)
+        {
+            _rules.Add(new KeyValuePair<string, object>(name, value));
+            return this;
+        }
+
+        private Css InternalAddDynamicRule(Action<IRules, IDictionary<string, object>> dynamicRule)
+        {
+            _rules.Add(new KeyValuePair<string, object>(string.Empty, new DynamicRule { Rule = dynamicRule }));
+            return this;
+        }
+
+        private Css InternalAddClass(string name)
+        {
+            _rules.Add(new KeyValuePair<string, object>(name, new Classname { Name = name }));
+            return this;
+        }
+
+        private Css InternalAddAnimation(string duration, Action<Animation> animation)
+        {
+            _rules.Add(new KeyValuePair<string, object>(String.Empty, new AnimationStyle { Duration = duration, Animation = animation }));
+            return this;
+        }
+
+        private Css InternalAddFontface(Action<IRules> fontFace)
+        {
+            _rules.Add(new KeyValuePair<string, object>(String.Empty, new FontFace { Fontface = fontFace }));
+            return this;
+        }
+
+        private Css InternalAddSelector(string selector, Action<IRules> selectorRule)
+        {
+            _rules.Add(new KeyValuePair<string, object>(selector, new SelectorRule { Selector = selector, Rule = selectorRule }));
+            return this;
         }
     }
 }

@@ -29,7 +29,7 @@
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"danger"</span>></span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>></span>Oh snap!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>></span> This is not good 🚨<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
-    Css css = Css.CreateNew()
+    ICss css = Css.CreateNew()
         .AddClass(<span style="color:#093">"alert"</span>)
         .AddDynamicRule((css, attributes) =>
         {
@@ -47,7 +47,7 @@
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"@@type"</span>></span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>></span>Enums!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>></span> You can use enums instead of strings!<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
-    Css cssEnum = Css.CreateNew()
+    ICss cssEnum = Css.CreateNew()
         .AddClass(<span style="color:#093">"alert"</span>)
         .AddDynamicRule((css, attributes) =>
         {
@@ -70,7 +70,7 @@
 </pre>
 
 @functions {
-    Css css = Css.CreateNew()
+    ICss css = Css.CreateNew()
         .AddClass("alert")
         .AddDynamicRule((css, attributes) =>
         {
@@ -78,7 +78,7 @@
             css.AddClass($"alert-{type}");
         });
 
-    Css cssEnum = Css.CreateNew()
+    ICss cssEnum = Css.CreateNew()
         .AddClass("alert")
         .AddDynamicRule((css, attributes) =>
         {

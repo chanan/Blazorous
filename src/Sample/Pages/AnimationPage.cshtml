@@ -19,7 +19,7 @@
          <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"white"</span> <span style="color:#36c;font-style:italic">position</span>=<span style="color:#093">"relative"</span> <span style="color:#36c;font-style:italic">font-weight</span>=<span style="color:#093">"bold"</span> <span style="color:#36c;font-style:italic">font-size</span>=<span style="color:#093">"20"</span> <span style="color:#36c;font-style:italic">padding</span>=<span style="color:#093">"10"</span>></span>CSS<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
-    Css css = Css.CreateNew()
+    ICss css = Css.CreateNew()
         .AddRule(<span style="color:#093">"-webkit-border-radius"</span>, 5)
         .AddAnimation(<span style="color:#093">"5s 5"</span>, animation => {
             animation
@@ -34,7 +34,7 @@
 </pre>
 
 @functions {
-    Css css = Css.CreateNew()
+    ICss css = Css.CreateNew()
         .AddRule("-webkit-border-radius", 5)
         .AddAnimation("5s 5", animation => {
             animation

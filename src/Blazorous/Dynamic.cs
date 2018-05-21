@@ -99,7 +99,7 @@ namespace Blazorous
 
         private Css CreateDynamicCssFromAttributes(IDictionary<string, object> attributesToRender)
         {
-            var css = Css.CreateNew();
+            var css = new Css();
             foreach(var cssProp in CssProps)
             {
                 if (attributesToRender.TryGetValue(cssProp, out var value))

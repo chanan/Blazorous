@@ -103,13 +103,13 @@
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"danger"</span>&gt;</span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>&gt;</span>Oh snap!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>&gt;</span> This is not good 🚨<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-    Css css = Css.CreateNew()
-        .AddClass(<span style="color:#093">"alert"</span>)
-        .AddDynamicRule((css, attributes) =&gt;
-        {
-            var type = attributes.GetStringAttribute(<span style="color:#093">"type"</span>, <span style="color:#093">"primary"</span>);
-            css.AddClass($<span style="color:#093">"alert-{type}"</span>);
-        });
+	ICss css = Css.CreateNew()
+		.AddClass(<span style="color:#093">"alert"</span>)
+		.AddDynamicRule((css, attributes) =&gt;
+		{
+			var type = attributes.GetStringAttribute(<span style="color:#093">"type"</span>, <span style="color:#093">"primary"</span>);
+			css.AddClass($<span style="color:#093">"alert-{type}"</span>);
+		});
 }
 </pre>
 
@@ -123,25 +123,25 @@
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"@type"</span>&gt;</span><span style="color:#03c">&lt;<span style="font-weight:700">strong</span>&gt;</span>Enums!<span style="color:#03c">&lt;/<span style="font-weight:700">strong</span>&gt;</span> You can use enums instead of strings!<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-    Css cssEnum = Css.CreateNew()
-        .AddClass(<span style="color:#093">"alert"</span>)
-        .AddDynamicRule((css, attributes) =&gt;
-        {
-            <span style="color:#00f">if</span> (attributes.TryGetValue&lt;AlertType&gt;(<span style="color:#093">"type"</span>, out AlertType type))
-            {
-                css.AddClass($<span style="color:#093">"alert-{type.ToString()}"</span>);
-            }
-        });
+	ICss cssEnum = Css.CreateNew()
+		.AddClass(<span style="color:#093">"alert"</span>)
+		.AddDynamicRule((css, attributes) =&gt;
+		{
+			<span style="color:#00f">if</span> (attributes.TryGetValue&lt;AlertType&gt;(<span style="color:#093">"type"</span>, out AlertType type))
+			{
+				css.AddClass($<span style="color:#093">"alert-{type.ToString()}"</span>);
+			}
+		});
 
-    AlertType type = AlertType.success;
+	AlertType type = AlertType.success;
 
-    enum AlertType
-    {
-        success,
-        info,
-        warning,
-        danger
-    }
+	enum AlertType
+	{
+		success,
+		info,
+		warning,
+		danger
+	}
 }
 </pre>
             </div>
