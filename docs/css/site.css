@@ -137,8 +137,8 @@ app {
   color: rgb(255, 255, 255);
 }
 
-.css-3wlp0l,
-[data-css-3wlp0l] {
+.css-1jpv9v,
+[data-css-1jpv9v] {
   width: 11em;
   display: inline-block;
   border-width: 1px;
@@ -152,19 +152,19 @@ app {
   transition: all 0.3s;
 }
 
-.css-zk8ij7:hover,
-[data-css-zk8ij7]:hover {
+.css-1jpv9v:hover,
+[data-css-1jpv9v]:hover {
   background-color: rgba(255, 255, 255, 0.5);
   color: #da233c;
 }
 
-.css-6rqtb4,
+.css-6pilp7,
 [data-css-6rqtb4] {
   background-color: rgba(255, 255, 255, 0.5);
   color: rgb(218, 35, 60);
 }
 
-.css-6rqtb4:hover,
+.css-6pilp7:hover,
 [data-css-6rqtb4]:hover {
   background-color: #cc3a4b;
   color: #fff;
@@ -180,23 +180,23 @@ app {
   font-weight: bold;
 }
 
-.css-19927rl,
-[data-css-19927rl] {
+.css-ja6wra,
+[data-css-ja6wra] {
   display: block;
 }
 
-.css-19927rl .one,
-[data-css-19927rl] .one {
+.css-ja6wra .one,
+[data-css-ja6wra] .one {
   color: blue;
 }
 
-.css-19927rl .bold,
-[data-css-19927rl] .bold {
+.css-ja6wra .bold,
+[data-css-ja6wra] .bold {
   font-weight: bold;
 }
 
-.css-19927rl:hover .two,
-[data-css-19927rl]:hover .two {
+.css-ja6wra:hover .two,
+[data-css-ja6wra]:hover .two {
   color: red;
 }
 
