@@ -137,10 +137,16 @@ app {
   color: rgb(255, 255, 255);
 }
 
-.css-1jpv9v,
-[data-css-1jpv9v] {
+.css-1jpv9v:hover, [data-css-1jpv9v]:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgb(218, 35, 60);
+}
+
+.css-1jpv9v, [data-css-1jpv9v] {
   width: 11em;
   display: inline-block;
+  background-color: rgb(204, 58, 75);
+  color: rgb(255, 255, 255);
   border-width: 1px;
   border-style: solid;
   border-color: rgb(246, 121, 130);
@@ -152,22 +158,25 @@ app {
   transition: all 0.3s;
 }
 
-.css-1jpv9v:hover,
-[data-css-1jpv9v]:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #da233c;
+.css-6pilp7:hover, [data-css-6pilp7]:hover {
+  background-color: rgb(204, 58, 75);
+  color: rgb(255, 255, 255);
 }
 
-.css-6pilp7,
-[data-css-6rqtb4] {
+.css-6pilp7, [data-css-6pilp7] {
+  width: 11em;
+  display: inline-block;
   background-color: rgba(255, 255, 255, 0.5);
   color: rgb(218, 35, 60);
-}
-
-.css-6pilp7:hover,
-[data-css-6rqtb4]:hover {
-  background-color: #cc3a4b;
-  color: #fff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(246, 121, 130);
+  border-image: initial;
+  padding: 0.7em 0px;
+  text-decoration: none;
+  border-radius: 4px;
+  margin: 0.5em 1em;
+  transition: all 0.3s;
 }
 
 .css-1ezp9xe,

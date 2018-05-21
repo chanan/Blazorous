@@ -218,31 +218,31 @@ private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:
                     <code>&lt;Dynamic&gt;</code> component that will hold our CSS rules:</p>
 
                     <pre style="background:rgba(238,238,238,0.92);color:#000">
-                        private Css css = Css.CreateNew()
-                            .AddRule("font-size", 16)
-                            .AddRule("margin", 10)
-                            .AddRule("border", "none")
-                            .AddRule("cursor", "pointer")
-                            .AddRule("display", "inline-block")
-                            .AddRule("padding", "10px 20px")
-                            .AddRule("text-align", "center")
-                            .AddRule("transition", "0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)")
-                            .AddRule("border-radius", 4)
-                            .AddRule("color", "#fff")
-                            .AddRule("box-shadow", "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)")
-                            .AddSelector(":hover", css =>
-                            {
-                                css.AddRule(<span style="color:#093">"opacity"</span>, 0.7)
-                                    .AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"translateY(-1px)"</span>)
-                                    .AddRule(<span style="color:#093">"box-shadow"</span>, <span style="color:#093">"0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)"</span>);
-                            })
-                            .AddSelector(":focus", css => css.AddRule("outline", 0))
-                            .AddSelector(":active", css => css.AddRule("transform", "translateY(1px)"))
-                            .AddDynamicRule((css, attributes) =>
-                            {
-                                var color = colors[attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"gray"</span>)];
-                                css.AddRule(<span style="color:#093">"background-color"</span>, color);
-                            });
+private Css css = Css.CreateNew()
+    .AddRule("font-size", 16)
+    .AddRule("margin", 10)
+    .AddRule("border", "none")
+    .AddRule("cursor", "pointer")
+    .AddRule("display", "inline-block")
+    .AddRule("padding", "10px 20px")
+    .AddRule("text-align", "center")
+    .AddRule("transition", "0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)")
+    .AddRule("border-radius", 4)
+    .AddRule("color", "#fff")
+    .AddRule("box-shadow", "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)")
+    .AddSelector(":hover", css =>
+    {
+        css.AddRule(<span style="color:#093">"opacity"</span>, 0.7)
+            .AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"translateY(-1px)"</span>)
+            .AddRule(<span style="color:#093">"box-shadow"</span>, <span style="color:#093">"0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)"</span>);
+    })
+    .AddSelector(":focus", css => css.AddRule("outline", 0))
+    .AddSelector(":active", css => css.AddRule("transform", "translateY(1px)"))
+    .AddDynamicRule((css, attributes) =>
+    {
+        var color = colors[attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"gray"</span>)];
+        css.AddRule(<span style="color:#093">"background-color"</span>, color);
+    });
                     </pre>
 
                 <p>At the end of the code above, the
@@ -259,49 +259,49 @@ private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:
                     <code>StyledButtonWithParamAndAttributes.cshtml</code> is below:</p>
 
                     <pre style="background:rgba(238,238,238,0.92);color:#000">
-                        @inherits BlazorousComponentBase
-                        
-                        <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"@color"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span> <span style="color:#36c;font-style:italic">Attributes</span>=<span style="color:#093">"@UnknownParameters"</span>></span>@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
-                        
-                        @functions {
-                            [Parameter] private RenderFragment ChildContent { get; set; }
-                            [Parameter] private Action onclick { get; set; }
-                            [Parameter] private string color { get; set; } = "graycolor";
-                            private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>></span> colors = new Dictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>></span>()
-                            {
-                                { <span style="color:#093">"success"</span>, <span style="color:#093">"#29A88E"</span> },
-                                { <span style="color:#093">"danger"</span>, <span style="color:#093">"#C65F4A"</span> },
-                                { <span style="color:#093">"primary"</span>, <span style="color:#093">"#6DCFD3"</span> },
-                                { <span style="color:#093">"info"</span>, <span style="color:#093">"#FFD035"</span> },
-                                { <span style="color:#093">"graycolor"</span>, <span style="color:#093">"#5A6E73"</span> },
-                                { <span style="color:#093">"accent"</span>, <span style="color:#093">"#8E83A3"</span> }
-                            };
-                            private Css css = Css.CreateNew()
-                                .AddRule("font-size", 16)
-                                .AddRule("margin", 10)
-                                .AddRule("border", "none")
-                                .AddRule("cursor", "pointer")
-                                .AddRule("display", "inline-block")
-                                .AddRule("padding", "10px 20px")
-                                .AddRule("text-align", "center")
-                                .AddRule("transition", "0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)")
-                                .AddRule("border-radius", 4)
-                                .AddRule("color", "#fff")
-                                .AddRule("box-shadow", "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)")
-                                .AddSelector(":hover", css =>
-                                {
-                                    css.AddRule(<span style="color:#093">"opacity"</span>, 0.7)
-                                        .AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"translateY(-1px)"</span>)
-                                        .AddRule(<span style="color:#093">"box-shadow"</span>, <span style="color:#093">"0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)"</span>);
-                                })
-                                .AddSelector(":focus", css => css.AddRule("outline", 0))
-                                .AddSelector(":active", css => css.AddRule("transform", "translateY(1px)"))
-                                .AddDynamicRule((css, attributes) =>
-                                {
-                                    var color = colors[attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"gray"</span>)];
-                                    css.AddRule(<span style="color:#093">"background-color"</span>, color);
-                                });
-                        }
+@inherits BlazorousComponentBase
+
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"@color"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@onclick"</span> <span style="color:#36c;font-style:italic">Attributes</span>=<span style="color:#093">"@UnknownParameters"</span>></span>@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@functions {
+    [Parameter] private RenderFragment ChildContent { get; set; }
+    [Parameter] private Action onclick { get; set; }
+    [Parameter] private string color { get; set; } = "graycolor";
+    private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>></span> colors = new Dictionary<span style="color:#03c">&lt;<span style="font-weight:700">string</span>, <span style="color:#36c;font-style:italic">string</span>></span>()
+    {
+        { <span style="color:#093">"success"</span>, <span style="color:#093">"#29A88E"</span> },
+        { <span style="color:#093">"danger"</span>, <span style="color:#093">"#C65F4A"</span> },
+        { <span style="color:#093">"primary"</span>, <span style="color:#093">"#6DCFD3"</span> },
+        { <span style="color:#093">"info"</span>, <span style="color:#093">"#FFD035"</span> },
+        { <span style="color:#093">"graycolor"</span>, <span style="color:#093">"#5A6E73"</span> },
+        { <span style="color:#093">"accent"</span>, <span style="color:#093">"#8E83A3"</span> }
+    };
+    private Css css = Css.CreateNew()
+        .AddRule("font-size", 16)
+        .AddRule("margin", 10)
+        .AddRule("border", "none")
+        .AddRule("cursor", "pointer")
+        .AddRule("display", "inline-block")
+        .AddRule("padding", "10px 20px")
+        .AddRule("text-align", "center")
+        .AddRule("transition", "0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)")
+        .AddRule("border-radius", 4)
+        .AddRule("color", "#fff")
+        .AddRule("box-shadow", "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)")
+        .AddSelector(":hover", css =>
+        {
+            css.AddRule(<span style="color:#093">"opacity"</span>, 0.7)
+                .AddRule(<span style="color:#093">"transform"</span>, <span style="color:#093">"translateY(-1px)"</span>)
+                .AddRule(<span style="color:#093">"box-shadow"</span>, <span style="color:#093">"0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08)"</span>);
+        })
+        .AddSelector(":focus", css => css.AddRule("outline", 0))
+        .AddSelector(":active", css => css.AddRule("transform", "translateY(1px)"))
+        .AddDynamicRule((css, attributes) =>
+        {
+            var color = colors[attributes.GetStringAttribute(<span style="color:#093">"color"</span>, <span style="color:#093">"gray"</span>)];
+            css.AddRule(<span style="color:#093">"background-color"</span>, color);
+        });
+}
                         </pre>
             </div>
         </div>
