@@ -19,5 +19,10 @@ namespace Blazorous
         {
             return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.keyframes", keyframes, debug);
         }
+
+        public static string Fontface(string fontface, string debug)
+        {
+            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Fontface", fontface, debug);
+        }
     }
 }

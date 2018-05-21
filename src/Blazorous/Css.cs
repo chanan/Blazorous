@@ -67,6 +67,12 @@ namespace Blazorous
             return this;
         }
 
+        public Css AddFontface(Action<Css> fontFace)
+        {
+            Rules.Add(new KeyValuePair<string, object>(String.Empty, new FontFace { Fontface = fontFace }));
+            return this;
+        }
+
         public int Count {
             get => Rules.Count;
             private set => throw new InvalidOperationException(); 
@@ -105,7 +111,6 @@ namespace Blazorous
                         break;
                     case DynamicRule dr:
                         inSelector = false;
-                        if (attributes == null) break;
                         var tempCss = new Css();
                         dr.Rule.Invoke(tempCss, attributes);
                         var cssRule = tempCss.ToCss(attributes, debug);
@@ -119,6 +124,13 @@ namespace Blazorous
                         a.Animation.Invoke(animationTemp);
                         var cssAnimation = animationTemp.ToKeyframes(attributes, debug);
                         sb.Append($"\"animation\": \"{cssAnimation} {a.Duration}\"");
+                        break;
+                    case FontFace f:
+                        inSelector = false;
+                        var tempFontfaceCss = new Css();
+                        f.Fontface.Invoke(tempFontfaceCss);
+                        var cssFontfaceRule = tempFontfaceCss.ToFontface(attributes, debug);
+                        sb.Append($"\"font-family\": \"{cssFontfaceRule}\"");
                         break;
                     default:
                         sb.Append($"\"{kvp.Key}\": \"{kvp.Value.ToString()}\"");
@@ -166,6 +178,17 @@ namespace Blazorous
             }
             return sb.ToString();
         }
+
+        public string ToFontface()
+        {
+            return ToFontface(null, "false");
+        }
+
+        public string ToFontface(IDictionary<string, object> attributes, string debug)
+        {
+            var css = ToCss(attributes, debug);
+            return BlazorousInterop.Fontface(css, debug);
+        }
         private class OpenSelectorMarker { }
 
         private class CloseSelectorMarker { }
@@ -184,6 +207,11 @@ namespace Blazorous
         {
             public string Duration { get; set; }
             public Action<Animation> Animation { get; set; }
+        }
+
+        private class FontFace
+        {
+            public Action<Css> Fontface { get; set; }
         }
     }
 }

@@ -44,7 +44,7 @@
             <a class="nav-link active" href="styleattributes.html">
               <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
             </a>
-            <a class="nav-link" href="fonts.html">
+            <a class="nav-link active" href="fonts.html">
               <span class="oi oi-list-rich" aria-hidden="true"></span> Fonts
           </a>
             <a class="nav-link" href="animations.html">
@@ -60,39 +60,26 @@
 
     <div class="main">
       <div class="container content px-4">
-        <!--!-->
-        <h1>Style Attributes</h1>
+        <!--!--><!--!--><h1 class="  css-19eqo3v" _bl_1="">Font Faces</h1>
 
-        <p>
-          You can also define styles by adding valid CSS properties as attributes directly on the
-          <code>Dynamic</code> tag! This is an easy and powerful way to define styles on your Components. For example:
-        </p>
+<p>You can use either local woff files or remote files such as from <a href="https://fonts.google.com/">Google Fonts</a>, calling <code>AddFontFace</code>. For example:</p>
 
-        <!--!-->
-        <div class="css-1y2lr0s" _bl_8="">This is awesome!</div>
-
-        <pre style="background:rgba(238,238,238,0.92);color:#000">
-<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">background-color</span>=<span style="color:#093">"red"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"white"</span> <span style="color:#36c;font-style:italic">font-size</span>=<span style="color:#093">"50"</span>&gt;</span>This is awesome!<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
-</pre>
-
-        <p>While you can't create "Dynamic Rules" using "Style Attributes", you can bind properties to variables just like any
-          other Blazor property:</p>
-
-        <!--!-->
-        <p class="css-1q32skq" _bl_9="">Bold and 12px</p>
-
-        <pre style="background:rgba(238,238,238,0.92);color:#000">
-<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"p"</span> <span style="color:#36c;font-style:italic">font-weight</span>=<span style="color:#093">"@fontWeight"</span> <span style="color:#36c;font-style:italic">font-size</span>=<span style="color:#093">"@fontSize"</span>&gt;</span>Bold and 12px<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"h1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span>&gt;</span>Font Faces<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-string fontWeight = <span style="color:#093">"bold"</span>;
-int fontSize = 12;
+    Css css = Css.CreateNew()
+        .AddFontface(css =&gt;
+        {
+            css.AddRule(<span style="color:#093">"fontFamily"</span>, <span style="color:#093">"Indie Flower"</span>)
+                .AddRule(<span style="color:#093">"fontStyle"</span>, <span style="color:#093">"normal"</span>)
+                .AddRule(<span style="color:#093">"fontWeight"</span>, 400)
+                .AddRule(<span style="color:#093">"src"</span>, <span style="color:#093">"local('Indie Flower'), local('IndieFlower'), url(https://fonts.gstatic.com/s/indieflower/v9/m8JVjfNVeKWVnh3QMuKkFcZVaUuH.woff2) format('woff2')"</span>)
+                .AddRule(<span style="color:#093">"unicodeRange"</span>, <span style="color:#093">"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"</span>);
+        });
 }
 </pre>
-
-        <p>Lastly, there is no way to define CSS Selectors.</p>
-
-      </div>
+    </div>
     </div>
   </app>
 </body>

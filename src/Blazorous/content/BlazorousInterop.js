@@ -13,3 +13,11 @@ Blazor.registerFunction('Blazorous.BlazorousInterop.keyframes', function (keyfra
     var animation = Glamor.css.keyframes(cssKeyframes);
     return animation;
 });
+
+Blazor.registerFunction('Blazorous.BlazorousInterop.Fontface', function (fontface, debug) {
+    if (debug) console.log("fontface: %o", fontface);
+    var cssFontface = JSON.parse(fontface);
+    if (debug) console.log("cssFontface: %o", cssFontface);
+    var family = Glamor.css.fontFace(cssFontface);
+    return family;
+});
