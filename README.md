@@ -7,6 +7,11 @@ _Maintainable CSS with Blazor_
 
 [![NuGet Pre Release](https://img.shields.io/nuget/vpre/Blazorous.svg)](https://www.nuget.org/packages/Blazorous/)
 
+### Change log
+
+**Please note**: Version 0.1.0 has breaking changes. View the [change log](https://github.com/chanan/Blazorous/releases) for more details
+
+## Setup
 
 Add the tag helper to your page or `_ViewImports.cshtml`
 
