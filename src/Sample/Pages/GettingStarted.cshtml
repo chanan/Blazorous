@@ -27,16 +27,16 @@
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 @@functions {
 <span>const</span> string phone = <span style="color:#093">"@@media only screen and (max-width: 500px)"</span>;
-<span>Css</span> h1 = <span>Css</span>.<span>CreateNew</span>()
-        .<span>AddRule</span>(<span style="color:#093">"font-size"</span>, <span style="color:#093">"2.4em"</span>)
-        .<span>AddRule</span>(<span style="color:#093">"margin-top"</span>, <span style="color:#06f">10</span>)
-        .<span>AddRule</span>(<span style="color:#093">"color"</span>, <span style="color:#093">"#CC3A4B"</span>)
-        .<span>OpenSelector</span>(phone)
-            .<span>AddRule</span>(<span style="color:#093">"font-size"</span>, <span style="color:#093">"1.8em"</span>)
-            .<span>AddRule</span>(<span style="color:#093">"background-color"</span>, <span style="color:#093">"#CC3A4B"</span>)
-            .<span>AddRule</span>(<span style="color:#093">"color"</span>, <span style="color:#093">"white"</span>)
-        .<span>CloseSelector</span>();
-}
+    Css h1 = Css.CreateNew()
+        .AddRule("font-size", "2.4em")
+        .AddRule("margin-top", 10)
+        .AddRule("color", "#CC3A4B")
+        .AddSelector(phone, css =>
+        {
+            css.AddRule("font-size", "1.8em")
+                .AddRule("background-color", "#CC3A4B")
+                .AddRule("color", "white");
+        });
 </pre>
 
 <p>Now resize the screen to see how things look</p>
@@ -52,13 +52,9 @@
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 @@functions {
-    Css <span style="color:#33f;font-weight:700">link</span> = Css.CreateNew()
-        .OpenSelector(<span style="color:#093">":visited"</span>)
-            .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"darkblue"</span>)
-        .CloseSelector()
-        .OpenSelector(<span style="color:#093">":hover,:active,:focus"</span>)
-            .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"darkred"</span>)
-        .CloseSelector();
+    Css link = Css.CreateNew()
+        .AddSelector(":visited", css => css.AddRule("color", "darkblue"))
+        .AddSelector(":hover,:active,:focus", css => css.AddRule("color", "darkred"));
 }
 </pre>
 
@@ -73,17 +69,15 @@
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">ul</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>this<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>is<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>a<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>list<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>this<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>is<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>a<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"li"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@listitem"</span>></span>list<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 <span style="color:#03c">&lt;/<span style="font-weight:700">ul</span>></span>
 
 @@functions {
    Css listitem = Css.CreateNew()
-        .OpenSelector(<span style="color:#093">":before"</span>)
-            .AddRule(<span style="color:#093">"content"</span>, <span style="color:#093">"<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>💎<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>"</span>)
-        .CloseSelector();
+        .AddSelector(":before", css => css.AddRule("content", "<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>💎<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>"));
 }
 </pre>
 
@@ -150,28 +144,27 @@
 
 @@functions {
     Css secondPre = Css.CreateNew()
-        .AddRule(<span style="color:#093">"position"</span>, <span style="color:#093">"relative"</span>)
-        .AddRule(<span style="color:#093">"padding"</span>, 20)
-        .OpenSelector(<span style="color:#093">":before"</span>)
-            .AddRule(<span style="color:#093">"position"</span>, <span style="color:#093">"absolute"</span>)
-            .AddRule(<span style="color:#093">"top"</span>, 0)
-            .AddRule(<span style="color:#093">"opacity"</span>, 0.6)
-            .AddRule(<span style="color:#093">"left"</span>, <span style="color:#093">"7px"</span>)
-            .AddRule(<span style="color:#093">"font-size"</span>, <span style="color:#093">"0.8rem"</span>)
-        .CloseSelector();
+        .AddRule("position", "relative")
+        .AddRule("padding", 20)
+        .AddSelector(":before", css =>
+        {
+            css.AddRule("position", "absolute")
+                .AddRule("top", 0)
+                .AddRule("opacity", 0.6)
+                .AddRule("left", "7px")
+                .AddRule("font-size", "0.8rem");
+        });
 
     Css secondPre2 = Css.CreateNew()
         .AddDynamicRule((css, attributes) =>
+        {
+            var lang = attributes.GetStringAttribute("language");
+            var isHtml = "html" == lang;
+            css.AddSelector(":before", innerCss => innerCss.AddRule("content", $"\\\"{lang}\\\""));
+            if (isHtml)
             {
-            var lang = attributes.GetStringAttribute(<span style="color:#093">"language"</span>);
-            var isHtml = <span style="color:#093">"html"</span> == lang;
-            css.OpenSelector(<span style="color:#093">":before"</span>)
-                .AddRule(<span style="color:#093">"content"</span>, $<span style="color:#093">"<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>{lang}<span style="color:#6782d3">\\</span><span style="color:#6782d3">\"</span>"</span>)
-            .CloseSelector();
-            <span style="color:#00f">if</span> (isHtml)
-            {
-                css.AddRule(<span style="color:#093">"background-color"</span>, <span style="color:#093">"#0c1e35"</span>)
-                    .AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"white"</span>);
+                css.AddRule("background-color", "#0c1e35")
+                    .AddRule("color", "white");
             }
         });
 }
@@ -184,22 +177,17 @@
         .AddRule("font-size", "2.4em")
         .AddRule("margin-top", 10)
         .AddRule("color", "#CC3A4B")
-        .OpenSelector(phone)
-            .AddRule("font-size", "1.8em")
-            .AddRule("background-color", "#CC3A4B")
-            .AddRule("color", "white")
-        .CloseSelector();
+        .AddSelector(phone, css =>
+        {
+            css.AddRule("font-size", "1.8em")
+                .AddRule("background-color", "#CC3A4B")
+                .AddRule("color", "white");
+        });
     Css link = Css.CreateNew()
-        .OpenSelector(":visited")
-            .AddRule("color", "darkblue")
-        .CloseSelector()
-        .OpenSelector(":hover,:active,:focus")
-            .AddRule("color", "darkred")
-        .CloseSelector();
+        .AddSelector(":visited", css => css.AddRule("color", "darkblue"))
+        .AddSelector(":hover,:active,:focus", css => css.AddRule("color", "darkred"));
     Css listitem = Css.CreateNew()
-        .OpenSelector(":before")
-            .AddRule("content", "\\\"💎\\\"")
-        .CloseSelector();
+        .AddSelector(":before", css => css.AddRule("content", "\\\"💎\\\""));
     Css pre = Css.CreateNew()
         .AddDynamicRule((css, attributes) =>
         {
@@ -213,22 +201,21 @@
     Css secondPre = Css.CreateNew()
         .AddRule("position", "relative")
         .AddRule("padding", 20)
-        .OpenSelector(":before")
-            .AddRule("position", "absolute")
-            .AddRule("top", 0)
-            .AddRule("opacity", 0.6)
-            .AddRule("left", "7px")
-            .AddRule("font-size", "0.8rem")
-        .CloseSelector();
+        .AddSelector(":before", css =>
+        {
+            css.AddRule("position", "absolute")
+                .AddRule("top", 0)
+                .AddRule("opacity", 0.6)
+                .AddRule("left", "7px")
+                .AddRule("font-size", "0.8rem");
+        });
 
     Css secondPre2 = Css.CreateNew()
         .AddDynamicRule((css, attributes) =>
-            {
+        {
             var lang = attributes.GetStringAttribute("language");
             var isHtml = "html" == lang;
-            css.OpenSelector(":before")
-                .AddRule("content", $"\\\"{lang}\\\"")
-            .CloseSelector();
+            css.AddSelector(":before", innerCss => innerCss.AddRule("content", $"\\\"{lang}\\\""));
             if (isHtml)
             {
                 css.AddRule("background-color", "#0c1e35")

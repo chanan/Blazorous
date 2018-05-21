@@ -16,36 +16,36 @@
 <span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
-    //Styles can defined as strings:
-    string center = @@<span style="color:#093">"{
+    <span style="color:#ff0080">/</span><span style="color:#ff0080"></span><span style="color:#ff0080">/</span>Styles can defined as <span style="color:#6782d3">strings:</span>
+    string center <span style="color:#00f">=</span> @@<span style="color:#093">"{
         "</span><span style="color:#093">"text-align"</span><span style="color:#093">": "</span><span style="color:#093">"center"</span><span style="color:#093">",
         "</span><span style="color:#093">"margin-bottom"</span><span style="color:#093">": "</span><span style="color:#093">"30px"</span><span style="color:#093">"
     }"</span>;
-    //Or in C#. When using C# you can make your styles dynamic!
-    Css link = Css.CreateNew().AddRule(<span style="color:#093">"border"</span>, <span style="color:#093">"1px solid #F67982"</span>)
+    <span style="color:#ff0080">/</span><span style="color:#ff0080"></span><span style="color:#ff0080">/</span>Or <span style="color:#00f">in</span> C<span style="color:#06f;font-style:italic">#. When using C# you can make your styles dynamic!</span>
+    Css link <span style="color:#00f">=</span> <span style="color:#33f;font-weight:700">Css</span>.CreateNew().AddRule(<span style="color:#093">"border"</span>, <span style="color:#093">"1px solid #F67982"</span>)
                           .AddRule(<span style="color:#093">"width"</span>, <span style="color:#093">"11em"</span>)
                           .AddRule(<span style="color:#093">"padding"</span>, <span style="color:#093">"0.7em 0"</span>)
                           .AddRule(<span style="color:#093">"text-decoration"</span>, <span style="color:#093">"none"</span>)
-                          .AddRule(<span style="color:#093">"border-radius"</span>, 4)
+                          .AddRule(<span style="color:#093">"border-radius"</span>, <span style="color:#06f">4</span>)
                           .AddRule(<span style="color:#093">"display"</span>, <span style="color:#093">"inline-block"</span>)
                           .AddRule(<span style="color:#093">"margin"</span>, <span style="color:#093">".5em 1em"</span>)
                           .AddRule(<span style="color:#093">"transition"</span>, <span style="color:#093">"all .3s"</span>)
                           .AddDynamicRule((css, attributes) =>
                           {
-                              var isPrimary = attributes.GetBooleanAttribute(<span style="color:#093">"primary"</span>);
-                              css.AddRule(<span style="color:#093">"background-color"</span>, isPrimary ? <span style="color:#093">"#CC3A4B"</span> : <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span>);
-                              css.AddRule(<span style="color:#093">"color"</span>, isPrimary ? <span style="color:#093">"#fff"</span> : <span style="color:#093">"#DA233C"</span>);
+                              var isPrimary <span style="color:#00f">=</span> attributes.GetBooleanAttribute(<span style="color:#093">"primary"</span>);
+                              css.AddRule(<span style="color:#093">"background-color"</span>, isPrimary <span style="color:#00f">?</span> <span style="color:#093">"#CC3A4B"</span> : <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span>);
+                              css.AddRule(<span style="color:#093">"color"</span>, isPrimary <span style="color:#00f">?</span> <span style="color:#093">"#fff"</span> : <span style="color:#093">"#DA233C"</span>);
                           })
-                          .OpenSelector(":hover")
-                            .AddDynamicRule((css, attributes) =>
-                            {
-                                var isPrimary = attributes.GetBooleanAttribute(<span style="color:#093">"primary"</span>);
-                                css.AddRule(<span style="color:#093">"background-color"</span>, isPrimary ? <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span> : <span style="color:#093">"#CC3A4B"</span>);
-                                css.AddRule(<span style="color:#093">"color"</span>, isPrimary ? <span style="color:#093">"#DA233C"</span> : <span style="color:#093">"#fff"</span>);
-                            })
-                          .CloseSelector();
+                          .AddSelector(<span style="color:#093">":hover"</span>, css =>
+                          {
+                              css.AddDynamicRule((innerCss, attributes) =>
+                              {
+                                  var isPrimary <span style="color:#00f">=</span> attributes.GetBooleanAttribute(<span style="color:#093">"primary"</span>);
+                                  innerCss.AddRule(<span style="color:#093">"background-color"</span>, isPrimary <span style="color:#00f">?</span> <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span> : <span style="color:#093">"#CC3A4B"</span>);
+                                  innerCss.AddRule(<span style="color:#093">"color"</span>, isPrimary <span style="color:#00f">?</span> <span style="color:#093">"#DA233C"</span> : <span style="color:#093">"#fff"</span>);
+                              });
+                          });
 }
-
 </pre>
 
 @functions {
@@ -69,12 +69,13 @@
                               css.AddRule("background-color", isPrimary ? "#CC3A4B" : "rgba(255, 255, 255, 0.5)");
                               css.AddRule("color", isPrimary ? "#fff" : "#DA233C");
                           })
-                          .OpenSelector(":hover")
-                            .AddDynamicRule((css, attributes) =>
-                            {
-                                var isPrimary = attributes.GetBooleanAttribute("primary");
-                                css.AddRule("background-color", isPrimary ? "rgba(255, 255, 255, 0.5)" : "#CC3A4B");
-                                css.AddRule("color", isPrimary ? "#DA233C" : "#fff");
-                            })
-                          .CloseSelector();
+                          .AddSelector(":hover", css =>
+                          {
+                              css.AddDynamicRule((innerCss, attributes) =>
+                              {
+                                  var isPrimary = attributes.GetBooleanAttribute("primary");
+                                  innerCss.AddRule("background-color", isPrimary ? "rgba(255, 255, 255, 0.5)" : "#CC3A4B");
+                                  innerCss.AddRule("color", isPrimary ? "#DA233C" : "#fff");
+                              });
+                          });
 }

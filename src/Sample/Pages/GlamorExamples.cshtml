@@ -79,7 +79,7 @@
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css2CSharp"</span>></span>hover over me<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
-  Css css2CSharp = Css.CreateNew().OpenSelector(<span style="color:#093">":hover"</span>).AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"blue"</span>).CloseSelector();
+  Css css2CSharp = Css.CreateNew().AddSelector(":hover", css => css.AddRule("color", "blue"));
 }
 </pre>
 
@@ -143,15 +143,15 @@
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@childExamplesCSharp"</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"one bold"</span>></span>is blue-bold!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"two"</span>></span>hover red!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"one bold"</span>></span>is blue-bold!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">div</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"two"</span>></span>hover red!<span style="color:#03c">&lt;/<span style="font-weight:700">div</span>></span>
 <span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
-  Css childExamplesCSharp = Css.CreateNew().AddRule(<span style="color:#093">"display"</span>, <span style="color:#093">"block"</span>)
-                                .OpenSelector(<span style="color:#093">"&amp; .bold"</span>).AddRule(<span style="color:#093">"font-weight"</span>, <span style="color:#093">"bold"</span>).CloseSelector()
-                                .OpenSelector(<span style="color:#093">"&amp; .one"</span>).AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"blue"</span>).CloseSelector()
-                                .OpenSelector(<span style="color:#093">":hover .two"</span>).AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"red"</span>).CloseSelector();
+ Css childExamplesCSharp = Css.CreateNew().AddRule("display", "block")
+                                .AddSelector("&amp; .bold", css => css.AddRule("font-weight", "bold"))
+                                .AddSelector("&amp; .one", css => css.AddRule("color", "blue"))
+                                .AddSelector(":hover .two", css => css.AddRule("color", "red"));
 }
 </pre>
 
@@ -176,10 +176,10 @@
 
     Css css1CSharp = Css.CreateNew().AddRule("color", "red");
     string class1CSharp = BlazorousInterop.Css(Css.CreateNew().AddRule("color", "red").ToCss());
-    Css css2CSharp = Css.CreateNew().OpenSelector(":hover").AddRule("color", "blue").CloseSelector();
+    Css css2CSharp = Css.CreateNew().AddSelector(":hover", css => css.AddRule("color", "blue"));
     Css boldCSharp = Css.CreateNew().AddRule("font-weight", "bold");
     Css childExamplesCSharp = Css.CreateNew().AddRule("display", "block")
-                                .OpenSelector("& .bold").AddRule("font-weight", "bold").CloseSelector()
-                                .OpenSelector("& .one").AddRule("color", "blue").CloseSelector()
-                                .OpenSelector(":hover .two").AddRule("color", "red").CloseSelector();
+                                .AddSelector("& .bold", css => css.AddRule("font-weight", "bold"))
+                                .AddSelector("& .one", css => css.AddRule("color", "blue"))
+                                .AddSelector(":hover .two", css => css.AddRule("color", "red"));
 }

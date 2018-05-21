@@ -37,18 +37,6 @@ namespace Blazorous
             return this;
         }
 
-        public Css OpenSelector(string name)
-        {
-            Rules.Add(new KeyValuePair<string, object>(name, new OpenSelectorMarker()));
-            return this;
-        }
-
-        public Css CloseSelector()
-        {
-            Rules.Add(new KeyValuePair<string, object>(string.Empty, new CloseSelectorMarker()));
-            return this;
-        }
-
         public Css AddDynamicRule(Action<Css, IDictionary<string, object>> dynamicRule)
         {
             Rules.Add(new KeyValuePair<string, object>(string.Empty, new DynamicRule { Rule = dynamicRule }));
@@ -73,6 +61,12 @@ namespace Blazorous
             return this;
         }
 
+        public Css AddSelector(string selector, Action<Css> selectorRule)
+        {
+            Rules.Add(new KeyValuePair<string, object>(selector, new SelectorRule { Selector = selector, Rule = selectorRule }));
+            return this;
+        }
+
         public int Count {
             get => Rules.Count;
             private set => throw new InvalidOperationException(); 
@@ -86,8 +80,6 @@ namespace Blazorous
         public string ToCss(IDictionary<string, object> attributes, string debug)
         {
             var sb = new StringBuilder();
-            bool inSelector = false;
-            bool firstInSelector = true;
             sb.Append("{");
             for (int i = 0; i < Rules.Count; i++)
             {
@@ -100,17 +92,7 @@ namespace Blazorous
                     case int num:
                         sb.Append($"\"{kvp.Key}\": {num}");
                         break;
-                    case OpenSelectorMarker _:
-                        sb.Append($"\"{kvp.Key}\": {{");
-                        inSelector = true;
-                        firstInSelector = true;
-                        break;
-                    case CloseSelectorMarker _:
-                        sb.Append("}");
-                        inSelector = false;
-                        break;
                     case DynamicRule dr:
-                        inSelector = false;
                         var tempCss = new Css();
                         dr.Rule.Invoke(tempCss, attributes);
                         var cssRule = tempCss.ToCss(attributes, debug);
@@ -119,31 +101,28 @@ namespace Blazorous
                     case Classname _:
                         break;
                     case AnimationStyle a:
-                        inSelector = false;
                         var animationTemp = Animation.CreateNew();
                         a.Animation.Invoke(animationTemp);
                         var cssAnimation = animationTemp.ToKeyframes(attributes, debug);
                         sb.Append($"\"animation\": \"{cssAnimation} {a.Duration}\"");
                         break;
                     case FontFace f:
-                        inSelector = false;
                         var tempFontfaceCss = new Css();
                         f.Fontface.Invoke(tempFontfaceCss);
                         var cssFontfaceRule = tempFontfaceCss.ToFontface(attributes, debug);
                         sb.Append($"\"font-family\": \"{cssFontfaceRule}\"");
                         break;
+                    case SelectorRule sr:
+                        var tempSelectorRuleCss = new Css();
+                        sr.Rule.Invoke(tempSelectorRuleCss);
+                        var cssSelectorRuleCss = tempSelectorRuleCss.ToCss(attributes, debug);
+                        sb.Append($"\"{sr.Selector}\": {cssSelectorRuleCss}");
+                        break;
                     default:
                         sb.Append($"\"{kvp.Key}\": \"{kvp.Value.ToString()}\"");
                         break;
                 }
-                if(typeof(Classname) != kvp.Value.GetType())
-                {
-                    //TODO: Refactor the rules around commas
-                    if (i == Rules.Count - 1 && inSelector) sb.Append("}");
-                    if (i != Rules.Count - 1 && inSelector && !firstInSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType() && typeof(Classname) != Rules[i + 1].Value.GetType()) sb.Append(", ");
-                    if (i != Rules.Count - 1 && !inSelector && typeof(CloseSelectorMarker) != Rules[i + 1].Value.GetType() && typeof(Classname) != Rules[i + 1].Value.GetType()) sb.Append(",");
-                    firstInSelector = false;
-                }
+                if(i != Rules.Count - 1 && typeof(Classname) != kvp.Value.GetType() && typeof(Classname) != Rules[i + 1].Value.GetType()) sb.Append(",");
             }
             sb.Append("}");
             return sb.ToString();
@@ -189,9 +168,6 @@ namespace Blazorous
             var css = ToCss(attributes, debug);
             return BlazorousInterop.Fontface(css, debug);
         }
-        private class OpenSelectorMarker { }
-
-        private class CloseSelectorMarker { }
 
         private class DynamicRule
         {
@@ -212,6 +188,12 @@ namespace Blazorous
         private class FontFace
         {
             public Action<Css> Fontface { get; set; }
+        }
+
+        private class SelectorRule
+        {
+            public string Selector { get; set; }
+            public Action<Css> Rule { get; set; }
         }
     }
 }
