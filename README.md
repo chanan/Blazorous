@@ -93,6 +93,8 @@ For many simple cases, you can define your CSS properties directly on the `Dynam
 <Dynamic TagName="div" background-color="red" color="white" font-size="50">This is awesome!</Dynamic>
 ```
 
+You may define pseudo selectors, such as "hover", as attributes as well.
+
 ## Animations
 
 Css keyframe animation can be added via the Css object:
