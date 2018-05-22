@@ -595,3 +595,13 @@ app {
 .css-19eqo3v, [data-css-19eqo3v] {
   font-family: "Indie Flower";
 }
+
+.css-1bhv3op:hover, [data-css-1bhv3op]:hover {
+  color: blue;
+  font-size: 24px;
+}
+
+.css-7yycpl:hover, [data-css-7yycpl]:hover {
+  color: red;
+  font-size: 24px;
+}

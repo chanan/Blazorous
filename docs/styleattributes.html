@@ -99,7 +99,37 @@
 }
 </pre>
 
-        <p>Lastly, there is no way to define CSS Selectors.</p>
+        <h2>Pseudo Selectors</h2>
+
+<p>
+    You can define pseudo selectors (child selectors) as well. The pseudo selectors are: <code>after</code>, <code>before</code>, <code>focus</code>, <code>hover</code>, <code>active</code>, and <code>visited</code>.
+    You can define pseudo selectors using css strings:
+</p>
+
+<!--!--><div class="css-1bhv3op" _bl_3="">Blue hover using style strings</div>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">hover</span>=<span style="color:#093">"@styleString"</span>&gt;</span>Blue hover using style strings<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
+
+@functions {
+    string styleString = @<span style="color:#093">"{
+        "</span><span style="color:#093">"color"</span><span style="color:#093">": "</span><span style="color:#093">"blue"</span><span style="color:#093">",
+        "</span><span style="color:#093">"font-size"</span><span style="color:#093">": "</span><span style="color:#093">"24px"</span><span style="color:#093">"
+    }"</span>;
+}
+</pre>
+
+<p>Or using C# syntax:</p>
+
+<!--!--><div class="css-7yycpl" _bl_4="">Red hover using C# code</div>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">hover</span>=<span style="color:#093">"@css"</span>&gt;</span>Red hover using C# code<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
+
+@functions {
+    ICss css = Css.CreateNew().AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"red"</span>).AddRule(<span style="color:#093">"font-size"</span>, 24);
+}
+</pre>
 
       </div>
     </div>

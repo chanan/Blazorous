@@ -26,9 +26,46 @@
 }
 </pre>
 
-<p>Lastly, there is no way to define CSS Selectors.</p>
+<h2>Pseudo Selectors</h2>
+
+<p>
+    You can define pseudo selectors (child selectors) as well. The pseudo selectors are: <code>after</code>, <code>before</code>, <code>focus</code>, <code>hover</code>, <code>active</code>, and <code>visited</code>.
+    You can define pseudo selectors using css strings:
+</p>
+
+<Dynamic TagName="div" hover="@styleString">Blue hover using style strings</Dynamic>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">hover</span>=<span style="color:#093">"@@styleString"</span>></span>Blue hover using style strings<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@@functions {
+    string styleString = @@<span style="color:#093">"{
+        "</span><span style="color:#093">"color"</span><span style="color:#093">": "</span><span style="color:#093">"blue"</span><span style="color:#093">",
+        "</span><span style="color:#093">"font-size"</span><span style="color:#093">": "</span><span style="color:#093">"24px"</span><span style="color:#093">"
+    }"</span>;
+}
+</pre>
+
+<p>Or using C# syntax:</p>
+
+<Dynamic TagName="div" hover="@css">Red hover using C# code</Dynamic>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">hover</span>=<span style="color:#093">"@@css"</span>></span>Red hover using C# code<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@@functions {
+    ICss css = Css.CreateNew().AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"red"</span>).AddRule(<span style="color:#093">"font-size"</span>, 24);
+}
+</pre>
 
 @functions {
+    ICss css = Css.CreateNew().AddRule("color", "red").AddRule("font-size", 24);
+
+    string styleString = @"{
+        ""color"": ""blue"",
+        ""font-size"": ""24px""
+    }";
+
     string fontWeight = "bold";
     int fontSize = 12;
 }

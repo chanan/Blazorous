@@ -1,33 +1,14 @@
 ﻿@page "/test"
 
-<Dynamic TagName="h1" css="@css" debug="true">Font Faces</Dynamic>
+<Dynamic TagName="div" hover="@css" debug="true">Hover over me</Dynamic>
 
-<p>You can use either local woff files or remote files such as from <a href="https://fonts.google.com/">Google Fonts</a>, calling <code>AddFontFace</code>. For example:</p>
+<Dynamic TagName="div" hover="@c" debug="true">Hover over me</Dynamic>
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
-<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"h1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">debug</span>=<span style="color:#093">"true"</span>></span>Font Faces<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
-
-@@functions {
-    Css css = Css.CreateNew()
-        .AddFontface(css =>
-        {
-            css.AddRule(<span style="color:#093">"fontFamily"</span>, <span style="color:#093">"Indie Flower"</span>)
-                .AddRule(<span style="color:#093">"fontStyle"</span>, <span style="color:#093">"normal"</span>)
-                .AddRule(<span style="color:#093">"fontWeight"</span>, 400)
-                .AddRule(<span style="color:#093">"src"</span>, <span style="color:#093">"local('Indie Flower'), local('IndieFlower'), url(https://fonts.gstatic.com/s/indieflower/v9/m8JVjfNVeKWVnh3QMuKkFcZVaUuH.woff2) format('woff2')"</span>)
-                .AddRule(<span style="color:#093">"unicodeRange"</span>, <span style="color:#093">"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"</span>);
-        });
-}
-</pre>
 
 @functions {
-    ICss css = Css.CreateNew()
-        .AddFontface(css =>
-        {
-            css.AddRule("fontFamily", "Indie Flower")
-                .AddRule("fontStyle", "normal")
-                .AddRule("fontWeight", 400)
-                .AddRule("src", "local('Indie Flower'), local('IndieFlower'), url(https://fonts.gstatic.com/s/indieflower/v9/m8JVjfNVeKWVnh3QMuKkFcZVaUuH.woff2) format('woff2')")
-                .AddRule("unicodeRange", "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD");
-        });
+    ICss css = Css.CreateNew().AddRule("color", "red");
+    string c = @"{
+        ""color"": ""blue"",
+        ""font-size"": ""24px""
+    }";
 }

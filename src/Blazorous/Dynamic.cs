@@ -83,7 +83,7 @@ namespace Blazorous
             var glamorClasses = GetCssFromProps(css, _attributesToRender, debug);
             foreach (var classname in glamorClasses)
             {
-                _classname = _classname != null ? $"{_classname} {classname}" : classname;
+                _classname = _classname != null ? $"{_classname} {classname}".Trim() : classname;
             }
 
             Css dynamicCss = CreateDynamicCssFromAttributes(_attributesToRender);
@@ -94,13 +94,46 @@ namespace Blazorous
                 _classname = _classname != null ? $"{_classname} {dynamicClass}" : dynamicClass;
             }
 
+            var pseudoCss = CreatePseudoCssFromAttributes(_attributesToRender, debug);
+
+            foreach(var str in pseudoCss)
+            {
+                _classname = _classname != null ? $"{_classname} {str}".Trim() : str;
+            }
+
             _renderHandle.Render(Render);
+        }
+
+        private List<string> CreatePseudoCssFromAttributes(IDictionary<string, object> attributesToRender, string debug)
+        {
+            var list = new List<string>();
+            foreach (var pseudo in _pseudoProps)
+            {
+                if (attributesToRender.TryGetValue(pseudo, out var value))
+                {
+                    switch (value)
+                    {
+                        case string s:
+                            list.Add(BlazorousInterop.Css($"{{\":{pseudo}\":{s}}}", debug));
+                            break;
+                        case Css c:
+                            var css = c.ToCss(attributesToRender, debug);
+                            if (c.Count > 0) list.Add(BlazorousInterop.Css($"{{\":{pseudo}\":{css}}}", debug));
+                            break;
+                        default:
+                            throw new InvalidOperationException($"Pseudo attribute {pseudo} must be string or of type Blazorous.Css");
+
+                    }
+                    attributesToRender.Remove(pseudo);
+                }
+            }
+            return list;
         }
 
         private Css CreateDynamicCssFromAttributes(IDictionary<string, object> attributesToRender)
         {
             var css = new Css();
-            foreach(var cssProp in CssProps)
+            foreach(var cssProp in _cssProps)
             {
                 if (attributesToRender.TryGetValue(cssProp, out var value))
                 {
@@ -184,7 +217,18 @@ namespace Blazorous
             handler.Invoke(args);
         }
 
-        private static IList<string> CssProps = new List<string> {
+        private static readonly IList<string> _pseudoProps = new List<string>
+        {
+            "after",
+            "before",
+            "focus",
+            "hover",
+            "active",
+            "visited"
+        };
+
+        private static readonly IList<string> _cssProps = new List<string>
+        {
             "azimuth",
             "background",
             "background-attachment",
