@@ -78,15 +78,13 @@
         <p>The above styled h1 tag was acheived by:</p>
         
         <pre style="background:rgba(238,238,238,0.92);color:#000">
-<span style="color:#03c">&lt;<span>Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"h1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@h1"</span>&gt;</span>Basic Styles<span style="color:#03c">&lt;/<span>Dynamic</span>&gt;</span>
+<span style="color:#03c">&lt;<span>Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"h1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@h1"</span>></span>Basic Styles<span style="color:#03c">&lt;/<span>Dynamic</span>></span>
 
-@functions {
-	ICss h1 = Css.CreateNew()
-		.AddRule(<span style="color:#093">"font-size"</span>, <span style="color:#093">"2.4em"</span>)
-		.AddRule(<span style="color:#093">"margin-top"</span>, 10)
-		.AddRule(<span style="color:#093">"color"</span>, <span style="color:#093">"#CC3A4B"</span>);
+@@functions {
+    Css.CreateNew()
+        .AddRules("font-size", "2.4em", "margin-top", 10, "color", "#CC3A4B");
 }
-        </pre>
+</pre>
         
         <!--!--><h1 class="     css-1lqw71r" _bl_14="">Media Queries</h1>
         
@@ -94,19 +92,14 @@
         <p>Update the Heading to this:</p>
         
         <pre style="background:rgba(238,238,238,0.92);color:#000">
-@functions {
-	<span>const</span> string phone = <span style="color:#093">"@media only screen and (max-width: 500px)"</span>;
-	ICss h1 = Css.CreateNew()
-		.AddRule("font-size", "2.4em")
-		.AddRule("margin-top", 10)
-		.AddRule("color", "#CC3A4B")
-		.AddSelector(phone, css =&gt;
-		{
-			css.AddRule("font-size", "1.8em")
-				.AddRule("background-color", "#CC3A4B")
-				.AddRule("color", "white");
-		});
-        </pre>
+@@functions {
+    <span>const</span> string phone = <span style="color:#093">"@@media only screen and (max-width: 500px)"</span>;
+    Css.CreateNew()
+        .AddRules("font-size", "2.4em", "margin-top", 10, "color", "#CC3A4B")
+        .AddSelector(phone, css => css.AddRules("font-size", "1.8em", "background-color", "#CC3A4B", "color", "white"));
+}
+</pre>
+
         
         <p>Now resize the screen to see how things look</p>
         

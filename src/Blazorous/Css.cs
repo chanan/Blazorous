@@ -250,5 +250,27 @@ namespace Blazorous
             _rules.Add(new KeyValuePair<string, object>(selector, new SelectorRule { Selector = selector, Rule = selectorRule }));
             return this;
         }
+
+        public ICss AddRules(params object[] list)
+        {
+            return InternalAddRules(list);
+        }
+
+        IRules IRules.AddRules(params object[] list)
+        {
+            return InternalAddRules(list);
+        }
+
+        private Css InternalAddRules(params object[] list)
+        {
+            for(int i = 0; i < list.Length; i += 2)
+            {
+                var str = list[i + 1].ToString();
+                if (int.TryParse(str, out var num)) AddRule(list[i].ToString(), num);
+                if (float.TryParse(str, out var f)) AddRule(list[i].ToString(), f);
+                AddRule(list[i].ToString(), str);
+            }
+            return this;
+        }
     }
 }

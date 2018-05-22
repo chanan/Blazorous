@@ -1,14 +1,7 @@
 ﻿@page "/test"
 
-<Dynamic TagName="div" hover="@css" debug="true">Hover over me</Dynamic>
-
-<Dynamic TagName="div" hover="@c" debug="true">Hover over me</Dynamic>
-
+<Dynamic TagName="div" css="@css" debug="true">Red and 24</Dynamic>
 
 @functions {
-    ICss css = Css.CreateNew().AddRule("color", "red");
-    string c = @"{
-        ""color"": ""blue"",
-        ""font-size"": ""24px""
-    }";
+    ICss css = Css.CreateNew().AddRules("color", "red", "font-size", 24);
 }

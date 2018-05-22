@@ -15,5 +15,6 @@ namespace Blazorous
         ICss AddAnimation(string duration, Action<Animation> animation);
         ICss AddFontface(Action<IRules> fontFace);
         string ToCss();
+        ICss AddRules(params object[] list);
     }
 }

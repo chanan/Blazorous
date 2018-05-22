@@ -12,5 +12,6 @@ namespace Blazorous
         IRules AddDynamicRule(Action<IRules, IDictionary<string, object>> dynamicRule);
         IRules AddClass(string name);
         IRules AddSelector(string selector, Action<IRules> selectorRule);
+        IRules AddRules(params object[] list);
     }
 }
