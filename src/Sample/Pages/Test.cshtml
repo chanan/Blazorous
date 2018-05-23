@@ -1,7 +1,15 @@
 ﻿@page "/test"
 
-<Dynamic TagName="div" css="@css" debug="true">Red and 24</Dynamic>
+<Dynamic TagName="div" css="@css" debug="true">Div</Dynamic>
+
+<button type="button" onclick="@onclick">Test</button>
 
 @functions {
-    ICss css = Css.CreateNew().AddRules("color", "red", "font-size", 24);
+    void onclick()
+    {
+        var x = BlazorousInterop.Polished("lighten", 0.5, "#000");
+        Console.WriteLine("X: {0}", x);
+    }
+
+    ICss css = Css.CreateNew().AddRules("color", "lighten(0.5, '#000')", "background-color", "darken(0.1, hsl(359, 0.75, 0.4))");
 }

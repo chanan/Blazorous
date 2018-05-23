@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Blazor.Browser.Interop;
 
 namespace Blazorous
@@ -23,6 +24,12 @@ namespace Blazorous
         public static string Fontface(string fontface, string debug)
         {
             return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Fontface", fontface, Convert.ToBoolean(debug));
+        }
+
+        public static string Polished(string method, params object[] list)
+        {
+            var _list = new List<object>(list); //This line is needed see: https://github.com/aspnet/Blazor/issues/740
+            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Polished", method, _list);
         }
     }
 }

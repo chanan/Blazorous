@@ -32,6 +32,7 @@
     <None Include="Pages\Fonts.cshtml" />
     <None Include="Pages\GettingStarted.cshtml" />
     <None Include="Pages\GlamorExamples.cshtml" />
+    <None Include="Pages\Polished.cshtml" />
     <None Include="Pages\StyleAttributes.cshtml" />
     <None Include="Pages\Test.cshtml" />
     <None Include="Shared\StyledButton.cshtml" />
@@ -112,6 +113,14 @@
 
   <ItemGroup>
     <Content Remove="Pages\Fonts.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\Polished.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Polished.cshtml" />
   </ItemGroup>
 
 </Project>

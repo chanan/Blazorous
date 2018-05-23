@@ -1,0 +1,31 @@
+﻿@page "/polished"
+
+<h1>Polished</h1>
+
+<p><a href="https://github.com/styled-components/polished">Polished</a> functions can also be used to create styles. Polished can help replace using Sass and integrates into Blazorous. For example:</p>
+
+<Dynamic TagName="div" css="@css">Redish div with light gray text</Dynamic>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span>></span>Redish div with light gray text<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@@functions {
+    ICss css = Css.CreateNew().AddRules(<span style="color:#093">"color"</span>, <span style="color:#093">"lighten(0.5, '#000')"</span>, <span style="color:#093">"background-color"</span>, <span style="color:#093">"darken(0.1, hsl(359, 0.75, 0.4))"</span>);
+}
+</pre>
+
+<p>
+    The functions that can be used from Polished are: <code>adjustHue</code>, <code>animation</code>, <code>backgroundImages</code>, <code>backgrounds</code>, <code>complement</code>, 
+    <code>darken</code>, <code>desaturate</code>, <code>getLuminance</code>, <code>grayscale</code>,
+    <code>hsl</code>, <code>hsla</code>, <code>invert</code>, <code>lighten</code>, <code>mix</code>, <code>opacify</code>, <code>parseToHsl</code>, <code>parseToRgb</code>,
+    <code>readableColor</code>, <code>rgb</code>, <code>rgba</code>, <code>saturate</code>, <code>setHue</code>, <code>setLightness</code>, <code>setSaturation</code>, <code>shade</code>,
+    <code>tint</code>, <code>transitions</code>, <code>transparentize</code>. For more information about these functions, check the <a href="https://polished.js.org/docs/">Polished docs</a>.
+</p>
+
+<h2>Mixins</h2>
+
+<p>Coming soon.</p>
+
+@functions {
+    ICss css = Css.CreateNew().AddRules("color", "lighten(0.5, '#000')", "background-color", "darken(0.1, hsl(359, 0.75, 0.4))");
+}

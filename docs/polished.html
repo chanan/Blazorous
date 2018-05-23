@@ -53,10 +53,10 @@
             <a class="nav-link" href="styleattributes.html">
               <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
             </a>
-            <a class="nav-link" href="polished.html">
-                            <span class="oi oi-list-rich" aria-hidden="true"></span> Polished
-                        </a>
-            <a class="nav-link active" href="fonts.html">
+            <a class="nav-link active" href="polished.html">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Polished
+            </a>
+            <a class="nav-link" href="fonts.html">
               <span class="oi oi-list-rich" aria-hidden="true"></span> Fonts
           </a>
             <a class="nav-link" href="animations.html">
@@ -72,25 +72,31 @@
 
     <div class="main">
       <div class="container content px-4">
-        <!--!--><!--!--><h1 class="  css-19eqo3v" _bl_1="">Font Faces</h1>
+        <!--!--><h1>Polished</h1>
 
-<p>You can use either local woff files or remote files such as from <a href="https://fonts.google.com/">Google Fonts</a>, calling <code>AddFontFace</code>. For example:</p>
+<p><a href="https://github.com/styled-components/polished">Polished</a> functions can also be used to create styles. Polished can help replace using Sass and integrates into Blazorous. For example:</p>
+
+<!--!--><div class="css-1t5aq88" _bl_5="">Redish div with light gray text</div>
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
-<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"h1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span>&gt;</span>Font Faces<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@css"</span> <span style="color:#36c;font-style:italic">debug</span>=<span style="color:#093">"true"</span>&gt;</span>Redish div with light gray text<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
 
 @functions {
-  ICss css = Css.CreateNew()
-    .AddFontface(css =&gt;
-    {
-      css.AddRule(<span style="color:#093">"fontFamily"</span>, <span style="color:#093">"Indie Flower"</span>)
-        .AddRule(<span style="color:#093">"fontStyle"</span>, <span style="color:#093">"normal"</span>)
-        .AddRule(<span style="color:#093">"fontWeight"</span>, 400)
-        .AddRule(<span style="color:#093">"src"</span>, <span style="color:#093">"local('Indie Flower'), local('IndieFlower'), url(https://fonts.gstatic.com/s/indieflower/v9/m8JVjfNVeKWVnh3QMuKkFcZVaUuH.woff2) format('woff2')"</span>)
-        .AddRule(<span style="color:#093">"unicodeRange"</span>, <span style="color:#093">"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"</span>);
-    });
+    ICss css = Css.CreateNew().AddRules(<span style="color:#093">"color"</span>, <span style="color:#093">"lighten(0.5, '#000')"</span>, <span style="color:#093">"background-color"</span>, <span style="color:#093">"darken(0.1, hsl(359, 0.75, 0.4))"</span>);
 }
 </pre>
+
+<p>
+    The functions that can be used from Polished are: <code>adjustHue</code>, <code>animation</code>, <code>backgroundImages</code>, <code>backgrounds</code>, <code>complement</code>, 
+    <code>darken</code>, <code>desaturate</code>, <code>getLuminance</code>, <code>grayscale</code>,
+    <code>hsl</code>, <code>hsla</code>, <code>invert</code>, <code>lighten</code>, <code>mix</code>, <code>opacify</code>, <code>parseToHsl</code>, <code>parseToRgb</code>,
+    <code>readableColor</code>, <code>rgb</code>, <code>rgba</code>, <code>saturate</code>, <code>setHue</code>, <code>setLightness</code>, <code>setSaturation</code>, <code>shade</code>,
+    <code>tint</code>, <code>transitions</code>, <code>transparentize</code>. For more information about these functions, check the <a href="https://polished.js.org/docs/">Polished docs</a>.
+</p>
+
+<h2>Mixins</h2>
+
+<p>Coming soon.</p>
     </div>
     </div>
   </app>
