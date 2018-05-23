@@ -95,6 +95,11 @@ For many simple cases, you can define your CSS properties directly on the `Dynam
 
 You may define pseudo selectors, such as "hover", as attributes as well.
 
+## Polished
+
+Blazorous is integrated with [Polished](https://github.com/styled-components/polished) so you can use mixins such as `ellipsis`
+and functions such as `lighten` and `darken`.
+
 ## Animations
 
 Css keyframe animation can be added via the Css object:

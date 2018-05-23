@@ -605,3 +605,27 @@ app {
   color: red;
   font-size: 24px;
 }
+
+.css-1t5aq88, [data-css-1t5aq88] {
+  color: rgb(128, 128, 128);
+  background-color: rgb(134, 19, 21);
+}
+
+.css-6j0dhc, [data-css-6j0dhc] {
+  display: inline-block;
+  max-width: 250px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  border-top-color: rgb(64, 64, 64);
+  border-right-color: rgb(64, 64, 64);
+  border-bottom-color: rgb(64, 64, 64);
+  border-left-color: rgb(64, 64, 64);
+  border-top-width: 5px;
+  border-right-width: 5px;
+  border-bottom-width: 5px;
+  border-left-width: 5px;
+  border-top-style: solid;
+  border-bottom-style: dashed;
+  overflow: hidden;
+}

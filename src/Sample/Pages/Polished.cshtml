@@ -24,8 +24,27 @@
 
 <h2>Mixins</h2>
 
-<p>Coming soon.</p>
+<p>
+    Mixins defined in Polished are: <code>borderColor</code>, <code>borderRadius</code>, <code>borderStyle</code>, <code>borderWidth</code>, <code>clearFix</code>,
+    <code>ellipsis</code>, <code>fontFace</code>, <code>hiDPI</code>, <code>hideText</code>, <code>hideVisually</code>,
+    <code>normalize</code>, <code>margin</code>, <code>padding</code>, <code>position</code>, <code>radialGradient</code>, <code>retinaImage</code>,
+    <code>selection</code>, <code>size</code>, <code>timingFunctions</code>, <code>wordWrap</code>. The below example uses <code>ellipsis</code> to create a div that cuts off long text, adds 
+    ellipsis at the end of the shorten text and uses <code>borderColor</code> with the <code>darken</code>, <code>borderWidth</code>, and <code>borderStyle</code>:
+</p>
+
+<Dynamic TagName="div" css="@longText">This is a very long div with lots and lots and lots and lots of text!</Dynamic>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@longText"</span>></span>This is a very long div with lots and lots and lots and lots of text!<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+
+@@functions {
+    ICss longText = Css.CreateNew().AddMixin(<span style="color:#093">"ellipsis('250px')"</span>).AddMixin(<span style="color:#093">"borderColor(darken(0.75, 'white'))"</span>)
+        .AddMixin(<span style="color:#093">"borderWidth('5px')"</span>)AddMixin(<span style="color:#093">"borderStyle('solid', null, 'dashed')"</span>);
+}
+</pre>
+
 
 @functions {
     ICss css = Css.CreateNew().AddRules("color", "lighten(0.5, '#000')", "background-color", "darken(0.1, hsl(359, 0.75, 0.4))");
+    ICss longText = Css.CreateNew().AddMixin("ellipsis('250px')").AddMixin("borderColor(darken(0.75, 'white'))").AddMixin("borderWidth('5px')").AddMixin("borderStyle('solid', null, 'dashed')");
 }

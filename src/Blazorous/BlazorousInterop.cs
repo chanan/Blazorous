@@ -26,10 +26,9 @@ namespace Blazorous
             return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Fontface", fontface, Convert.ToBoolean(debug));
         }
 
-        public static string Polished(string method, params object[] list)
+        public static string PolishedMixin(string mixin, string debug)
         {
-            var _list = new List<object>(list); //This line is needed see: https://github.com/aspnet/Blazor/issues/740
-            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.Polished", method, _list);
+            return RegisteredFunction.Invoke<string>("Blazorous.BlazorousInterop.PolishedMixin", mixin, debug);
         }
     }
 }

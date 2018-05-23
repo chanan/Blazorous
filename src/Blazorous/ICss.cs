@@ -16,5 +16,6 @@ namespace Blazorous
         ICss AddFontface(Action<IRules> fontFace);
         string ToCss();
         ICss AddRules(params object[] list);
+        ICss AddMixin(string mixin);
     }
 }

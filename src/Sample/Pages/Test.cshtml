@@ -1,15 +1,12 @@
 ﻿@page "/test"
 
-<Dynamic TagName="div" css="@css" debug="true">Div</Dynamic>
-
-<button type="button" onclick="@onclick">Test</button>
+<Dynamic TagName="div" css="@css" debug="true">This is a very long div with lots and lots and lots and lots of text!</Dynamic>
 
 @functions {
-    void onclick()
-    {
-        var x = BlazorousInterop.Polished("lighten", 0.5, "#000");
-        Console.WriteLine("X: {0}", x);
-    }
-
-    ICss css = Css.CreateNew().AddRules("color", "lighten(0.5, '#000')", "background-color", "darken(0.1, hsl(359, 0.75, 0.4))");
+    ICss css = Css.CreateNew().AddMixin(@"radialGradient({
+        ""colorStops"": [""#00FFFF 0%"", ""rgba(0, 0, 255, 0) 50%"", ""#0000FF 95%""], 
+        ""extent"": ""farthest-corner at 45px 45px"", 
+        ""position"": ""center"", 
+        ""shape"": ""ellipse""
+    })").AddRule("height", 200);
 }

@@ -111,6 +111,10 @@ namespace Blazorous
                         var cssSelectorRuleCss = tempSelectorRuleCss.ToCss(attributes, debug);
                         sb.Append($"\"{sr.Selector}\": {cssSelectorRuleCss}");
                         break;
+                    case Mixin m:
+                        var temp = BlazorousInterop.PolishedMixin(m.Rule, debug);
+                        sb.Append(temp.Substring(1, temp.Length - 2));
+                        break;
                     default:
                         sb.Append($"\"{kvp.Key}\": \"{kvp.Value.ToString()}\"");
                         break;
@@ -270,6 +274,22 @@ namespace Blazorous
                 if (float.TryParse(str, out var f)) AddRule(list[i].ToString(), f);
                 AddRule(list[i].ToString(), str);
             }
+            return this;
+        }
+
+        public ICss AddMixin(string mixin)
+        {
+            return InternalAddMixin(mixin);
+        }
+
+        IRules IRules.AddMixin(string mixin)
+        {
+            return InternalAddMixin(mixin);
+        }
+
+        public Css InternalAddMixin(string mixin)
+        {
+            _rules.Add(new KeyValuePair<string, object>(string.Empty, new Mixin { Rule = mixin }));
             return this;
         }
     }

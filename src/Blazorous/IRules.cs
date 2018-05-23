@@ -13,5 +13,6 @@ namespace Blazorous
         IRules AddClass(string name);
         IRules AddSelector(string selector, Action<IRules> selectorRule);
         IRules AddRules(params object[] list);
+        IRules AddMixin(string mixin);
     }
 }
