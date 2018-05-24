@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Blazor.Browser.Rendering;
+﻿using Blazorous;
+using Microsoft.AspNetCore.Blazor.Browser.Rendering;
 using Microsoft.AspNetCore.Blazor.Browser.Services;
-using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Sample
 {
@@ -11,7 +10,16 @@ namespace Sample
         {
             var serviceProvider = new BrowserServiceProvider(services =>
             {
-                // Add any custom services here
+                services.DefineBlazorousThemes(themes =>
+                {
+                    var theme1 = themes.CreateTheme("Soothing Web Colors");
+                    theme1.Variables.Add("primary", "#f23d5d");
+                    theme1.Variables.Add("secondary", "#8c3d5d");
+
+                    var theme2 = themes.CreateTheme("Harry Potter");
+                    theme2.Variables.Add("primary", "#e10000");
+                    theme2.Variables.Add("secondary", "#12159f");
+                });
             });
 
             new BrowserRenderer(serviceProvider).AddComponent<App>("app");

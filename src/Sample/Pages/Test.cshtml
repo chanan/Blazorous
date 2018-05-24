@@ -1,12 +1,30 @@
 ﻿@page "/test"
+@addTagHelper *,Blazorous
 
-<Dynamic TagName="div" css="@css" debug="true">This is a very long div with lots and lots and lots and lots of text!</Dynamic>
+<div>
+    <ThemeChooser SelectedThemeChanged="@selectedThemeChanged" />
+</div>
+
+<Dynamic TagName="div" css="@primary">Primary</Dynamic>
+<Dynamic TagName="div" css="@secondary">Secondary</Dynamic>
 
 @functions {
-    ICss css = Css.CreateNew().AddMixin(@"radialGradient({
-        ""colorStops"": [""#00FFFF 0%"", ""rgba(0, 0, 255, 0) 50%"", ""#0000FF 95%""], 
-        ""extent"": ""farthest-corner at 45px 45px"", 
-        ""position"": ""center"", 
-        ""shape"": ""ellipse""
-    })").AddRule("height", 200);
+    ITheme selectedTheme;
+    ICss primary = Css.CreateNew();
+    ICss secondary = Css.CreateNew();
+
+    void selectedThemeChanged(ITheme selectedTheme)
+    {
+        if (selectedTheme != null)
+        {
+            primary = Css.CreateNew().AddRules("color", "white", "background-color", selectedTheme.Variables["primary"]);
+            secondary = Css.CreateNew().AddRules("color", "white", "background-color", selectedTheme.Variables["secondary"]);
+        }
+        else
+        {
+            primary = Css.CreateNew();
+            secondary = Css.CreateNew();
+        }
+        StateHasChanged();
+    }
 }

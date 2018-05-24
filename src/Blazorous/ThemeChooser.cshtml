@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Blazor
+@using Microsoft.AspNetCore.Blazor.Components
+@using Blazorous.Internal
+
+<select class="@Class" value="@selected" onchange="@onchange">
+    @if (ShowPrompt)
+    {
+        <option>Select a theme</option>
+    }
+    @foreach (var theme in themes.Themes.Values)
+    {
+        <option value="@theme.Name">@theme.Name</option>
+    }
+</select>
+
+@functions {
+    private IThemes themes;
+    private string selected;
+
+    [Parameter] private Action<ITheme> SelectedThemeChanged { get; set; }
+    [Parameter] private string Class { get; set; }
+    [Parameter] private bool ShowPrompt { get; set; } = true;
+
+    protected override void OnInit()
+    {
+        themes = ThemesProvider.Instance;
+        if (themes.Current != null)
+        {
+            selected = themes.Current.Name;
+        }
+        else
+        {
+            if(ShowPrompt)
+            {
+                selected = "Select a theme";
+            }
+            else
+            {
+                SelectedChanged(themes.Themes.First().Key);
+            }
+        }
+    }
+
+    void onchange(UIChangeEventArgs e)
+    {
+        SelectedChanged(e.Value.ToString());
+    }
+
+    void SelectedChanged(string newSelected)
+    {
+        selected = newSelected;
+        if (selected != "Select a theme")
+        {
+            themes.Current = themes.Themes[selected];
+            SelectedThemeChanged?.Invoke(themes.Current);
+        }
+        else
+        {
+            themes.Current = null;
+            SelectedThemeChanged?.Invoke(null);
+        }
+    }
+}

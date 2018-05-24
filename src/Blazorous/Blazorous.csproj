@@ -28,4 +28,16 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <BlazorGenerate Remove="ThemeChooser.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="ThemeChooser.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="ThemeChooser.cshtml" />
+  </ItemGroup>
+
 </Project>

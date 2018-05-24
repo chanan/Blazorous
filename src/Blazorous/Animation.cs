@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Blazorous
 {
-    public class Animation
+    public class Animation : IAnimation
     {
         private IList<KeyValuePair<string, Action<Css>>> Animations { get; set; } = new List<KeyValuePair<string, Action<Css>>>();
 
-        public static Animation CreateNew()
+        internal Animation() { }
+        public static IAnimation CreateNew()
         {
             return new Animation();
         }
 
-        public Animation AddKeyframe(string keyframe, Action<Css> css)
+        public IAnimation AddKeyframe(string keyframe, Action<ICss> css)
         {
             if(keyframe == "to" || keyframe == "from" || IsPercent(keyframe))
             {
