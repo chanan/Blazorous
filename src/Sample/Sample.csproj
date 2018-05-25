@@ -35,8 +35,11 @@
     <None Include="Pages\Polished.cshtml" />
     <None Include="Pages\StyleAttributes.cshtml" />
     <None Include="Pages\Test.cshtml" />
+    <None Include="Pages\Themes.cshtml" />
+    <None Include="Pages\ThemeTest.cshtml" />
     <None Include="Shared\StyledButton.cshtml" />
     <None Include="Shared\StyledButtonWithParamAndAttributes.cshtml" />
+    <None Include="Shared\ThemePicker.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -121,6 +124,30 @@
 
   <ItemGroup>
     <Content Remove="Pages\Polished.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\ThemeTest.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\ThemeTest.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Shared\ThemePicker.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Shared\ThemePicker.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\Themes.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Themes.cshtml" />
   </ItemGroup>
 
 </Project>

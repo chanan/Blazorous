@@ -1,0 +1,30 @@
+﻿@using Blazorous
+@inject IThemes themes
+
+<select value="@_selected" onchange="@OnChange" class="form-control">
+    @foreach (var theme in themes.Themes.Values)
+    {
+        <option value="@theme.Name">@theme.Name</option>
+    }
+</select>
+
+@functions {
+    private string _selected;
+
+    protected override void OnInit()
+    {
+        if (themes.Current != null)
+        {
+            _selected = themes.Current.Name;
+        }
+        else
+        {
+            _selected = themes.Themes.First().Key;
+        }
+    }
+
+    void OnChange()
+    {
+        themes.Current = themes.Themes[_selected];
+    }
+}

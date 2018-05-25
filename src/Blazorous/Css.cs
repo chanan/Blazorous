@@ -94,7 +94,7 @@ namespace Blazorous
                     case Classname _:
                         break;
                     case AnimationStyle a:
-                        var animationTemp = Animation.CreateNew();
+                        var animationTemp = new Animation();
                         a.Animation.Invoke(animationTemp);
                         var cssAnimation = animationTemp.ToKeyframes(attributes, debug);
                         sb.Append($"\"animation\": \"{cssAnimation} {a.Duration}\"");

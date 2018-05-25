@@ -7,7 +7,7 @@
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
     <LangVersion>7.3</LangVersion>
     <PackageId>Blazorous</PackageId>
-    <Version>0.1.3</Version>
+    <Version>0.1.4</Version>
     <Authors>Chanan Braunstein</Authors>
     <Title>Blazorous</Title>
     <Description>Maintainable CSS with Blazor</Description>
@@ -26,6 +26,18 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="ThemeChooser.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="ThemeChooser.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="ThemeChooser.cshtml" />
   </ItemGroup>
 
 </Project>

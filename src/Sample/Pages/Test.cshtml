@@ -1,12 +1,45 @@
 ﻿@page "/test"
+@using Blazorous
+@inject IThemes themes
+@addTagHelper *,Blazorous
 
-<Dynamic TagName="div" css="@css" debug="true">This is a very long div with lots and lots and lots and lots of text!</Dynamic>
+<div>
+    <ThemeChooser SelectedThemeChanged="@SelectedThemeChanged" />
+</div>
+
+<Dynamic TagName="div" css="@_primary">Primary</Dynamic>
+<Dynamic TagName="div" css="@_secondary">Secondary</Dynamic>
+
+<div>
+    <a href="/themetest">Theme Usage Page</a>
+</div>
 
 @functions {
-    ICss css = Css.CreateNew().AddMixin(@"radialGradient({
-        ""colorStops"": [""#00FFFF 0%"", ""rgba(0, 0, 255, 0) 50%"", ""#0000FF 95%""], 
-        ""extent"": ""farthest-corner at 45px 45px"", 
-        ""position"": ""center"", 
-        ""shape"": ""ellipse""
-    })").AddRule("height", 200);
+    ICss _primary = Css.CreateNew();
+    ICss _secondary = Css.CreateNew();
+
+    protected override void OnInit()
+    {
+        ApplyTheme(themes.Current);
+    }
+
+    void SelectedThemeChanged(ITheme selectedTheme)
+    {
+        ApplyTheme(selectedTheme);
+        StateHasChanged();
+    }
+
+    void ApplyTheme(ITheme selectedTheme)
+    {
+        if (selectedTheme != null)
+        {
+            _primary = Css.CreateNew().AddRules("color", "white", "background-color", selectedTheme.Variables["primary"]);
+            _secondary = Css.CreateNew().AddRules("color", "white", "background-color", selectedTheme.Variables["secondary"]);
+        }
+        else
+        {
+            _primary = Css.CreateNew();
+            _secondary = Css.CreateNew();
+        }
+    }
 }
