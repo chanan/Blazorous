@@ -629,3 +629,31 @@ app {
   border-bottom-style: dashed;
   overflow: hidden;
 }
+
+.css-4uqy7k, [data-css-4uqy7k] {
+    color: rgb(66, 61, 93);
+}
+
+.css-108nujo, [data-css-108nujo] {
+  color: white;
+  background-color: rgb(242, 61, 93);
+}
+
+.css-1847fpm, [data-css-1847fpm] {
+  color: white;
+  background-color: rgb(140, 61, 93);
+}
+
+.css-ctr857, [data-css-ctr857] {
+  color: rgb(0, 135, 9);
+}
+
+.css-n5okz9, [data-css-n5okz9] {
+  color: white;
+  background-color: rgb(225, 0, 0);
+}
+
+.css-q33gox, [data-css-q33gox] {
+  color: white;
+  background-color: rgb(18, 21, 159);
+}

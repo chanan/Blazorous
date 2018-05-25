@@ -2,6 +2,10 @@
 
 _Maintainable CSS with Blazor_
 
+## Docs
+
+View the detailed [docs](https://chanan.github.io/Blazorous/) at https://chanan.github.io/Blazorous/.
+
 ## Install
 
 
@@ -141,6 +145,48 @@ Fonts can be added to elements by calling the `AddFontFace`:
     });
 }
 ``` 
+
+## Themes
+
+You can predefine themes to allow your user to switch the look of your site. First define your themes in `Program.cs`:
+
+```
+var serviceProvider = new BrowserServiceProvider(services =>
+{
+  services.DefineBlazorousThemes(themes =>
+  {
+    var theme1 = themes.CreateTheme("Soothing Web Colors");
+    theme1.Variables.Add("primary", "#f23d5d");
+    theme1.Variables.Add("secondary", "#8c3d5d");
+    theme1.Snippets.Add("heading", Css.CreateNew().AddRules("color", "#423d5d"));
+
+    var theme2 = themes.CreateTheme("Harry Potter");
+    theme2.Variables.Add("primary", "#e10000");
+    theme2.Variables.Add("secondary", "#12159f");
+    theme2.Snippets.Add("heading", Css.CreateNew().AddRules("color", "#008709"));
+  });
+});
+```
+
+Then use the theme throughout your site:
+
+```
+@inject IThemes themes
+
+@functions {
+  ICss _primary = Css.CreateNew();
+  ICss _secondary = Css.CreateNew();
+  ICss _heading = Css.CreateNew();
+
+  protected override void OnInit()
+  {
+    if (themes.Current == null) return;
+    _primary = Css.CreateNew().AddRules("color", "white", "background-color", themes.Current.Variables["primary"]);
+    _secondary = Css.CreateNew().AddRules("color", "white", "background-color", themes.Current.Variables["secondary"]);
+    _heading = themes.Current.Snippets["heading"];
+  }
+}
+```
 
 ## Docs
 
