@@ -44,7 +44,7 @@
               <span class="oi oi-list-rich" aria-hidden="true"></span> Getting Started
             </a>
             <!--!-->
-            <a class="nav-link active" href="glamorexamples.html">
+            <a class="nav-link" href="glamorexamples.html">
               <span class="oi oi-list-rich" aria-hidden="true"></span> Glamor Examples
             </a>
             <a class="nav-link" href="dynamic.html">
@@ -74,7 +74,146 @@
     </div>
 
     <div class="main">
-      
+      <div class="container content px-4">
+        <!--!--><h1>Themes</h1>
+
+<!--!--><div class="alert alert-info  css-nil" _bl_4="">Some of the examples on this page don't work on the static documentation site. To see those examples in action run the sample site locally.</div>
+
+<p>Themes provide a way to predefine variables or snippets of CSS that can be used throughout the site.</p>
+
+<h2>Setup</h2>
+
+<p>Add your themes in <code>Program.cs</code>. For example, below we define two themes with <code>Variables</code> and an <code>ICss</code> snippet</p>
+
+<pre style="background: rgba(238, 238, 238, 0.92); color: #000">
+var serviceProvider = new BrowserServiceProvider(services =&gt;
+{
+    services.DefineBlazorousThemes(themes =&gt;
+    {
+        var theme1 = themes.CreateTheme(<span style="color: #093">"Soothing Web Colors"</span>);
+        theme1.Variables.Add(<span style="color: #093">"primary"</span>, <span style="color: #093">"#f23d5d"</span>);
+        theme1.Variables.Add(<span style="color: #093">"secondary"</span>, <span style="color: #093">"#8c3d5d"</span>);
+        theme1.Snippets.Add(<span style="color: #093">"heading"</span>, Css.CreateNew().AddRules(<span style="color: #093">"color"</span>, <span style="color: #093">"#423d5d"</span>));
+
+        var theme2 = themes.CreateTheme(<span style="color: #093">"Harry Potter"</span>);
+        theme2.Variables.Add(<span style="color: #093">"primary"</span>, <span style="color: #093">"#e10000"</span>);
+        theme2.Variables.Add(<span style="color: #093">"secondary"</span>, <span style="color: #093">"#12159f"</span>);
+        theme2.Snippets.Add(<span style="color: #093">"heading"</span>, Css.CreateNew().AddRules(<span style="color: #093">"color"</span>, <span style="color: #093">"#008709"</span>));
+    });
+});
+</pre>
+
+<p><strong>Tip:</strong> you can define your themes in a seperate class for easy portability.</p>
+
+<h2>Usage</h2>
+
+<p>You can obtain the obtain the current theme by injecting <code>IThemes</code> into your page and using it by calling <code>Current</code>:</p>
+
+<pre style="background: rgba(238, 238, 238, 0.92); color: #000">
+@inject IThemes themes
+
+<span style="color: #03c">&lt;<span style="font-weight: 700">Dynamic</span> <span style="color: #36c; font-style: italic">TagName</span>=<span style="color: #093">"h1"</span> <span style="color: #36c; font-style: italic">css</span>=<span style="color: #093">"@_heading"</span>&gt;</span>This is a heading!<span style="color: #03c">&lt;/<span style="font-weight: 700">Dynamic</span>&gt;</span>
+
+<span style="color: #03c">&lt;<span style="font-weight: 700">Dynamic</span> <span style="color: #36c; font-style: italic">TagName</span>=<span style="color: #093">"div"</span> <span style="color: #36c; font-style: italic">css</span>=<span style="color: #093">"@_primary"</span>&gt;</span>Primary<span style="color: #03c">&lt;/<span style="font-weight: 700">Dynamic</span>&gt;</span>
+<span style="color: #03c">&lt;<span style="font-weight: 700">Dynamic</span> <span style="color: #36c; font-style: italic">TagName</span>=<span style="color: #093">"div"</span> <span style="color: #36c; font-style: italic">css</span>=<span style="color: #093">"@_secondary"</span>&gt;</span>Secondary<span style="color: #03c">&lt;/<span style="font-weight: 700">Dynamic</span>&gt;</span>
+
+@functions {
+    ICss _primary = Css.CreateNew();
+    ICss _secondary = Css.CreateNew();
+    ICss _heading = Css.CreateNew();
+
+    protected override void OnInit()
+    {
+<span style="color:#00f">if</span> (themes.Current == null) return;
+        _primary = Css.CreateNew().AddRules(<span style="color:#093">"color"</span>, <span style="color:#093">"white"</span>, <span style="color:#093">"background-color"</span>, themes.Current.Variables[<span style="color:#093">"primary" </span>]);
+        _secondary = Css.CreateNew().AddRules(<span style="color:#093">"color" </span>, <span style="color:#093">"white"</span>, <span style="color:#093">"background-color"</span>, themes.Current.Variables[<span style="color:#093">"secondary"</span>]);
+        _heading = themes.Current.Snippets[<span style="color:#093">"heading"</span>];
+    }
+}
+</pre>
+
+<h2>Theme Chooser</h2>
+
+<p><code>Blazorous</code> comes with a <code>ThemeChooser</code> you can use to allow your users to choose which theme is applied to the site:</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+<span style="color:#03c">&lt;<span style="font-weight:700">ThemeChooser</span> <span style="color:#36c;font-style:italic">SelectedThemeChanged</span>=<span style="color:#093">"@SelectedThemeChanged"</span> /&gt;</span>
+
+@functions {
+    void SelectedThemeChanged(ITheme selectedTheme)
+    {
+        ApplyTheme(selectedTheme);
+        StateHasChanged();
+    }
+    void ApplyTheme(ITheme selectedTheme)
+    {
+<span style="color:#00f">if</span> (selectedTheme != null)
+        {
+            _primary = Css.CreateNew().AddRules(<span style="color:#093">"color"</span>, <span style="color:#093">"white"</span>, <span style="color:#093">"background-color"</span>, selectedTheme.Variables[<span style="color:#093">"primary"</span>]);
+            _secondary = Css.CreateNew().AddRules(<span style="color:#093">"color"</span>, <span style="color:#093">"white"</span>, <span style="color:#093">"background-color"</span>, selectedTheme.Variables[<span style="color:#093">"secondary"</span>]);
+        }
+    else
+        {
+            _primary = Css.CreateNew();
+            _secondary = Css.CreateNew();
+        }
+    }
+}
+</pre>
+
+<h2>Creating your own theme chooser</h2>
+
+<p>
+    Although you can customize the class of the <code>select</code> element in the builtin <code>ThemeChooser</code>, you may wish to build your own. An example of this is in the shared folder of the
+    sample site called <code>ThemePicker</code>:
+</p>
+
+<pre style="background:rgba(238,238,238,0.92);color:#000">
+@using Blazorous
+@inject IThemes themes
+
+<span style="color:#03c">&lt;<span style="font-weight:700">select</span> <span style="color:#36c;font-style:italic">value</span>=<span style="color:#093">"@_selected"</span> <span style="color:#36c;font-style:italic">onchange</span>=<span style="color:#093">"@OnChange"</span> <span style="color:#36c;font-style:italic">class</span>=<span style="color:#093">"form-control"</span>&gt;</span>
+    @foreach (var theme in themes.Themes.Values)
+    {
+        &lt;option value=<span style="color:#093">"@theme.Name"</span>&gt;@theme.Name&lt;/option&gt;
+    }
+<span style="color:#03c">&lt;/<span style="font-weight:700">select</span>&gt;</span>
+
+@functions {
+    private string _selected;
+
+    protected override void OnInit()
+    {
+<span style="color:#00f">if</span> (themes.Current != null)
+        {
+            _selected = themes.Current.Name;
+        }
+    else
+        {
+            _selected = themes.Themes.First().Key;
+        }
+    }
+
+    void OnChange()
+    {
+        themes.Current = themes.Themes[_selected];
+    }
+}
+</pre>
+
+<h2>Example of the applied themes</h2>
+
+<p>Since the changing themes will not work on the static site, here is an example of the two themes defined above:</p>
+
+<!--!--><h3 class="css-4uqy7k" _bl_5="">Soothing Web Colors</h3>
+<!--!--><div class="css-108nujo" _bl_6="">Primary</div>
+<!--!--><div class="css-1847fpm" _bl_7="">Secondary</div>
+
+
+<!--!--><h3 class="css-ctr857" _bl_8="">Harry Potter</h3>
+<!--!--><div class="css-n5okz9" _bl_9="">Primary</div>
+<!--!--><div class="css-q33gox" _bl_10="">Secondary</div>
+    </div>
     </div>
   </app>
 </body>
