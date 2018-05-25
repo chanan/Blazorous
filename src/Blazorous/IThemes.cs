@@ -7,5 +7,7 @@ namespace Blazorous
         ITheme CreateTheme(string name);
         IDictionary<string, ITheme> Themes { get; }
         ITheme Current { get; set; }
+        void SetCurrentToEmpty();
+        ITheme EmptyTheme { get; }
     }
 }

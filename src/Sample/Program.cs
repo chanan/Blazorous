@@ -15,10 +15,12 @@ namespace Sample
                     var theme1 = themes.CreateTheme("Soothing Web Colors");
                     theme1.Variables.Add("primary", "#f23d5d");
                     theme1.Variables.Add("secondary", "#8c3d5d");
+                    theme1.Snippets.Add("heading", Css.CreateNew().AddRules("color", "#423d5d"));
 
                     var theme2 = themes.CreateTheme("Harry Potter");
                     theme2.Variables.Add("primary", "#e10000");
                     theme2.Variables.Add("secondary", "#12159f");
+                    theme2.Snippets.Add("heading", Css.CreateNew().AddRules("color", "#008709"));
                 });
             });
 

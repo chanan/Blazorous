@@ -1,21 +1,25 @@
-﻿@using Microsoft.AspNetCore.Blazor
-@using Microsoft.AspNetCore.Blazor.Components
+﻿@inherits Microsoft.AspNetCore.Blazor.Components.BlazorComponent
+@using System
+@using System.Linq
+@using Blazorous
 @using Blazorous.Internal
+@using Microsoft.AspNetCore.Blazor
+@using Microsoft.AspNetCore.Blazor.Components
 
-<select class="@Class" value="@selected" onchange="@onchange">
+<select class="@Class" value="@_selected" onchange="@OnChange">
     @if (ShowPrompt)
     {
         <option>Select a theme</option>
     }
-    @foreach (var theme in themes.Themes.Values)
+    @foreach (var theme in _themes.Themes.Values)
     {
         <option value="@theme.Name">@theme.Name</option>
     }
 </select>
 
 @functions {
-    private IThemes themes;
-    private string selected;
+    private IThemes _themes;
+    private string _selected;
 
     [Parameter] private Action<ITheme> SelectedThemeChanged { get; set; }
     [Parameter] private string Class { get; set; }
@@ -23,41 +27,40 @@
 
     protected override void OnInit()
     {
-        themes = ThemesProvider.Instance;
-        if (themes.Current != null)
+        _themes = ThemesProvider.Instance;
+        if (_themes.Current != null)
         {
-            selected = themes.Current.Name;
+            _selected = _themes.Current.Name;
         }
         else
         {
-            if(ShowPrompt)
+            if (ShowPrompt)
             {
-                selected = "Select a theme";
+                _selected = "Select a theme";
             }
             else
             {
-                SelectedChanged(themes.Themes.First().Key);
+                SelectedChanged(_themes.Themes.First().Key);
             }
         }
     }
 
-    void onchange(UIChangeEventArgs e)
+    void OnChange(UIChangeEventArgs e)
     {
         SelectedChanged(e.Value.ToString());
     }
 
     void SelectedChanged(string newSelected)
     {
-        selected = newSelected;
-        if (selected != "Select a theme")
+        _selected = newSelected;
+        if (_selected != "Select a theme")
         {
-            themes.Current = themes.Themes[selected];
-            SelectedThemeChanged?.Invoke(themes.Current);
+            _themes.Current = _themes.Themes[_selected];
         }
         else
         {
-            themes.Current = null;
-            SelectedThemeChanged?.Invoke(null);
+            _themes.Current = null;
         }
+        SelectedThemeChanged?.Invoke(_themes.Current);
     }
 }

@@ -35,6 +35,7 @@
     <None Include="Pages\Polished.cshtml" />
     <None Include="Pages\StyleAttributes.cshtml" />
     <None Include="Pages\Test.cshtml" />
+    <None Include="Pages\ThemeTest.cshtml" />
     <None Include="Shared\StyledButton.cshtml" />
     <None Include="Shared\StyledButtonWithParamAndAttributes.cshtml" />
   </ItemGroup>
@@ -121,6 +122,14 @@
 
   <ItemGroup>
     <Content Remove="Pages\Polished.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\ThemeTest.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\ThemeTest.cshtml" />
   </ItemGroup>
 
 </Project>

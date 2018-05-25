@@ -5,6 +5,7 @@ namespace Blazorous
     public interface ITheme
     {
         string Name { get; }
-        IDictionary<string, string> Variables { get; }
+        IRelaxedDictionary<string, string> Variables { get; }
+        IRelaxedDictionary<string, ICss> Snippets { get; }
     }
 }

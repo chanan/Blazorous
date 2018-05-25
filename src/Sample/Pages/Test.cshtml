@@ -1,30 +1,45 @@
 ﻿@page "/test"
+@using Blazorous
+@inject IThemes themes
 @addTagHelper *,Blazorous
 
 <div>
-    <ThemeChooser SelectedThemeChanged="@selectedThemeChanged" />
+    <ThemeChooser SelectedThemeChanged="@SelectedThemeChanged" />
 </div>
 
-<Dynamic TagName="div" css="@primary">Primary</Dynamic>
-<Dynamic TagName="div" css="@secondary">Secondary</Dynamic>
+<Dynamic TagName="div" css="@_primary">Primary</Dynamic>
+<Dynamic TagName="div" css="@_secondary">Secondary</Dynamic>
+
+<div>
+    <a href="/themetest">Theme Usage Page</a>
+</div>
 
 @functions {
-    ITheme selectedTheme;
-    ICss primary = Css.CreateNew();
-    ICss secondary = Css.CreateNew();
+    ICss _primary = Css.CreateNew();
+    ICss _secondary = Css.CreateNew();
 
-    void selectedThemeChanged(ITheme selectedTheme)
+    protected override void OnInit()
+    {
+        ApplyTheme(themes.Current);
+    }
+
+    void SelectedThemeChanged(ITheme selectedTheme)
+    {
+        ApplyTheme(selectedTheme);
+        StateHasChanged();
+    }
+
+    void ApplyTheme(ITheme selectedTheme)
     {
         if (selectedTheme != null)
         {
-            primary = Css.CreateNew().AddRules("color", "white", "background-color", selectedTheme.Variables["primary"]);
-            secondary = Css.CreateNew().AddRules("color", "white", "background-color", selectedTheme.Variables["secondary"]);
+            _primary = Css.CreateNew().AddRules("color", "white", "background-color", selectedTheme.Variables["primary"]);
+            _secondary = Css.CreateNew().AddRules("color", "white", "background-color", selectedTheme.Variables["secondary"]);
         }
         else
         {
-            primary = Css.CreateNew();
-            secondary = Css.CreateNew();
+            _primary = Css.CreateNew();
+            _secondary = Css.CreateNew();
         }
-        StateHasChanged();
     }
 }
