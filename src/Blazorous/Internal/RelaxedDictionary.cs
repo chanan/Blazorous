@@ -12,7 +12,12 @@ namespace Blazorous.Internal
         {
             _default = defaultValue;
         }
-        public TValue this[TKey key] { get => _dictionary.ContainsKey(key) ? _dictionary[key] : _default; set => _dictionary[key] = value; }
+
+        public TValue this[TKey key]
+        {
+            get => _dictionary.ContainsKey(key) ? _dictionary[key] : _default;
+            set => _dictionary[key] = value;
+        }
 
         public ICollection<TKey> Keys => _dictionary.Keys;
 

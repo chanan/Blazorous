@@ -14,5 +14,6 @@ namespace Blazorous
         IRules AddSelector(string selector, Action<IRules> selectorRule);
         IRules AddRules(params object[] list);
         IRules AddMixin(string mixin);
+        IRules ApplyThemeSnippet(string snippetName);
     }
 }

@@ -14,13 +14,12 @@
 @functions {
     ICss _primary = Css.CreateNew();
     ICss _secondary = Css.CreateNew();
-    ICss _heading = Css.CreateNew();
+    ICss _heading = Css.CreateNew().ApplyThemeSnippet("heading");
 
     protected override void OnInit()
     {
         if (themes.Current == null) return;
         _primary = Css.CreateNew().AddRules("color", "white", "background-color", themes.Current.Variables["primary"]);
         _secondary = Css.CreateNew().AddRules("color", "white", "background-color", themes.Current.Variables["secondary"]);
-        _heading = themes.Current.Snippets["heading"];
     }
 }

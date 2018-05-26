@@ -9,11 +9,11 @@ namespace Blazorous.Internal
         
         private readonly IDictionary<string, Theme> _themes = new Dictionary<string, Theme>();
 
-        IDictionary<string, ITheme> IThemes.Themes
+        IRelaxedDictionary<string, ITheme> IThemes.Themes
         {
             get
             {
-                IDictionary<string, ITheme> result = new Dictionary<string, ITheme>();
+                IRelaxedDictionary<string, ITheme> result = new RelaxedDictionary<string, ITheme>(EmptyThemeObj);
                 foreach (var key in _themes.Keys) result.Add(key, _themes[key]);
                 return result;
             }

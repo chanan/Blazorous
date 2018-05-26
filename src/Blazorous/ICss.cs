@@ -17,5 +17,6 @@ namespace Blazorous
         string ToCss();
         ICss AddRules(params object[] list);
         ICss AddMixin(string mixin);
+        ICss ApplyThemeSnippet(string snippetName);
     }
 }
