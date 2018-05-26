@@ -4,7 +4,7 @@
 
 <Dynamic TagName="h1" css="@_heading">This is a test!</Dynamic>
 
-<Dynamic TagName="div" css="@_primary">Primary</Dynamic>
+<Dynamic TagName="div" css="@_primary" debug="true">Primary</Dynamic>
 <Dynamic TagName="div" css="@_secondary">Secondary</Dynamic>
 
 <div>
@@ -12,14 +12,7 @@
 </div>
 
 @functions {
-    ICss _primary = Css.CreateNew();
-    ICss _secondary = Css.CreateNew();
+    ICss _primary = Css.CreateNew().AddRules("color", "white", "background-color", "{primary}");
+    ICss _secondary = Css.CreateNew().AddRules("color", "white", "background-color", "{secondary}");
     ICss _heading = Css.CreateNew().ApplyThemeSnippet("heading");
-
-    protected override void OnInit()
-    {
-        if (themes.Current == null) return;
-        _primary = Css.CreateNew().AddRules("color", "white", "background-color", themes.Current.Variables["primary"]);
-        _secondary = Css.CreateNew().AddRules("color", "white", "background-color", themes.Current.Variables["secondary"]);
-    }
 }

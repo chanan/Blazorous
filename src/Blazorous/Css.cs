@@ -149,7 +149,8 @@ namespace Blazorous
                 switch (kvp.Value)
                 {
                     case string s:
-                        sb.Append($"\"{kvp.Key}\": \"{s}\"");
+                        var str = ReplaceThemeVariables(s);
+                        sb.Append($"\"{kvp.Key}\": \"{str}\"");
                         break;
                     case int num:
                         sb.Append($"\"{kvp.Key}\": {num}");
@@ -204,6 +205,22 @@ namespace Blazorous
 
             sb.Append("}");
             return sb.ToString();
+        }
+
+        private string ReplaceThemeVariables(string str)
+        {
+            var result = str;
+            while (true)
+            {
+                var start = result.IndexOf("{");
+                if (start == -1) break;
+                var end = result.IndexOf("}", start) + 1;
+                var variable = result.Substring(start, end - start);
+                var variabeName = variable.Substring(1, variable.Length - 2);
+                var value = ThemesProvider.Instance.Current != null ? ThemesProvider.Instance.Current.Variables[variabeName] : String.Empty;
+                result = result.Replace(variable, value);
+            }
+            return result;
         }
 
         public string ToClasses()
