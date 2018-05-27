@@ -1,6 +1,4 @@
 ﻿@page "/themetest"
-@using Blazorous
-@inject IThemes themes
 
 <Dynamic TagName="h1" css="@_heading">This is a test!</Dynamic>
 
@@ -12,7 +10,7 @@
 </div>
 
 @functions {
-    ICss _primary = Css.CreateNew().AddRules("color", "white", "background-color", "{primary}");
-    ICss _secondary = Css.CreateNew().AddRules("color", "white", "background-color", "{secondary}");
+    ICss _primary = Css.CreateNew().AddRules("color", "{font_color}", "background-color", "{primary}");
+    ICss _secondary = Css.CreateNew().AddRules("color", "{font_color}", "background-color", "{secondary}");
     ICss _heading = Css.CreateNew().ApplyThemeSnippet("heading");
 }

@@ -1,45 +1,10 @@
 ﻿@page "/test"
-@using Blazorous
-@inject IThemes themes
 @addTagHelper *,Blazorous
 
 <div>
-    <ThemeChooser SelectedThemeChanged="@SelectedThemeChanged" />
+    <ThemeChooser />
 </div>
-
-<Dynamic TagName="div" css="@_primary">Primary</Dynamic>
-<Dynamic TagName="div" css="@_secondary">Secondary</Dynamic>
 
 <div>
     <a href="/themetest">Theme Usage Page</a>
 </div>
-
-@functions {
-    ICss _primary = Css.CreateNew();
-    ICss _secondary = Css.CreateNew();
-
-    protected override void OnInit()
-    {
-        ApplyTheme(themes.Current);
-    }
-
-    void SelectedThemeChanged(ITheme selectedTheme)
-    {
-        ApplyTheme(selectedTheme);
-        StateHasChanged();
-    }
-
-    void ApplyTheme(ITheme selectedTheme)
-    {
-        if (selectedTheme != null)
-        {
-            _primary = Css.CreateNew().AddRules("color", "white", "background-color", selectedTheme.Variables["primary"]);
-            _secondary = Css.CreateNew().AddRules("color", "white", "background-color", selectedTheme.Variables["secondary"]);
-        }
-        else
-        {
-            _primary = Css.CreateNew();
-            _secondary = Css.CreateNew();
-        }
-    }
-}
