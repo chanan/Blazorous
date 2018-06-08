@@ -1,10 +1,9 @@
-﻿@page "/test"
+﻿@using Blazorous
+@page "/test"
 @addTagHelper *,Blazorous
 
-<div>
-    <ThemeChooser />
-</div>
+<bDiv css="@css">Hello</bDiv>
 
-<div>
-    <a href="/themetest">Theme Usage Page</a>
-</div>
+@functions {
+    ICss css = Css.CreateNew().AddRule("color", "red");
+}
