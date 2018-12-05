@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Blazorous
 {
@@ -14,7 +15,7 @@ namespace Blazorous
         ICss AddSelector(string selector, Action<IRules> selectorRule);
         ICss AddAnimation(string duration, Action<Animation> animation);
         ICss AddFontface(Action<IRules> fontFace);
-        string ToCss();
+        Task<string> ToCss();
         ICss AddRules(params object[] list);
         ICss AddMixin(string mixin);
         ICss ApplyThemeSnippet(string snippetName);

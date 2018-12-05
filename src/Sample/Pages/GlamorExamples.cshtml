@@ -158,7 +158,7 @@
 
 @functions {
     string css1 = "{ \"color\": \"red\" }";
-    string class1 = BlazorousInterop.Css("{ \"color\": \"red\" }");
+    string class1;
     string css2 = @"{
     "":hover"": {
         ""color"": ""blue""
@@ -175,11 +175,17 @@
     }";
 
     ICss css1CSharp = Css.CreateNew().AddRule("color", "red");
-    string class1CSharp = BlazorousInterop.Css(Css.CreateNew().AddRule("color", "red").ToCss());
+    string class1CSharp;
     ICss css2CSharp = Css.CreateNew().AddSelector(":hover", css => css.AddRule("color", "blue"));
     ICss boldCSharp = Css.CreateNew().AddRule("font-weight", "bold");
     ICss childExamplesCSharp = Css.CreateNew().AddRule("display", "block")
                                 .AddSelector("& .bold", css => css.AddRule("font-weight", "bold"))
                                 .AddSelector("& .one", css => css.AddRule("color", "blue"))
                                 .AddSelector(":hover .two", css => css.AddRule("color", "red"));
+
+    protected override async Task OnInitAsync()
+    {
+        class1 = await BlazorousInterop.Css("{ \"color\": \"red\" }");
+        class1CSharp = await BlazorousInterop.Css(await Css.CreateNew().AddRule("color", "red").ToCss());
+    }
 }

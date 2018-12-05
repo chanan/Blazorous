@@ -1,36 +1,35 @@
-﻿Blazor.registerFunction('Blazorous.BlazorousInterop.Css', function (cssString, debug) {
-    if (debug) console.log("Css String: %o", cssString);
-    const cssPolished = parsePolishedFunctions(cssString, debug);
-    const cssJson = JSON.parse(cssPolished);
-    if(debug) console.log("Css Json: %o", cssJson);
-    const rule = Glamor.css(cssJson);
-    return rule.toString();
-});
-
-Blazor.registerFunction('Blazorous.BlazorousInterop.keyframes', function (keyframes, debug) {
-    if(debug) console.log("Keyframes: %o", keyframes);
-    const cssKeyframes = JSON.parse(keyframes);
-    if (debug) console.log("Css Keyframes: %o", cssKeyframes);
-    const animation = Glamor.css.keyframes(cssKeyframes);
-    return animation;
-});
-
-Blazor.registerFunction('Blazorous.BlazorousInterop.Fontface', function (fontface, debug) {
-    if (debug) console.log("fontface: %o", fontface);
-    const cssFontface = JSON.parse(fontface);
-    if (debug) console.log("cssFontface: %o", cssFontface);
-    const family = Glamor.css.fontFace(cssFontface);
-    return family;
-});
-
-Blazor.registerFunction('Blazorous.BlazorousInterop.PolishedMixin', function (strMixin, debug) {
-    if (debug) console.log("Mixin string: %o", strMixin);
-    const result = parsePolishedMixins(strMixin, debug)
-    const fixedObjName = fixObjectNames(result);
-    const resultString = JSON.stringify(fixedObjName);
-    if (debug) console.log("Mixin result string: %o", resultString);
-    return resultString;
-});
+﻿window.blazorous = {
+    css: function (cssString, debug) {
+        if (debug) console.log("Css String: %o", cssString);
+        const cssPolished = parsePolishedFunctions(cssString, debug);
+        const cssJson = JSON.parse(cssPolished);
+        if(debug) console.log("Css Json: %o", cssJson);
+        const rule = Glamor.css(cssJson);
+        return rule.toString();
+    },
+    keyframes: function (keyframes, debug) {
+        if(debug) console.log("Keyframes: %o", keyframes);
+        const cssKeyframes = JSON.parse(keyframes);
+        if (debug) console.log("Css Keyframes: %o", cssKeyframes);
+        const animation = Glamor.css.keyframes(cssKeyframes);
+        return animation;
+    },
+    fontface: function (fontface, debug) {
+        if (debug) console.log("fontface: %o", fontface);
+        const cssFontface = JSON.parse(fontface);
+        if (debug) console.log("cssFontface: %o", cssFontface);
+        const family = Glamor.css.fontFace(cssFontface);
+        return family;
+    },
+    polishedMixin: function (strMixin, debug) {
+        if (debug) console.log("Mixin string: %o", strMixin);
+        const result = parsePolishedMixins(strMixin, debug)
+        const fixedObjName = fixObjectNames(result);
+        const resultString = JSON.stringify(fixedObjName);
+        if (debug) console.log("Mixin result string: %o", resultString);
+        return resultString;
+    }
+};
 
 function parsePolishedMixins(cssString, debug) {
     let result = cssString;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Blazorous.Internal;
 
 namespace Blazorous
@@ -64,9 +65,9 @@ namespace Blazorous
             return InternalAddSelector(selector, selectorRule);
         }
 
-        string ICss.ToCss()
+        async Task<string> ICss.ToCss()
         {
-            return ToCss(null, "false");
+            return await ToCss(null, "false");
         }
 
         public ICss AddRules(params object[] list)
@@ -139,7 +140,7 @@ namespace Blazorous
             return new Css();
         }
 
-        public string ToCss(IDictionary<string, object> attributes, string debug)
+        public async Task<string> ToCss(IDictionary<string, object> attributes, string debug)
         {
             var sb = new StringBuilder();
             sb.Append("{");
@@ -158,7 +159,7 @@ namespace Blazorous
                     case DynamicRule dr:
                         var tempCss = new Css();
                         dr.Rule.Invoke(tempCss, attributes);
-                        var cssRule = tempCss.ToCss(attributes, debug);
+                        var cssRule = await tempCss.ToCss(attributes, debug);
                         sb.Append(cssRule.Substring(1, cssRule.Length - 2));
                         break;
                     case Classname _:
@@ -166,23 +167,23 @@ namespace Blazorous
                     case AnimationStyle a:
                         var animationTemp = new Animation();
                         a.Animation.Invoke(animationTemp);
-                        var cssAnimation = animationTemp.ToKeyframes(attributes, debug);
+                        var cssAnimation = await animationTemp.ToKeyframes(attributes, debug);
                         sb.Append($"\"animation\": \"{cssAnimation} {a.Duration}\"");
                         break;
                     case FontFace f:
                         var tempFontfaceCss = new Css();
                         f.Fontface.Invoke(tempFontfaceCss);
-                        var cssFontfaceRule = tempFontfaceCss.ToFontface(attributes, debug);
+                        var cssFontfaceRule = await tempFontfaceCss.ToFontface(attributes, debug);
                         sb.Append($"\"font-family\": \"{cssFontfaceRule}\"");
                         break;
                     case SelectorRule sr:
                         var tempSelectorRuleCss = new Css();
                         sr.Rule.Invoke(tempSelectorRuleCss);
-                        var cssSelectorRuleCss = tempSelectorRuleCss.ToCss(attributes, debug);
+                        var cssSelectorRuleCss = await tempSelectorRuleCss.ToCss(attributes, debug);
                         sb.Append($"\"{sr.Selector}\": {cssSelectorRuleCss}");
                         break;
                     case Mixin m:
-                        var temp = BlazorousInterop.PolishedMixin(m.Rule, debug);
+                        var temp = await BlazorousInterop.PolishedMixin(m.Rule, debug);
                         sb.Append(temp.Substring(1, temp.Length - 2));
                         break;
                     case ThemeSnippet ts:
@@ -190,7 +191,7 @@ namespace Blazorous
                         if (theme != null)
                         {
                             var snippet = (Css)theme.Snippets[ts.SnippetName];
-                            var cssSnippet = snippet.ToCss(attributes, debug);
+                            var cssSnippet = await snippet.ToCss(attributes, debug);
                             sb.Append(cssSnippet.Substring(1, cssSnippet.Length - 2));
                         }
                         break;
@@ -255,15 +256,15 @@ namespace Blazorous
             return sb.ToString();
         }
 
-        public string ToFontface()
+        public async Task<string> ToFontface()
         {
-            return ToFontface(null, "false");
+            return await ToFontface(null, "false");
         }
 
-        public string ToFontface(IDictionary<string, object> attributes, string debug)
+        public async Task<string> ToFontface(IDictionary<string, object> attributes, string debug)
         {
-            var css = ToCss(attributes, debug);
-            return BlazorousInterop.Fontface(css, debug);
+            var css = await ToCss(attributes, debug);
+            return await BlazorousInterop.Fontface(css, debug);
         }
 
         private Css InternalAddRule(string name, string value)

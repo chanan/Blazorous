@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Blazorous
 {
@@ -39,12 +40,12 @@ namespace Blazorous
             private set => throw new InvalidOperationException();
         }
 
-        internal string ToKeyframes()
+        internal async Task<string> ToKeyframes()
         {
-            return ToKeyframes(null, "false");
+            return await ToKeyframes(null, "false");
         }
 
-        internal string ToKeyframes(IDictionary<string, object> attributes, string debug)
+        internal async Task<string> ToKeyframes(IDictionary<string, object> attributes, string debug)
         {
             var sb = new StringBuilder();
             sb.Append("{");
@@ -54,12 +55,12 @@ namespace Blazorous
                 sb.Append($"\"{kvp.Key}\":");
                 var tempCss = new Css();
                 kvp.Value.Invoke(tempCss);
-                var cssRule = tempCss.ToCss(attributes, debug);
+                var cssRule = await tempCss.ToCss(attributes, debug);
                 sb.Append(cssRule);
                 if (i != Animations.Count - 1) sb.Append(",");
             }
             sb.Append("}");
-            return BlazorousInterop.Keyframes(sb.ToString(), debug);
+            return await BlazorousInterop.Keyframes(sb.ToString(), debug);
         }
     }
 }
