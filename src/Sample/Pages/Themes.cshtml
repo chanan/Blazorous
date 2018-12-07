@@ -1,11 +1,22 @@
 ﻿@page "/themes"
 @using Blazorous
+@inject IThemes themes
 
 <h1>Themes</h1>
 
-<Dynamic TagName="div" css="@_alert">Some of the examples on this page don't work on the static documentation site. To see those examples in action run the sample site locally.</Dynamic>
-
 <p>Themes provide a way to predefine variables or snippets of CSS that can be used throughout the site.</p>
+
+<h2>Example</h2>
+
+<p>Below is an example of the themes used on this page:</p>
+
+<Dynamic TagName="h3" css="@_heading1">Soothing Web Colors</Dynamic>
+<Dynamic TagName="div" css="@_primary1">Primary</Dynamic>
+<Dynamic TagName="div" css="@_secondary1">Secondary</Dynamic>
+
+<Dynamic TagName="h3" css="@_heading2">Harry Potter</Dynamic>
+<Dynamic TagName="div" css="@_primary2">Primary</Dynamic>
+<Dynamic TagName="div" css="@_secondary2">Secondary</Dynamic>
 
 <h2>Setup</h2>
 
@@ -53,7 +64,7 @@ var serviceProvider = new BrowserServiceProvider(services =>
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"h1"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@_heading"</span>></span>This is a test!<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
-<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@_primary"</span> <span style="color:#36c;font-style:italic">debug</span>=<span style="color:#093">"true"</span>></span>Primary<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@_primary"</span>></span>Primary<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@_secondary"</span>></span>Secondary<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
@@ -65,7 +76,20 @@ var serviceProvider = new BrowserServiceProvider(services =>
 
 <h2>Theme Chooser</h2>
 
-<p><code>Blazorous</code> comes with a <code>ThemeChooser</code> you can use to allow your users to choose which theme is applied to the site:</p>
+<p><code>Blazorous</code> comes with a <code>ThemeChooser</code> you can use to allow your users to choose which theme is applied to the site.</p>
+
+<h3>Theme Chooser Example</h3>
+
+<p>Use the dropdown below to change the theme of the elements below it:</p>
+
+<div>
+    <ThemeChooser SelectedThemeChanged="@SelectedThemeChanged" />
+</div>
+
+<Dynamic TagName="h3" css="@_heading">This is a heading</Dynamic>
+<Dynamic TagName="div" css="@_primary">Primary</Dynamic>
+<Dynamic TagName="div" css="@_secondary">Secondary</Dynamic>
+
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">ThemeChooser</span> <span style="color:#36c;font-style:italic">SelectedThemeChanged</span>=<span style="color:#093">"@@SelectedThemeChanged"</span> /></span>
@@ -132,41 +156,55 @@ var serviceProvider = new BrowserServiceProvider(services =>
 }
 </pre>
 
-<h2>Example of the applied themes</h2>
-
-<p>Since the changing themes will not work on the static site, here is an example of the two themes defined above:</p>
-
-<Dynamic TagName="h3" css="@_heading1">Soothing Web Colors</Dynamic>
-<Dynamic TagName="div" css="@_primary1">Primary</Dynamic>
-<Dynamic TagName="div" css="@_secondary1">Secondary</Dynamic>
-
-
-<Dynamic TagName="h3" css="@_heading2">Harry Potter</Dynamic>
-<Dynamic TagName="div" css="@_primary2">Primary</Dynamic>
-<Dynamic TagName="div" css="@_secondary2">Secondary</Dynamic>
-
 @functions {
-    readonly ICss _alert = Css.CreateNew().AddClass("alert").AddClass("alert-info");
+    ICss _heading1 = Css.CreateNew();
+    ICss _primary1 = Css.CreateNew();
+    ICss _secondary1 = Css.CreateNew();
 
-    readonly ICss _heading1 = Css.CreateNew().AddRule("color", "#423d5d").AddFontface(css =>
-    {
-        css.AddRule("fontFamily", "Fira Sans")
-            .AddRule("fontStyle", "normal")
-            .AddRule("fontWeight", 400)
-            .AddRule("src", "local('Fira Sans Regular'), local('FiraSans-Regular'), url(https://fonts.gstatic.com/s/firasans/v8/va9E4kDNxMZdWfMOD5Vvl4jL.woff2) format('woff2')")
-            .AddRule("unicodeRange", "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD");
-    });
-    readonly ICss _primary1 =  Css.CreateNew().AddRules("color", "white", "background-color", "#f23d5d");
-    readonly ICss _secondary1 = Css.CreateNew().AddRules("color", "white", "background-color", "#8c3d5d");
+    ICss _heading2 = Css.CreateNew();
+    ICss _primary2 = Css.CreateNew();
+    ICss _secondary2 = Css.CreateNew();
 
-    readonly ICss _heading2 = Css.CreateNew().AddRules("color", "#008709").AddFontface(css =>
+    ICss _heading = Css.CreateNew();
+    ICss _primary = Css.CreateNew();
+    ICss _secondary = Css.CreateNew();
+
+    protected override void OnInit()
     {
-        css.AddRule("fontFamily", "Butterfly Kids")
-            .AddRule("fontStyle", "normal")
-            .AddRule("fontWeight", 400)
-            .AddRule("src", "local('Butterfly Kids Regular'), local('ButterflyKids-Regular'), url(https://fonts.gstatic.com/s/butterflykids/v6/ll8lK2CWTjuqAsXDqlnIbMNs5R4dpRA.woff2) format('woff2')")
-            .AddRule("unicodeRange", "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD");
-    });
-    readonly ICss _primary2 = Css.CreateNew().AddRules("color", "white", "background-color", "#e10000");
-    readonly ICss _secondary2 = Css.CreateNew().AddRules("color", "white", "background-color", "#12159f");
+        //Init the variables that are demoing what the theme looks like.
+        ITheme theme1 = themes.Themes["Soothing Web Colors"];
+        _heading1 = theme1.Snippets["heading"];
+        _primary1 = Css.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme1.Variables["primary"]);
+        _secondary1 = Css.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme1.Variables["secondary"]);
+
+        ITheme theme2 = themes.Themes["Harry Potter"];
+        _heading2 = theme2.Snippets["heading"];
+        _primary2 = Css.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme2.Variables["primary"]);
+        _secondary2 = Css.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme2.Variables["secondary"]);
+
+        //Used for the dynamic field picker
+        ApplyTheme(themes.Current);
+    }
+
+    void SelectedThemeChanged(ITheme selectedTheme)
+    {
+        ApplyTheme(selectedTheme);
+        StateHasChanged();
+    }
+
+    void ApplyTheme(ITheme selectedTheme)
+    {
+        if (selectedTheme != null)
+        {
+            _heading = Css.CreateNew().ApplyThemeSnippet("heading");
+            _primary = Css.CreateNew().AddRules("color", "{font_color}", "background-color", "{primary}");
+            _secondary = Css.CreateNew().AddRules("color", "{font_color}", "background-color", "{secondary}");
+        }
+        else
+        {
+            _heading = Css.CreateNew();
+            _primary = Css.CreateNew();
+            _secondary = Css.CreateNew();
+        }
+    }
 }
