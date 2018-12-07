@@ -1,128 +1,61 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56303263-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-56303263-2');
-  </script>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Blazorous</title>
-  <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <link href="css/site.css" rel="stylesheet">
-  <style type="text/css" data-glamor=""></style>
-</head>
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>Blazorous</title>
+    <meta name="description" content="Maintainable CSS with Blazor">
+    <meta name="keywords" content="glamor, glamorous, design, blazor, razor">
+    <base href="/Blazorous/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
 <body>
-  <app>
-    <!--!-->
-    <!--!-->
-    <!--!-->
-    <div class="sidebar">
-      <!--!-->
-      <div class="top-row pl-4 navbar navbar-dark">
-        <a class="navbar-brand" href="https://chanan.github.io/Blazorous/">Blazorous</a>
-        <button class="navbar-toggler">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
+    <app>Loading...</app>
+    <!-- Start Single Page Apps for GitHub Pages -->
+    <script type="text/javascript">
+        // Single Page Apps for GitHub Pages
+        // https://github.com/rafrex/spa-github-pages
+        // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+        // ----------------------------------------------------------------------
+        // This script checks to see if a redirect is present in the query string
+        // and converts it back into the correct url and adds it to the
+        // browser's history using window.history.replaceState(...),
+        // which won't cause the browser to attempt to load the new url.
+        // When the single page app is loaded further down in this file,
+        // the correct url will be waiting in the browser's history for
+        // the single page app to route accordingly.
+        (function(l) {
+            if (l.search) {
+                var q = {};
+                l.search.slice(1).split('&').forEach(function(v) {
+                    var a = v.split('=');
+                    q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+                });
+                if (q.p !== undefined) {
+                    window.history.replaceState(null,
+                        null,
+                        l.pathname.slice(0, -1) +
+                        (q.p || '') +
+                        (q.q ? ('?' + q.q) : '') +
+                        l.hash
+                    );
+                }
+            }
+        }(window.location))
+    </script>
+    <!-- End Single Page Apps for GitHub Pages -->
 
-      <div class="collapse">
-        <ul class="nav flex-column">
-          <li class="nav-item px-3">
-            <!--!-->
-            <a class="nav-link active" href="https://chanan.github.io/Blazorous/">
-              <span class="oi oi-home" aria-hidden="true"></span> Home
-            </a>
-            <a class="nav-link" href="gettingstarted.html">
-              <span class="oi oi-list-rich" aria-hidden="true"></span> Getting Started
-            </a>
-            <!--!-->
-            <a class="nav-link" href="glamorexamples.html">
-              <span class="oi oi-list-rich" aria-hidden="true"></span> Glamor Examples
-            </a>
-            <a class="nav-link" href="dynamic.html">
-              <span class="oi oi-list-rich" aria-hidden="true"></span> Dynamic Rules
-            </a>
-            <a class="nav-link" href="styleattributes.html">
-              <span class="oi oi-list-rich" aria-hidden="true"></span> Style Attributes
-            </a>
-            <a class="nav-link" href="polished.html">
-                            <span class="oi oi-list-rich" aria-hidden="true"></span> Polished
-                        </a>
-            <a class="nav-link" href="fonts.html">
-              <span class="oi oi-list-rich" aria-hidden="true"></span> Fonts
-          </a>
-            <a class="nav-link" href="animations.html">
-              <span class="oi oi-list-rich" aria-hidden="true"></span> Animations
-            </a>
-            <a class="nav-link" href="themes.html">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Themes
-            </a>
-            <a class="nav-link" href="advanced.html">
-              <span class="oi oi-list-rich" aria-hidden="true"></span> Advanced Guides
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-    <div class="main">
-      <div class="container content px-4">
-        <!--!--><!--!--><div class="css-ag7e02" _bl_9="">
-    <h1>Blazorous</h1>
-    <h2>Maintainable CSS with Blazor</h2>
-    <!--!--><a primary="true" href="https://github.com/chanan/Blazorous" class="             css-1jpv9v" _bl_10="">Github</a>
-    <!--!--><a href="/gettingstarted" class="             css-6pilp7" _bl_11="">Getting Started</a>
-</div>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56303263-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-<pre style="background:rgba(238,238,238,0.92);color:#000">
-<span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@center"</span>&gt;</span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">h1</span>&gt;</span>Blazorous<span style="color:#03c">&lt;/<span style="font-weight:700">h1</span>&gt;</span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">h2</span>&gt;</span>Maintainable CSS with Blazor<span style="color:#03c">&lt;/<span style="font-weight:700">h2</span>&gt;</span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"a"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@link"</span> <span style="color:#36c;font-style:italic">primary</span>=<span style="color:#093">"true"</span> <span style="color:#36c;font-style:italic">href</span>=<span style="color:#093">"https://github.com/chanan/Blazorous"</span>&gt;</span>Github<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"a"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@link"</span> <span style="color:#36c;font-style:italic">href</span>=<span style="color:#093">"/glamorexamples"</span>&gt;</span>Glamor Examples<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
-<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>&gt;</span>
-
-@functions {
-  //Styles can defined as strings:
-  string center = @<span style="color:#093">"{
-      "</span><span style="color:#093">"text-align"</span><span style="color:#093">": "</span><span style="color:#093">"center"</span><span style="color:#093">",
-      "</span><span style="color:#093">"margin-bottom"</span><span style="color:#093">": "</span><span style="color:#093">"30px"</span><span style="color:#093">"
-  }"</span>;
-  //Or in C#. When using C# you can make your styles dynamic!
-  ICss link = Css.CreateNew().AddRule(<span style="color:#093">"border"</span>, <span style="color:#093">"1px solid #F67982"</span>)
-      .AddRules(<span style="color:#093">"width"</span>, <span style="color:#093">"11em"</span>, <span style="color:#093">"padding"</span>, <span style="color:#093">"0.7em 0"</span>, <span style="color:#093">"text-decoration"</span>, <span style="color:#093">"none"</span>, <span style="color:#093">"border-radius"</span>, 4, <span style="color:#093">"display"</span>, <span style="color:#093">"inline-block"</span>, <span style="color:#093">"margin"</span>, <span style="color:#093">".5em 1em"</span>, <span style="color:#093">"transition"</span>, <span style="color:#093">"all .3s"</span>)
-      .AddDynamicRule((css, attributes) =>
-      {
-          var isPrimary = attributes.GetBooleanAttribute(<span style="color:#093">"primary"</span>);
-          css.AddRule(<span style="color:#093">"background-color"</span>, isPrimary ? <span style="color:#093">"#CC3A4B"</span> : <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span>);
-          css.AddRule(<span style="color:#093">"color"</span>, isPrimary ? <span style="color:#093">"#fff"</span> : <span style="color:#093">"#DA233C"</span>);
-      })
-      .AddSelector(":hover", css =>
-      {
-          css.AddDynamicRule((innerCss, attributes) =>
-          {
-              var isPrimary = attributes.GetBooleanAttribute(<span style="color:#093">"primary"</span>);
-              innerCss.AddRule(<span style="color:#093">"background-color"</span>, isPrimary ? <span style="color:#093">"rgba(255, 255, 255, 0.5)"</span> : <span style="color:#093">"#CC3A4B"</span>);
-              innerCss.AddRule(<span style="color:#093">"color"</span>, isPrimary ? <span style="color:#093">"#DA233C"</span> : <span style="color:#093">"#fff"</span>);
-          });
-      });
-}
-</pre>
-<div class="text-center">
-<a href="https://www.nuget.org/packages/Blazorous/"><img src="https://img.shields.io/nuget/vpre/Blazorous.svg" /></a>
-  <a href="https://github.com/chanan/Blazorous"><img src="https://img.shields.io/github/stars/chanan/Blazorous.svg?style=social&label=Stars" /></a>
-</div>
-    </div>
-    </div>
-  </app>
+        gtag('config', 'UA-56303263-2');
+    </script>
 </body>
-
 </html>
