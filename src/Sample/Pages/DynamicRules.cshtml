@@ -36,39 +36,35 @@
 <p>In this example we will create a reusable button component that can be used in your application. The end result looks like this:</p>
 
 <div>
-    <StyledButtonWithParamAndAttributes color="success" onclick="@onclick">Success</StyledButtonWithParamAndAttributes>
-    <StyledButtonWithParamAndAttributes color="danger" onclick="@onclick">Danger</StyledButtonWithParamAndAttributes>
-    <StyledButtonWithParamAndAttributes color="primary" onclick="@onclick">Primary</StyledButtonWithParamAndAttributes>
-    <StyledButtonWithParamAndAttributes color="info" onclick="@onclick">Info</StyledButtonWithParamAndAttributes>
-    <StyledButtonWithParamAndAttributes onclick="@onclick">Gray (default)</StyledButtonWithParamAndAttributes>
-    <StyledButtonWithParamAndAttributes color="accent" onclick="@onclick">Accent</StyledButtonWithParamAndAttributes>
+    <MyButton color="success" onclick="@onclick">Success</MyButton>
+    <MyButton color="danger" onclick="@onclick">Danger</MyButton>
+    <MyButton color="primary" onclick="@onclick">Primary</MyButton>
+    <MyButton color="info" onclick="@onclick">Info</MyButton>
+    <MyButton onclick="@onclick">Gray (default)</MyButton>
+    <MyButton color="accent" onclick="@onclick">Accent</MyButton>
 </div>
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">div</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"success"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Success<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"danger"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Danger<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"primary"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Primary<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"info"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Info<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Gray (default)<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">StyledButtonWithParamAndAttributes</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"accent"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Accent<span style="color:#03c">&lt;/<span style="font-weight:700">StyledButtonWithParamAndAttributes</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"success"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Success<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"danger"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Danger<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"primary"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Primary<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"info"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Info<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Gray (default)<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
+    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"accent"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Accent<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
 <span style="color:#03c">&lt;/<span style="font-weight:700">div</span>></span>
 </pre>
 
-<p>First Create a Component, I called mine <code>StyledButtonWithParamAndAttributes.cshtml</code> and placed it in the <a href="https://github.com/chanan/Blazorous/tree/master/src/Sample/Shared"><code>Shared</code></a> folder. 
-    There are actually 3 examples that show similiar but slight different ways of passing attributes. In <code>StyledButtonWithParamAndAttributes.cshtml</code> 
-    I both created a Parameter named <code>color</code> and inherited from <code>BlazorousComponentBase</code>. However, you do not have to do both. To see other examples take a 
-    look at <code>StyledButton.cshtml</code> and <code>StyledButtonWithParam.cshtml</code> in the <a href="https://github.com/chanan/Blazorous/tree/master/src/Sample/Shared"><code>Shared</code></a> folder of the sample site.     
-</p>
+<p>First Create a Component, I called mine <code>MyButton.cshtml</code> and placed it in the <a href="https://github.com/chanan/Blazorous/tree/master/src/Sample/Shared"><code>Shared</code></a> folder. </p>
 
-<p>Place the imports in <code>_ViewImports.cshtml</code> or at the top of <code>StyledButtonWithParamAndAttributes.cshtml</code>:</p>
+<p>Place the imports in <code>_ViewImports.cshtml</code> or at the top of <code>MyButton.cshtml</code>:</p>
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 @@addTagHelper *,Blazorous
 @@using Blazorous
 </pre>
 
-<p>As mentioned in this example, I will inherit from <code>BlazorousComponentBase</code>, so add the inherit tag at the start of the file:</p>
+<p>In this example, I will inherit from <code>BlazorousComponentBase</code>, so add the inherit tag at the start of the file:</p>
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 @@inherits BlazorousComponentBase
@@ -151,7 +147,7 @@ private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"@@color"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span> <span style="color:#36c;font-style:italic">Attributes</span>=<span style="color:#093">"@@UnknownParameters"</span>></span>@@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 </pre>
 
-<p>The full source of <code>StyledButtonWithParamAndAttributes.cshtml</code> is below:</p>
+<p>The full source of <code>MyButton.cshtml</code> is below:</p>
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 @@inherits BlazorousComponentBase

@@ -16,6 +16,7 @@ namespace Blazorous
         private string _classname;
         private string _debug;
         private List<object> _css;
+        [Parameter] private ElementRef ElementRef { get; set; }
 
         public IReadOnlyDictionary<string, object> Attributes
         {
@@ -73,7 +74,8 @@ namespace Blazorous
                 builder.AddAttribute(1, param.Key, param.Value);
             }
             if (_classname != null) builder.AddAttribute(1, "class", _classname);
-            builder.AddContent(2, _childContent);
+            builder.AddElementReferenceCapture(2, capturedRef => { ElementRef = capturedRef; });
+            builder.AddContent(3, _childContent);
             builder.CloseElement();
         }
 

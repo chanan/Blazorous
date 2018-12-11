@@ -1,0 +1,10 @@
+﻿@using Blazorous
+@using Microsoft.AspNetCore.Blazor
+@using Microsoft.AspNetCore.Blazor.Components
+@inherits Blazorous.BlazorousComponentBase
+
+<Dynamic TagName="figure" Attributes="@UnknownParameters">@ChildContent</Dynamic>
+
+@functions {
+    [Parameter] private RenderFragment ChildContent { get; set; }
+}

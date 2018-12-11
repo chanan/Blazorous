@@ -1,9 +1,20 @@
 ﻿@using Blazorous
+@using Sample.Code
 @page "/test"
 @addTagHelper *,Blazorous
 
-<bDiv css="@css">Hello</bDiv>
+<form onSubmit={this.alertValue}>
+    <Dynamic TagName="input" bind-ElementRef="@inputRef" />
+        <button type="button" onclick="@OnClick">
+            Submit
+        </button>
+</form>
 
 @functions {
-    ICss css = Css.CreateNew().AddRule("color", "red");
+    ElementRef inputRef;
+
+    async void OnClick()
+    {
+        await inputRef.AlertValue();
+    }
 }
