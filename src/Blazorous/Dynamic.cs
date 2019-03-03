@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Blazor;
-using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.AspNetCore.Blazor.RenderTree;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.RenderTree;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Blazorous
 {
-    public class Dynamic : BlazorComponent
+    public class Dynamic : ComponentBase
     {
         [Parameter] private string TagName { get; set; }
 
@@ -25,7 +24,7 @@ namespace Blazorous
             set => throw new NotImplementedException();
         }
 
-        public override void SetParameters(ParameterCollection parameters)
+        public override Task SetParametersAsync(ParameterCollection parameters)
         {
             _css = parameters.GetParameterList("css");
             _attributesToRender = (Dictionary<string, object>)parameters.ToDictionary();
@@ -57,7 +56,7 @@ namespace Blazorous
                 }
             }
 
-            base.SetParameters(ParameterCollection.Empty);
+            return base.SetParametersAsync(ParameterCollection.Empty);
         }
 
         protected override Task OnParametersSetAsync()
@@ -165,7 +164,7 @@ namespace Blazorous
                         list.Add(c.ToClasses(attributesToRender));
                         break;
                     default:
-                        throw new InvalidOperationException("css attribute muse be string or of type Blazorous.Css");
+                        throw new InvalidOperationException("css attribute must be string or of type Blazorous.Css");
 
                 }
             }
@@ -190,7 +189,7 @@ namespace Blazorous
                         }
                         break;
                     default:
-                        throw new InvalidOperationException("css attribute muse be string or of type Blazorous.Css");
+                        throw new InvalidOperationException("css attribute must be string or of type Blazorous.Css");
 
                 }
             }

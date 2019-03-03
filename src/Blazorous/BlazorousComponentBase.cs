@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Blazor.Components;
+﻿using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -9,7 +9,7 @@ namespace Blazorous
     /// <summary>
     /// The base class for BlazorStrap components.
     /// </summary>
-    public abstract class BlazorousComponentBase : BlazorComponent
+    public abstract class BlazorousComponentBase : ComponentBase
     {
         private bool _hasCalledInit;
         /// <summary>
@@ -20,7 +20,7 @@ namespace Blazorous
             = new Dictionary<string, object>();
 
         /// <inheritdoc />
-        public override void SetParameters(ParameterCollection parameters)
+        public override Task SetParametersAsync(ParameterCollection parameters)
         {
             UnknownParameters.Clear();
 
@@ -58,6 +58,8 @@ namespace Blazorous
             }
 
             StateHasChanged();
+
+            return Task.CompletedTask;
         }
 
         //TODO: Only get props that are decorated by [Parameter] attribute

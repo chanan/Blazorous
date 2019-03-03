@@ -1,10 +1,7 @@
-﻿@inherits Microsoft.AspNetCore.Blazor.Components.BlazorComponent
+﻿@inherits Microsoft.AspNetCore.Components.ComponentBase
 @using System
 @using System.Linq
-@using Blazorous
 @using Blazorous.Internal
-@using Microsoft.AspNetCore.Blazor
-@using Microsoft.AspNetCore.Blazor.Components
 
 <select class="@Class" value="@_selected" onchange="@OnChange">
     @if (ShowPrompt)
