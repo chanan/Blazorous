@@ -1,4 +1,5 @@
 ﻿@page "/styleattributes"
+@inject ICssCreator CssCreator
 
 <h1>Style Attributes</h1>
 
@@ -59,13 +60,18 @@
 </pre>
 
 @functions {
-    ICss css = Css.CreateNew().AddRule("color", "red").AddRule("font-size", 24);
+    ICss css;
 
     string styleString = @"{
-        ""color"": ""blue"",
-        ""font-size"": ""24px""
-    }";
+    ""color"": ""blue"",
+    ""font-size"": ""24px""
+}";
 
     string fontWeight = "bold";
     int fontSize = 12;
+
+    protected override void OnInit()
+    {
+        css = CssCreator.CreateNew().AddRule("color", "red").AddRule("font-size", 24);
+    }
 }

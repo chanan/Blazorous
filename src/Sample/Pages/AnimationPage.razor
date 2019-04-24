@@ -1,4 +1,5 @@
 ﻿@page "/animations"
+@inject ICssCreator CssCreator
 
 <h1>Animations</h1>
 
@@ -16,7 +17,7 @@
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"div"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">width</span>=<span style="color:#093">"70"</span> <span style="color:#36c;font-style:italic">height</span>=<span style="color:#093">"47"</span> <span style="color:#36c;font-style:italic">background-color</span>=<span style="color:#093">"rgb(146, 185, 1)"</span>
-         <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"white"</span> <span style="color:#36c;font-style:italic">position</span>=<span style="color:#093">"relative"</span> <span style="color:#36c;font-style:italic">font-weight</span>=<span style="color:#093">"bold"</span> <span style="color:#36c;font-style:italic">font-size</span>=<span style="color:#093">"20"</span> <span style="color:#36c;font-style:italic">padding</span>=<span style="color:#093">"10"</span>></span>CSS<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
+<span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"white"</span> <span style="color:#36c;font-style:italic">position</span>=<span style="color:#093">"relative"</span> <span style="color:#36c;font-style:italic">font-weight</span>=<span style="color:#093">"bold"</span> <span style="color:#36c;font-style:italic">font-size</span>=<span style="color:#093">"20"</span> <span style="color:#36c;font-style:italic">padding</span>=<span style="color:#093">"10"</span>></span>CSS<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
 
 @@functions {
     ICss css = Css.CreateNew()
@@ -34,15 +35,21 @@
 </pre>
 
 @functions {
-    ICss css = Css.CreateNew()
-        .AddRule("-webkit-border-radius", 5)
-        .AddAnimation("5s 5", animation => {
-            animation
-                .AddKeyframe("from", css => css.AddRule("transform", "rotate(0deg)").AddRule("left", 0))
-                .AddKeyframe("25%", css => css.AddRule("transform", "rotate(20deg)").AddRule("left", 0))
-                .AddKeyframe("50%", css => css.AddRule("transform", "rotate(0deg)").AddRule("left", 500))
-                .AddKeyframe("55%", css => css.AddRule("transform", "rotate(0deg)").AddRule("left", 500))
-                .AddKeyframe("70%", css => css.AddRule("transform", "rotate(0deg)").AddRule("left", 500).AddRule("background-color", "rgb(30, 199, 230)"))
-                .AddKeyframe("to", css => css.AddRule("transform", "rotate(-360deg)").AddRule("left", 0));
-         });
+    ICss css;
+
+    protected override void OnInit()
+    {
+        css = CssCreator.CreateNew()
+            .AddRule("-webkit-border-radius", 5)
+            .AddAnimation("5s 5", animation =>
+            {
+                animation
+                    .AddKeyframe("from", css => css.AddRule("transform", "rotate(0deg)").AddRule("left", 0))
+                    .AddKeyframe("25%", css => css.AddRule("transform", "rotate(20deg)").AddRule("left", 0))
+                    .AddKeyframe("50%", css => css.AddRule("transform", "rotate(0deg)").AddRule("left", 500))
+                    .AddKeyframe("55%", css => css.AddRule("transform", "rotate(0deg)").AddRule("left", 500))
+                    .AddKeyframe("70%", css => css.AddRule("transform", "rotate(0deg)").AddRule("left", 500).AddRule("background-color", "rgb(30, 199, 230)"))
+                    .AddKeyframe("to", css => css.AddRule("transform", "rotate(-360deg)").AddRule("left", 0));
+            });
+    }
 }

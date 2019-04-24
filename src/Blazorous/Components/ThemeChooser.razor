@@ -1,21 +1,18 @@
-﻿@inherits Microsoft.AspNetCore.Components.ComponentBase
-@using System
-@using System.Linq
-@using Blazorous.Internal
+﻿@using Blazorous
+@inject IThemes ThemesProvider
 
 <select class="@Class" value="@_selected" onchange="@OnChange">
     @if (ShowPrompt)
     {
         <option>Select a theme</option>
     }
-    @foreach (var theme in _themes.Themes.Values)
+    @foreach (var theme in ThemesProvider.Themes.Values)
     {
         <option value="@theme.Name">@theme.Name</option>
     }
 </select>
 
 @functions {
-    private IThemes _themes;
     private string _selected;
 
     [Parameter] private Action<ITheme> SelectedThemeChanged { get; set; }
@@ -24,10 +21,9 @@
 
     protected override void OnInit()
     {
-        _themes = ThemesProvider.Instance;
-        if (_themes.Current != null)
+        if (ThemesProvider.Current != null)
         {
-            _selected = _themes.Current.Name;
+            _selected = ThemesProvider.Current.Name;
         }
         else
         {
@@ -37,7 +33,7 @@
             }
             else
             {
-                SelectedChanged(_themes.Themes.First().Key);
+                SelectedChanged(ThemesProvider.Themes.First().Key);
             }
         }
     }
@@ -52,12 +48,12 @@
         _selected = newSelected;
         if (_selected != "Select a theme")
         {
-            _themes.Current = _themes.Themes[_selected];
+            ThemesProvider.Current = ThemesProvider.Themes[_selected];
         }
         else
         {
-            _themes.Current = null;
+            ThemesProvider.Current = null;
         }
-        SelectedThemeChanged?.Invoke(_themes.Current);
+        SelectedThemeChanged?.Invoke(ThemesProvider.Current);
     }
 }

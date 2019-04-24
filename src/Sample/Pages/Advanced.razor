@@ -1,4 +1,6 @@
 ﻿@page "/advanced"
+@inject ICssCreator CssCreator
+
 <h1>Advanced Guids</h1>
 
 <p>Examples taken from: <a href="https://glamorous.rocks/advanced/">https://glamorous.rocks/advanced/</a></p>
@@ -51,7 +53,7 @@
         .AddClass(<span style="color:#093">"alert"</span>)
         .AddDynamicRule((css, attributes) =>
         {
-            <span style="color:#00f">if</span> (attributes.TryGetValue&lt;AlertType>(<span style="color:#093">"type"</span>, out AlertType type))
+<span style="color:#00f">if</span> (attributes.TryGetValue&lt;AlertType>(<span style="color:#093">"type"</span>, out AlertType type))
             {
                 css.AddClass($<span style="color:#093">"alert-{type.ToString()}"</span>);
             }
@@ -70,23 +72,9 @@
 </pre>
 
 @functions {
-    ICss css = Css.CreateNew()
-        .AddClass("alert")
-        .AddDynamicRule((css, attributes) =>
-        {
-            var type = attributes.GetStringAttribute("type", "primary");
-            css.AddClass($"alert-{type}");
-        });
+    ICss css;
 
-    ICss cssEnum = Css.CreateNew()
-        .AddClass("alert")
-        .AddDynamicRule((css, attributes) =>
-        {
-            if (attributes.TryGetValue<AlertType>("type", out AlertType type))
-            {
-                css.AddClass($"alert-{type.ToString()}");
-            }
-        });
+    ICss cssEnum;
 
     AlertType type = AlertType.success;
 
@@ -96,5 +84,26 @@
         info,
         warning,
         danger
+    }
+
+    protected override void OnInit()
+    {
+        css = CssCreator.CreateNew()
+            .AddClass("alert")
+            .AddDynamicRule((css, attributes) =>
+            {
+                var type = attributes.GetStringAttribute("type", "primary");
+                css.AddClass($"alert-{type}");
+            });
+
+        cssEnum = CssCreator.CreateNew()
+            .AddClass("alert")
+            .AddDynamicRule((css, attributes) =>
+            {
+                if (attributes.TryGetValue<AlertType>("type", out AlertType type))
+                {
+                    css.AddClass($"alert-{type.ToString()}");
+                }
+            });
     }
 }

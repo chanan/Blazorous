@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace Blazorous
 {
-    /// <summary>
-    /// The base class for BlazorStrap components.
-    /// </summary>
     public abstract class BlazorousComponentBase : ComponentBase
     {
         private bool _hasCalledInit;

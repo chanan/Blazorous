@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject ICssCreator CssCreator
 
 <Dynamic TagName="div" css="@center">
     <h1>Blazorous</h1>
@@ -53,22 +54,28 @@
         ""text-align"": ""center"",
         ""margin-bottom"": ""30px""
     }";
-    //Or in C#. When using C# you can make your styles dynamic!
-    ICss link = Css.CreateNew().AddRule("border", "1px solid #F67982")
-        .AddRules("width", "11em", "padding", "0.7em 0", "text-decoration", "none", "border-radius", 4, "display", "inline-block", "margin", ".5em 1em", "transition", "all .3s")
-        .AddDynamicRule((css, attributes) =>
-        {
-            var isPrimary = attributes.GetBooleanAttribute("primary");
-            css.AddRule("background-color", isPrimary ? "#CC3A4B" : "rgba(255, 255, 255, 0.5)");
-            css.AddRule("color", isPrimary ? "#fff" : "#DA233C");
-        })
-        .AddSelector(":hover", css =>
-        {
-            css.AddDynamicRule((innerCss, attributes) =>
+    
+    ICss link;
+
+    protected override void OnInit()
+    {
+        //Or in C#. When using C# you can make your styles dynamic!
+        link = CssCreator.CreateNew().AddRule("border", "1px solid #F67982")
+            .AddRules("width", "11em", "padding", "0.7em 0", "text-decoration", "none", "border-radius", 4, "display", "inline-block", "margin", ".5em 1em", "transition", "all .3s")
+            .AddDynamicRule((css, attributes) =>
             {
                 var isPrimary = attributes.GetBooleanAttribute("primary");
-                innerCss.AddRule("background-color", isPrimary ? "rgba(255, 255, 255, 0.5)" : "#CC3A4B");
-                innerCss.AddRule("color", isPrimary ? "#DA233C" : "#fff");
+                css.AddRule("background-color", isPrimary ? "#CC3A4B" : "rgba(255, 255, 255, 0.5)");
+                css.AddRule("color", isPrimary ? "#fff" : "#DA233C");
+            })
+            .AddSelector(":hover", css =>
+            {
+                css.AddDynamicRule((innerCss, attributes) =>
+                {
+                    var isPrimary = attributes.GetBooleanAttribute("primary");
+                    innerCss.AddRule("background-color", isPrimary ? "rgba(255, 255, 255, 0.5)" : "#CC3A4B");
+                    innerCss.AddRule("color", isPrimary ? "#DA233C" : "#fff");
+                });
             });
-        });
+    }
 }

@@ -1,4 +1,5 @@
 ﻿@page "/polished"
+@inject ICssCreator CssCreator
 
 <h1>Polished</h1>
 
@@ -15,7 +16,7 @@
 </pre>
 
 <p>
-    The functions that can be used from Polished are: <code>adjustHue</code>, <code>animation</code>, <code>backgroundImages</code>, <code>backgrounds</code>, <code>complement</code>, 
+    The functions that can be used from Polished are: <code>adjustHue</code>, <code>animation</code>, <code>backgroundImages</code>, <code>backgrounds</code>, <code>complement</code>,
     <code>darken</code>, <code>desaturate</code>, <code>getLuminance</code>, <code>grayscale</code>,
     <code>hsl</code>, <code>hsla</code>, <code>invert</code>, <code>lighten</code>, <code>mix</code>, <code>opacify</code>, <code>parseToHsl</code>, <code>parseToRgb</code>,
     <code>readableColor</code>, <code>rgb</code>, <code>rgba</code>, <code>saturate</code>, <code>setHue</code>, <code>setLightness</code>, <code>setSaturation</code>, <code>shade</code>,
@@ -28,7 +29,7 @@
     Mixins defined in Polished are: <code>borderColor</code>, <code>borderRadius</code>, <code>borderStyle</code>, <code>borderWidth</code>, <code>clearFix</code>,
     <code>ellipsis</code>, <code>fontFace</code>, <code>hiDPI</code>, <code>hideText</code>, <code>hideVisually</code>,
     <code>normalize</code>, <code>margin</code>, <code>padding</code>, <code>position</code>, <code>radialGradient</code>, <code>retinaImage</code>,
-    <code>selection</code>, <code>size</code>, <code>timingFunctions</code>, <code>wordWrap</code>. The below example uses <code>ellipsis</code> to create a div that cuts off long text, adds 
+    <code>selection</code>, <code>size</code>, <code>timingFunctions</code>, <code>wordWrap</code>. The below example uses <code>ellipsis</code> to create a div that cuts off long text, adds
     ellipsis at the end of the shorten text and uses <code>borderColor</code> with the <code>darken</code>, <code>borderWidth</code>, and <code>borderStyle</code>:
 </p>
 
@@ -45,6 +46,12 @@
 
 
 @functions {
-    ICss css = Css.CreateNew().AddRules("color", "lighten(0.5, '#000')", "background-color", "darken(0.1, hsl(359, 0.75, 0.4))");
-    ICss longText = Css.CreateNew().AddMixin("ellipsis('250px')").AddMixin("borderColor(darken(0.75, 'white'))").AddMixin("borderWidth('5px')").AddMixin("borderStyle('solid', null, 'dashed')");
+    ICss css;
+    ICss longText;
+
+    protected override void OnInit()
+    {
+        css = CssCreator.CreateNew().AddRules("color", "lighten(0.5, '#000')", "background-color", "darken(0.1, hsl(359, 0.75, 0.4))");
+        longText = CssCreator.CreateNew().AddMixin("ellipsis('250px')").AddMixin("borderColor(darken(0.75, 'white'))").AddMixin("borderWidth('5px')").AddMixin("borderStyle('solid', null, 'dashed')");
+    }
 }

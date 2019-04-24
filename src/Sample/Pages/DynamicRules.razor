@@ -1,4 +1,5 @@
 ﻿@page "/dynamic"
+@inject ICssCreator CssCreator
 
 <h1>Dynamic Rules</h1>
 
@@ -46,12 +47,12 @@
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">div</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"success"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Success<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"danger"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Danger<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"primary"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Primary<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"info"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Info<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Gray (default)<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
-    <span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"accent"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Accent<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"success"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Success<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"danger"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Danger<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"primary"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Primary<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"info"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Info<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Gray (default)<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
+<span style="color:#03c">&lt;<span style="font-weight:700">MyButton</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"accent"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span>></span>Accent<span style="color:#03c">&lt;/<span style="font-weight:700">MyButton</span>></span>
 <span style="color:#03c">&lt;/<span style="font-weight:700">div</span>></span>
 </pre>
 
@@ -85,8 +86,10 @@
 }
 </pre>
 
-<p>To allow aribtrary attributes be set on our button (for example <code>style</code>), and since we inherited from <code>BlazorousComponentBase</code>, we will add the 
-    <code>Attributes="@@UnknownParameters"</code> to our <code>&lt;Dynamic&gt;</code> tag:</p>
+<p>
+    To allow aribtrary attributes be set on our button (for example <code>style</code>), and since we inherited from <code>BlazorousComponentBase</code>, we will add the
+    <code>Attributes="@@UnknownParameters"</code> to our <code>&lt;Dynamic&gt;</code> tag:
+</p>
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span> <span style="color:#36c;font-style:italic">Attributes</span>=<span style="color:#093">"@@UnknownParameters"</span>></span>@@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
@@ -140,8 +143,10 @@ private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:
         });
 </pre>
 
-<p>At the end of the code above, the <code>AddDynamicRule</code> is the part that dynamically creates the css style based on the color parameter. Lastly we need to bind the color and css
-    attributes to the <code>&lt;Dynamic&gt;</code>. I changed the <code>&lt;Dynamic&gt;</code> to it's final format:</p>
+<p>
+    At the end of the code above, the <code>AddDynamicRule</code> is the part that dynamically creates the css style based on the color parameter. Lastly we need to bind the color and css
+    attributes to the <code>&lt;Dynamic&gt;</code>. I changed the <code>&lt;Dynamic&gt;</code> to it's final format:
+</p>
 
 <pre style="background:rgba(238,238,238,0.92);color:#000">
 <span style="color:#03c">&lt;<span style="font-weight:700">Dynamic</span> <span style="color:#36c;font-style:italic">TagName</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">type</span>=<span style="color:#093">"button"</span> <span style="color:#36c;font-style:italic">color</span>=<span style="color:#093">"@@color"</span> <span style="color:#36c;font-style:italic">css</span>=<span style="color:#093">"@@css"</span> <span style="color:#36c;font-style:italic">onclick</span>=<span style="color:#093">"@@onclick"</span> <span style="color:#36c;font-style:italic">Attributes</span>=<span style="color:#093">"@@UnknownParameters"</span>></span>@@ChildContent<span style="color:#03c">&lt;/<span style="font-weight:700">Dynamic</span>></span>
@@ -196,11 +201,17 @@ private static IDictionary<span style="color:#03c">&lt;<span style="font-weight:
 </pre>
 
 @functions {
-    ICss coloredDiv = Css.CreateNew()
-                    .AddDynamicRule((css, attributes) =>
-                    {
-                        css.AddRule("color", attributes.GetStringAttribute("color", "black"));
-                    });
+    ICss coloredDiv;
+
+    protected override void OnInit()
+    {
+        coloredDiv = CssCreator.CreateNew()
+            .AddDynamicRule((css, attributes) =>
+            {
+                css.AddRule("color", attributes.GetStringAttribute("color", "black"));
+            });
+    }
+
     void onclick()
     {
         Console.WriteLine("Hello world");

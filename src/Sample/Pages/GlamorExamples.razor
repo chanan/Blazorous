@@ -1,4 +1,7 @@
 ﻿@page "/glamorexamples"
+@inject ICssCreator CssCreator
+@inject IBlazorousInterop BlazorousInterop
+
 <h1>Glamor Examples</h1>
 
 <p>Examples taken from: <a href="https://github.com/threepointone/glamor/blob/master/docs/howto.md">https://github.com/threepointone/glamor/blob/master/docs/howto.md</a></p>
@@ -160,32 +163,36 @@
     string css1 = "{ \"color\": \"red\" }";
     string class1;
     string css2 = @"{
-    "":hover"": {
-        ""color"": ""blue""
-    }
-    }";
+"":hover"": {
+    ""color"": ""blue""
+}
+}";
     string bold = @"{
-        ""font-weight"": ""bold""
-    }";
+    ""font-weight"": ""bold""
+}";
     string childExamples = @"{
-        ""display"": ""block"",
-        ""& .bold"": { ""font-weight"": ""bold"" },
-        ""& .one"": { ""color"": ""blue"" },
-        "":hover .two"": { ""color"": ""red"" }
-    }";
+    ""display"": ""block"",
+    ""& .bold"": { ""font-weight"": ""bold"" },
+    ""& .one"": { ""color"": ""blue"" },
+    "":hover .two"": { ""color"": ""red"" }
+}";
 
-    ICss css1CSharp = Css.CreateNew().AddRule("color", "red");
+    ICss css1CSharp;
     string class1CSharp;
-    ICss css2CSharp = Css.CreateNew().AddSelector(":hover", css => css.AddRule("color", "blue"));
-    ICss boldCSharp = Css.CreateNew().AddRule("font-weight", "bold");
-    ICss childExamplesCSharp = Css.CreateNew().AddRule("display", "block")
-                                .AddSelector("& .bold", css => css.AddRule("font-weight", "bold"))
-                                .AddSelector("& .one", css => css.AddRule("color", "blue"))
-                                .AddSelector(":hover .two", css => css.AddRule("color", "red"));
+    ICss css2CSharp;
+    ICss boldCSharp;
+    ICss childExamplesCSharp;
 
     protected override async Task OnInitAsync()
     {
+        css1CSharp = CssCreator.CreateNew().AddRule("color", "red");
+        css2CSharp = CssCreator.CreateNew().AddSelector(":hover", css => css.AddRule("color", "blue"));
+        boldCSharp = CssCreator.CreateNew().AddRule("font-weight", "bold");
+        childExamplesCSharp = CssCreator.CreateNew().AddRule("display", "block")
+                                .AddSelector("& .bold", css => css.AddRule("font-weight", "bold"))
+                                .AddSelector("& .one", css => css.AddRule("color", "blue"))
+                                .AddSelector(":hover .two", css => css.AddRule("color", "red"));
         class1 = await BlazorousInterop.Css("{ \"color\": \"red\" }");
-        class1CSharp = await BlazorousInterop.Css(await Css.CreateNew().AddRule("color", "red").ToCss());
+        class1CSharp = await BlazorousInterop.Css(await CssCreator.CreateNew().AddRule("color", "red").ToCss());
     }
 }

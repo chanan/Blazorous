@@ -1,6 +1,7 @@
 ﻿@page "/themes"
 @using Blazorous
 @inject IThemes themes
+@inject ICssCreator CssCreator
 
 <h1>Themes</h1>
 
@@ -157,30 +158,42 @@ var serviceProvider = new BrowserServiceProvider(services =>
 </pre>
 
 @functions {
-    ICss _heading1 = Css.CreateNew();
-    ICss _primary1 = Css.CreateNew();
-    ICss _secondary1 = Css.CreateNew();
+    ICss _heading1;
+    ICss _primary1;
+    ICss _secondary1;
 
-    ICss _heading2 = Css.CreateNew();
-    ICss _primary2 = Css.CreateNew();
-    ICss _secondary2 = Css.CreateNew();
+    ICss _heading2;
+    ICss _primary2;
+    ICss _secondary2;
 
-    ICss _heading = Css.CreateNew();
-    ICss _primary = Css.CreateNew();
-    ICss _secondary = Css.CreateNew();
+    ICss _heading;
+    ICss _primary;
+    ICss _secondary;
 
     protected override void OnInit()
     {
+        _heading1 = CssCreator.CreateNew();
+        _primary1 = CssCreator.CreateNew();
+        _secondary1 = CssCreator.CreateNew();
+
+        _heading2 = CssCreator.CreateNew();
+        _primary2 = CssCreator.CreateNew();
+        _secondary2 = CssCreator.CreateNew();
+
+        _heading = CssCreator.CreateNew();
+        _primary = CssCreator.CreateNew();
+        _secondary = CssCreator.CreateNew();
+
         //Init the variables that are demoing what the theme looks like.
         ITheme theme1 = themes.Themes["Soothing Web Colors"];
         _heading1 = theme1.Snippets["heading"];
-        _primary1 = Css.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme1.Variables["primary"]);
-        _secondary1 = Css.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme1.Variables["secondary"]);
+        _primary1 = CssCreator.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme1.Variables["primary"]);
+        _secondary1 = CssCreator.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme1.Variables["secondary"]);
 
         ITheme theme2 = themes.Themes["Harry Potter"];
         _heading2 = theme2.Snippets["heading"];
-        _primary2 = Css.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme2.Variables["primary"]);
-        _secondary2 = Css.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme2.Variables["secondary"]);
+        _primary2 = CssCreator.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme2.Variables["primary"]);
+        _secondary2 = CssCreator.CreateNew().AddRules("color", theme1.Variables["font_color"], "background-color", theme2.Variables["secondary"]);
 
         //Used for the dynamic field picker
         ApplyTheme(themes.Current);
@@ -196,15 +209,15 @@ var serviceProvider = new BrowserServiceProvider(services =>
     {
         if (selectedTheme != null)
         {
-            _heading = Css.CreateNew().ApplyThemeSnippet("heading");
-            _primary = Css.CreateNew().AddRules("color", "{font_color}", "background-color", "{primary}");
-            _secondary = Css.CreateNew().AddRules("color", "{font_color}", "background-color", "{secondary}");
+            _heading = CssCreator.CreateNew().ApplyThemeSnippet("heading");
+            _primary = CssCreator.CreateNew().AddRules("color", "{font_color}", "background-color", "{primary}");
+            _secondary = CssCreator.CreateNew().AddRules("color", "{font_color}", "background-color", "{secondary}");
         }
         else
         {
-            _heading = Css.CreateNew();
-            _primary = Css.CreateNew();
-            _secondary = Css.CreateNew();
+            _heading = CssCreator.CreateNew();
+            _primary = CssCreator.CreateNew();
+            _secondary = CssCreator.CreateNew();
         }
     }
 }

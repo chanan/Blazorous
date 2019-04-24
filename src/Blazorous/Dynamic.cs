@@ -8,6 +8,8 @@ namespace Blazorous
 {
     public class Dynamic : ComponentBase
     {
+        [Inject] IBlazorousInterop BlazorousInterop { get; set; }
+        [Inject] ICssCreator CssCreator { get; set; }
         [Parameter] private string TagName { get; set; }
 
         private Dictionary<string, object> _attributesToRender;
@@ -93,7 +95,7 @@ namespace Blazorous
                 ret = ret != null ? $"{ret} {cls}".Trim() : cls;
             }
 
-            var dynamicCss = CreateDynamicCssFromAttributes(attributesToRender);
+            var dynamicCss = (Css)CreateDynamicCssFromAttributes(attributesToRender);
 
             if (dynamicCss.Count > 0)
             {
@@ -111,7 +113,7 @@ namespace Blazorous
             _classname = ret;
         }
 
-        private static async Task<List<string>> CreatePseudoCssFromAttributes(IDictionary<string, object> attributesToRender, string debug)
+        private async Task<List<string>> CreatePseudoCssFromAttributes(IDictionary<string, object> attributesToRender, string debug)
         {
             var list = new List<string>();
             foreach (var pseudo in PseudoProps)
@@ -137,9 +139,9 @@ namespace Blazorous
             return list;
         }
 
-        private static Css CreateDynamicCssFromAttributes(IDictionary<string, object> attributesToRender)
+        private ICss CreateDynamicCssFromAttributes(IDictionary<string, object> attributesToRender)
         {
-            var css = new Css();
+            var css = CssCreator.CreateNew();
             foreach (var cssProp in CssProps)
             {
                 if (attributesToRender.TryGetValue(cssProp, out var value))
@@ -171,7 +173,7 @@ namespace Blazorous
             return list;
         }
 
-        private static async Task<List<string>> GetCssFromProps(IEnumerable<object> css, IDictionary<string, object> attributesToRender, string debug)
+        private async Task<List<string>> GetCssFromProps(IEnumerable<object> css, IDictionary<string, object> attributesToRender, string debug)
         {
             var list = new List<string>();
             foreach (var item in css)

@@ -8,13 +8,15 @@ namespace Sample
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.DefineBlazorousThemes(themes =>
+            services.AddBlazorous();
+
+            services.DefineBlazorousThemes((themes, cssCreator) =>
             {
                 var theme1 = themes.CreateTheme("Soothing Web Colors");
                 theme1.Variables.Add("primary", "#f23d5d");
                 theme1.Variables.Add("secondary", "#8c3d5d");
                 theme1.Variables.Add("font_color", "white");
-                theme1.Snippets.Add("heading", Css.CreateNew().AddRule("color", "#423d5d").AddFontface(css =>
+                theme1.Snippets.Add("heading", cssCreator.CreateNew().AddRule("color", "#423d5d").AddFontface(css =>
                 {
                     css.AddRule("fontFamily", "Fira Sans")
                         .AddRule("fontStyle", "normal")
@@ -27,7 +29,7 @@ namespace Sample
                 theme2.Variables.Add("primary", "#e10000");
                 theme2.Variables.Add("secondary", "#12159f");
                 theme2.Variables.Add("font_color", "white");
-                theme2.Snippets.Add("heading", Css.CreateNew().AddRules("color", "#008709").AddFontface(css =>
+                theme2.Snippets.Add("heading", cssCreator.CreateNew().AddRules("color", "#008709").AddFontface(css =>
                 {
                     css.AddRule("fontFamily", "Butterfly Kids")
                         .AddRule("fontStyle", "normal")

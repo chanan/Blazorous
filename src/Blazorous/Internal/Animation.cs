@@ -9,10 +9,13 @@ namespace Blazorous
     {
         private IList<KeyValuePair<string, Action<Css>>> Animations { get; set; } = new List<KeyValuePair<string, Action<Css>>>();
 
-        internal Animation() { }
-        public static IAnimation CreateNew()
+        private readonly IBlazorousInterop _blazorousInterop;
+        private readonly ICssCreator _cssCreator;
+
+        internal Animation(IBlazorousInterop blazorousInterop, ICssCreator cssCreator)
         {
-            return new Animation();
+            _blazorousInterop = blazorousInterop;
+            _cssCreator = cssCreator;
         }
 
         public IAnimation AddKeyframe(string keyframe, Action<ICss> css)
@@ -53,14 +56,14 @@ namespace Blazorous
             {
                 var kvp = Animations[i];
                 sb.Append($"\"{kvp.Key}\":");
-                var tempCss = new Css();
+                var tempCss = (Css)_cssCreator.CreateNew();
                 kvp.Value.Invoke(tempCss);
                 var cssRule = await tempCss.ToCss(attributes, debug);
                 sb.Append(cssRule);
                 if (i != Animations.Count - 1) sb.Append(",");
             }
             sb.Append("}");
-            return await BlazorousInterop.Keyframes(sb.ToString(), debug);
+            return await _blazorousInterop.Keyframes(sb.ToString(), debug);
         }
     }
 }

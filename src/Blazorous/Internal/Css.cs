@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Blazorous.Internal;
+using Microsoft.AspNetCore.Components;
 
 namespace Blazorous
 {
     public class Css : ICss, IRules
     {
         private readonly IList<KeyValuePair<string, object>> _rules = new List<KeyValuePair<string, object>>();
+        private IBlazorousInterop _blazorousInterop;
+        private IThemes _themes;
+        private ICssCreator _cssCreator;
 
-        internal Css()
+        internal Css(IBlazorousInterop blazorousInterop, IThemes themes, ICssCreator cssCreator)
         {
+            _blazorousInterop = blazorousInterop;
+            _themes = themes;
+            _cssCreator = cssCreator;
         }
 
         internal int Count
@@ -135,11 +142,6 @@ namespace Blazorous
             return InternalApplyThemeSnippet(snippetName);
         }
 
-        public static ICss CreateNew()
-        {
-            return new Css();
-        }
-
         public async Task<string> ToCss(IDictionary<string, object> attributes, string debug)
         {
             var sb = new StringBuilder();
@@ -157,7 +159,7 @@ namespace Blazorous
                         sb.Append($"\"{kvp.Key}\": {num}");
                         break;
                     case DynamicRule dr:
-                        var tempCss = new Css();
+                        var tempCss = (Css)_cssCreator.CreateNew();
                         dr.Rule.Invoke(tempCss, attributes);
                         var cssRule = await tempCss.ToCss(attributes, debug);
                         sb.Append(cssRule.Substring(1, cssRule.Length - 2));
@@ -165,29 +167,31 @@ namespace Blazorous
                     case Classname _:
                         break;
                     case AnimationStyle a:
-                        var animationTemp = new Animation();
+                        var animationTemp = new Animation(_blazorousInterop, _cssCreator);
                         a.Animation.Invoke(animationTemp);
                         var cssAnimation = await animationTemp.ToKeyframes(attributes, debug);
                         sb.Append($"\"animation\": \"{cssAnimation} {a.Duration}\"");
                         break;
                     case FontFace f:
-                        var tempFontfaceCss = new Css();
+                        var tempFontfaceCss = (Css)_cssCreator.CreateNew();
                         f.Fontface.Invoke(tempFontfaceCss);
                         var cssFontfaceRule = await tempFontfaceCss.ToFontface(attributes, debug);
                         sb.Append($"\"font-family\": \"{cssFontfaceRule}\"");
                         break;
                     case SelectorRule sr:
-                        var tempSelectorRuleCss = new Css();
+                        var tempSelectorRuleCss = (Css)_cssCreator.CreateNew();
                         sr.Rule.Invoke(tempSelectorRuleCss);
                         var cssSelectorRuleCss = await tempSelectorRuleCss.ToCss(attributes, debug);
                         sb.Append($"\"{sr.Selector}\": {cssSelectorRuleCss}");
                         break;
                     case Mixin m:
-                        var temp = await BlazorousInterop.PolishedMixin(m.Rule, debug);
+                        var temp = await _blazorousInterop.PolishedMixin(m.Rule, debug);
                         sb.Append(temp.Substring(1, temp.Length - 2));
                         break;
                     case ThemeSnippet ts:
-                        var theme = ThemesProvider.Instance.Current;
+                        Console.WriteLine("ThemesProvider: ");
+                        Console.WriteLine(_themes);
+                        var theme = _themes.Current;
                         if (theme != null)
                         {
                             var snippet = (Css)theme.Snippets[ts.SnippetName];
@@ -218,7 +222,7 @@ namespace Blazorous
                 var end = result.IndexOf("}", start) + 1;
                 var variable = result.Substring(start, end - start);
                 var variabeName = variable.Substring(1, variable.Length - 2);
-                var value = ThemesProvider.Instance.Current != null ? ThemesProvider.Instance.Current.Variables[variabeName] : String.Empty;
+                var value = _themes.Current != null ? _themes.Current.Variables[variabeName] : String.Empty;
                 result = result.Replace(variable, value);
             }
             return result;
@@ -238,7 +242,7 @@ namespace Blazorous
                 {
                     case DynamicRule dr:
                         if (attributes == null) break;
-                        var tempCss = new Css();
+                        var tempCss = (Css)_cssCreator.CreateNew();
                         dr.Rule.Invoke(tempCss, attributes);
                         var classes = tempCss.ToClasses(attributes);
                         sb.Append(classes);
@@ -264,7 +268,7 @@ namespace Blazorous
         public async Task<string> ToFontface(IDictionary<string, object> attributes, string debug)
         {
             var css = await ToCss(attributes, debug);
-            return await BlazorousInterop.Fontface(css, debug);
+            return await _blazorousInterop.Fontface(css, debug);
         }
 
         private Css InternalAddRule(string name, string value)

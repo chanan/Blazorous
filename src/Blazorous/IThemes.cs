@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Blazorous
+﻿namespace Blazorous
 {
     public interface IThemes
     {
